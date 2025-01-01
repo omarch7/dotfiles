@@ -62,6 +62,8 @@ require("lazy").setup({
 		{ "williamboman/mason.nvim",          config = true },
 		{ "williamboman/mason-lspconfig.nvim" },
 		{ "neovim/nvim-lspconfig" },
+        { "github/copilot.vim" },
+        { "tpope/vim-fugitive" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
