@@ -1,8 +1,6 @@
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
 
 vim.cmd([[
     set number
@@ -81,6 +79,7 @@ require("lazy").setup({
                     transparent = true,
                 }
                 vim.cmd('colorscheme fluoromachine')
+                vim.opt.termguicolors = true
             end
         },
     },
@@ -124,7 +123,9 @@ end, { noremap = true, silent = true })
 require("mason-lspconfig").setup({
     ensure_installed = {
         "lua_ls",
-        "rust_analyzer"
+        "rust_analyzer",
+        "pylsp",
+        "gopls",
     },
 })
 
@@ -146,3 +147,6 @@ lspconfig.lua_ls.setup({
     },
 })
 lspconfig.rust_analyzer.setup({})
+lspconfig.pylsp.setup({})
+lspconfig.gopls.setup({})
+
