@@ -63,7 +63,9 @@ require("lazy").setup({
         { "williamboman/mason-lspconfig.nvim" },
         { "neovim/nvim-lspconfig" },
         { "github/copilot.vim" },
+        { "airblade/vim-gitgutter" },
         { "tpope/vim-fugitive" },
+        { "tpope/vim-rhubarb" },
         { 'f-person/git-blame.nvim' },
         { 'nvim-telescope/telescope.nvim',    tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' } },
         {
