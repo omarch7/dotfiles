@@ -82,6 +82,24 @@ require("lazy").setup({
                 vim.opt.termguicolors = true
             end
         },
+        {
+            "folke/which-key.nvim",
+            event = "VeryLazy",
+            opts = {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            },
+            keys = {
+                {
+                    "<leader>?",
+                    function()
+                        require("which-key").show({ global = false })
+                    end,
+                    desc = "Buffer Local Keymaps (which-key)",
+                },
+            },
+        }
     },
 })
 
@@ -149,4 +167,3 @@ lspconfig.lua_ls.setup({
 lspconfig.rust_analyzer.setup({})
 lspconfig.pylsp.setup({})
 lspconfig.gopls.setup({})
-
