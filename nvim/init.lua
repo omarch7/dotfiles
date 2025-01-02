@@ -1,6 +1,8 @@
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
 
 vim.cmd([[
     set number
@@ -47,11 +49,11 @@ require("lazy").setup({
             config = function()
                 require("nvim-treesitter.configs").setup({
                     ensure_installed = { "lua", "python", "rust", "yaml", "sql", "toml" }, -- Add your preferred languages
-                    sync_install = false,                                   -- Install languages asynchronously
-                    auto_install = true,                                    -- Automatically install missing parsers
+                    sync_install = false,                                                  -- Install languages asynchronously
+                    auto_install = true,                                                   -- Automatically install missing parsers
                     highlight = {
-                        enable = true,                                      -- Enable syntax highlighting
-                        additional_vim_regex_highlighting = false,          -- Use only Tree-sitter for highlighting
+                        enable = true,                                                     -- Enable syntax highlighting
+                        additional_vim_regex_highlighting = false,                         -- Use only Tree-sitter for highlighting
                     },
                     indent = {
                         enable = true, -- Enable improved indentation
@@ -66,12 +68,22 @@ require("lazy").setup({
         { "tpope/vim-fugitive" },
         { 'f-person/git-blame.nvim' },
         { 'nvim-telescope/telescope.nvim',    tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' } },
+        {
+            'maxmx03/fluoromachine.nvim',
+            lazy = false,
+            priority = 1000,
+            config = function()
+                local fm = require('fluoromachine')
+
+                fm.setup {
+                    glow = true,
+                    theme = 'fluoromachine',
+                    transparent = true,
+                }
+                vim.cmd('colorscheme fluoromachine')
+            end
+        },
     },
-    -- Configure any other settings here. See the documentation for more details.
-    -- colorscheme that will be used when installing plugins.
-    install = { colorscheme = { "habamax" } },
-    -- automatically check for plugin updates
-    checker = { enabled = true },
 })
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
