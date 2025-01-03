@@ -167,5 +167,18 @@ lspconfig.lua_ls.setup({
     },
 })
 lspconfig.rust_analyzer.setup({})
-lspconfig.pylsp.setup({})
+lspconfig.pylsp.setup({
+    settings = {
+        pylsp = {
+            plugins = {
+                pylint = {
+                    maxLineLength = 120,
+                },
+                pycodestyle = {
+                    maxLineLength = 120,
+                },
+            },
+        },
+    },
+})
 lspconfig.gopls.setup({})
