@@ -140,6 +140,11 @@ vim.keymap.set("n", "<leader>f", function()
     vim.lsp.buf.format({ async = true })
 end, { noremap = true, silent = true })
 
+vim.keymap.set("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true })
+
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+
 require("mason-lspconfig").setup({
     ensure_installed = {
         "lua_ls",
