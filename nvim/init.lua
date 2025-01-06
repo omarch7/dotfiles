@@ -144,6 +144,7 @@ vim.keymap.set("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", { norema
 
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope find inside files" })
 
 require("mason-lspconfig").setup({
     ensure_installed = {
