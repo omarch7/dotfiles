@@ -101,7 +101,8 @@ require("lazy").setup({
                     desc = "Buffer Local Keymaps (which-key)",
                 },
             },
-        }
+        },
+        { 'mfussenegger/nvim-dap' },
     },
 })
 
@@ -153,9 +154,11 @@ require("mason-lspconfig").setup({
         "pylsp",
         "gopls",
     },
+    automatic_installation = true,
 })
 
 local lspconfig = require("lspconfig")
+-- Lua
 lspconfig.lua_ls.setup({
     settings = {
         Lua = {
@@ -172,7 +175,9 @@ lspconfig.lua_ls.setup({
         },
     },
 })
+-- Rust
 lspconfig.rust_analyzer.setup({})
+-- Python
 lspconfig.pylsp.setup({
     settings = {
         pylsp = {
@@ -187,4 +192,5 @@ lspconfig.pylsp.setup({
         },
     },
 })
+-- Go
 lspconfig.gopls.setup({})
