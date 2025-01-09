@@ -56,6 +56,8 @@ require("lazy").setup({
                     indent = {
                         enable = true, -- Enable improved indentation
                     },
+                    modules = {},
+                    ignore_install = {},
                 })
             end,
         },
