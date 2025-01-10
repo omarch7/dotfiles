@@ -104,7 +104,12 @@ require("lazy").setup({
                 },
             },
         },
+        -- Debuggers
         { 'mfussenegger/nvim-dap' },
+        { 'mfussenegger/nvim-dap-python' },
+        { 'theHamsta/nvim-dap-virtual-text' },
+        { 'rcarriga/nvim-dap-ui' },
+        { 'nvim-telescope/telescope-dap.nvim' },
     },
 })
 
@@ -144,11 +149,24 @@ vim.keymap.set("n", "<leader>f", function()
 end, { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true })
-
+-- Telescope mappings
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope find inside files" })
-
+-- Dap
+require("nvim-dap-virtual-text").setup()
+require('telescope').load_extension('dap')
+vim.keymap.set("n", "<leader>dc", "<cmd>Telescope dap commands<CR>", { desc = "Telescope dap commands" })
+vim.keymap.set("n", "<leader>dv", "<cmd>Telescope dap variables<CR>", { desc = "Telescope dap variables" })
+vim.keymap.set("n", "<leader>df", "<cmd>Telescope dap frames<CR>", { desc = "Telescope dap frames" })
+-- Dap mappings
+vim.keymap.set("n", "<leader>dd", "<cmd>lua require('dap').continue()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>dt", "<cmd>lua require('dap').terminate()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>db", "<cmd>lua require('dap').toggle_breakpoint()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>do", "<cmd>lua require('dap').step_over()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>di", "<cmd>lua require('dap').step_into()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>de", "<cmd>lua require('dap').repl.open()<CR>", { noremap = true, silent = true })
+-- LSP config
 require("mason-lspconfig").setup({
     ensure_installed = {
         "lua_ls",
@@ -194,5 +212,6 @@ lspconfig.pylsp.setup({
         },
     },
 })
+require('dap-python').setup("python3")
 -- Go
 lspconfig.gopls.setup({})
