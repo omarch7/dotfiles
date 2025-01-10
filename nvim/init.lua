@@ -148,11 +148,13 @@ vim.keymap.set("n", "<leader>f", function()
     vim.lsp.buf.format({ async = true })
 end, { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true })
 -- Telescope mappings
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope find inside files" })
+vim.keymap.set("n", "<leader>tf", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>tg", builtin.live_grep, { desc = "Telescope find inside files" })
+vim.keymap.set("n", "<leader>tb", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tr", "<cmd>Telescope lsp_references<CR>", { noremap = true, silent = true })
+
 -- Dap
 require("nvim-dap-virtual-text").setup()
 require('telescope').load_extension('dap')
