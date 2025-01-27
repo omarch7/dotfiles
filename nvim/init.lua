@@ -168,6 +168,7 @@ vim.keymap.set("n", "<leader>dd", "<cmd>lua require('dap').continue()<CR>", { no
 vim.keymap.set("n", "<leader>dt", "<cmd>lua require('dap').terminate()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>db", "<cmd>lua require('dap').toggle_breakpoint()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>do", "<cmd>lua require('dap').step_over()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>du", "<cmd>lua require('dap').step_out()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>di", "<cmd>lua require('dap').step_into()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>de", "<cmd>lua require('dap').repl.open()<CR>", { noremap = true, silent = true })
 -- LSP config
@@ -177,6 +178,7 @@ require("mason-lspconfig").setup({
         "rust_analyzer",
         "pylsp",
         "gopls",
+        "jsonnet_ls",
     },
     automatic_installation = true,
 })
@@ -219,3 +221,5 @@ lspconfig.pylsp.setup({
 require('dap-python').setup("python3")
 -- Go
 lspconfig.gopls.setup({})
+-- Jsonnet
+lspconfig.jsonnet_ls.setup({})
