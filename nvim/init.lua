@@ -70,21 +70,28 @@ require("lazy").setup({
         { "tpope/vim-rhubarb" },
         { 'f-person/git-blame.nvim' },
         { 'nvim-telescope/telescope.nvim',    tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' } },
+        -- {
+        --     'maxmx03/fluoromachine.nvim',
+        --     lazy = false,
+        --     priority = 1000,
+        --     config = function()
+        --         local fm = require('fluoromachine')
+        --
+        --         fm.setup {
+        --             glow = true,
+        --             theme = 'fluoromachine',
+        --             transparent = true,
+        --         }
+        --         vim.cmd('colorscheme fluoromachine')
+        --         vim.opt.termguicolors = true
+        --     end
+        -- },
         {
-            'maxmx03/fluoromachine.nvim',
-            lazy = false,
-            priority = 1000,
-            config = function()
-                local fm = require('fluoromachine')
-
-                fm.setup {
-                    glow = true,
-                    theme = 'fluoromachine',
-                    transparent = true,
-                }
-                vim.cmd('colorscheme fluoromachine')
-                vim.opt.termguicolors = true
-            end
+            'tiagovla/tokyodark.nvim',
+            config = function(_, opts)
+                require('tokyodark').setup(opts)
+                vim.cmd [[colorscheme tokyodark]]
+            end,
         },
         {
             "folke/which-key.nvim",
