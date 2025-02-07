@@ -114,6 +114,7 @@ require("lazy").setup({
         -- Debuggers
         { 'mfussenegger/nvim-dap' },
         { 'mfussenegger/nvim-dap-python' },
+        { 'leoluz/nvim-dap-go' },
         { 'theHamsta/nvim-dap-virtual-text' },
         { 'rcarriga/nvim-dap-ui' },
         { 'nvim-telescope/telescope-dap.nvim' },
@@ -245,5 +246,6 @@ lspconfig.pylsp.setup({
 require('dap-python').setup("python3")
 -- Go
 lspconfig.gopls.setup({})
+require('dap-go').setup()
 -- Jsonnet
 lspconfig.jsonnet_ls.setup({})
