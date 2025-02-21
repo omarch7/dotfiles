@@ -204,6 +204,8 @@ require("mason-lspconfig").setup({
         "pylsp",
         "gopls",
         "jsonnet_ls",
+        "bashls",
+        "terraformls",
     },
     automatic_installation = true,
 })
@@ -249,3 +251,7 @@ lspconfig.gopls.setup({})
 require('dap-go').setup()
 -- Jsonnet
 lspconfig.jsonnet_ls.setup({})
+-- Bash
+lspconfig.bashls.setup({})
+-- Terraform
+lspconfig.terraformls.setup({})
