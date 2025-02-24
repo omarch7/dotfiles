@@ -206,6 +206,7 @@ require("mason-lspconfig").setup({
         "jsonnet_ls",
         "bashls",
         "terraformls",
+        "yamlls",
     },
     automatic_installation = true,
 })
@@ -255,3 +256,5 @@ lspconfig.jsonnet_ls.setup({})
 lspconfig.bashls.setup({})
 -- Terraform
 lspconfig.terraformls.setup({})
+-- YAML
+lspconfig.yamlls.setup({})
