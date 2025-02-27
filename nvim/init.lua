@@ -86,12 +86,18 @@ require("lazy").setup({
         --         vim.opt.termguicolors = true
         --     end
         -- },
+        -- {
+        --     'tiagovla/tokyodark.nvim',
+        --     config = function(_, opts)
+        --         require('tokyodark').setup(opts)
+        --         vim.cmd [[colorscheme tokyodark]]
+        --     end,
+        -- },
         {
-            'tiagovla/tokyodark.nvim',
-            config = function(_, opts)
-                require('tokyodark').setup(opts)
-                vim.cmd [[colorscheme tokyodark]]
-            end,
+            "folke/tokyonight.nvim",
+            lazy = false,
+            priority = 1000,
+            opts = {},
         },
         {
             "folke/which-key.nvim",
@@ -139,6 +145,41 @@ require("lazy").setup({
         },
     },
 })
+
+-- Setup Theme
+require("tokyonight").setup({
+    -- Choose style: "storm", "moon", "night", "day"
+    style = "night",
+
+    -- Enable transparent background
+    transparent = false,
+
+    -- Configure terminal colors
+    terminal_colors = true,
+
+    -- Style options
+    styles = {
+        comments = { italic = true },
+        keywords = { italic = true },
+        functions = {},
+        variables = {},
+        sidebars = "dark",
+        floats = "dark",
+    },
+
+    -- Make darker or lighter
+    dim_inactive = false,
+    lualine_bold = false,
+
+    -- Customize colors (check docs for more options)
+    -- colors = {},
+
+    -- Sidebars configuration
+    sidebars = { "qf", "help" },
+})
+
+vim.cmd("colorscheme tokyonight")
+
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
     callback = function()
