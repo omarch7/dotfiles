@@ -70,29 +70,6 @@ require("lazy").setup({
         { "tpope/vim-rhubarb" },
         { 'f-person/git-blame.nvim' },
         { 'nvim-telescope/telescope.nvim',    tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' } },
-        -- {
-        --     'maxmx03/fluoromachine.nvim',
-        --     lazy = false,
-        --     priority = 1000,
-        --     config = function()
-        --         local fm = require('fluoromachine')
-        --
-        --         fm.setup {
-        --             glow = true,
-        --             theme = 'fluoromachine',
-        --             transparent = true,
-        --         }
-        --         vim.cmd('colorscheme fluoromachine')
-        --         vim.opt.termguicolors = true
-        --     end
-        -- },
-        -- {
-        --     'tiagovla/tokyodark.nvim',
-        --     config = function(_, opts)
-        --         require('tokyodark').setup(opts)
-        --         vim.cmd [[colorscheme tokyodark]]
-        --     end,
-        -- },
         {
             "folke/tokyonight.nvim",
             lazy = false,
@@ -142,6 +119,13 @@ require("lazy").setup({
                 },
             },
             opts_extend = { 'sources.default' }
+        },
+        {
+            "sindrets/diffview.nvim",
+            dependencies = { "nvim-tree/nvim-web-devicons" },
+            config = function()
+                require("diffview").setup({})
+            end,
         },
     },
 })
@@ -239,7 +223,7 @@ vim.keymap.set("n", "<leader>tb", "<cmd>Telescope lsp_definitions<CR>", { norema
 vim.keymap.set("n", "<leader>tr", "<cmd>Telescope lsp_references<CR>", { noremap = true, silent = true })
 
 -- Dap
-require("nvim-dap-virtual-text").setup()
+require("nvim-dap-virtual-text").setup({})
 require('telescope').load_extension('dap')
 vim.keymap.set("n", "<leader>dc", "<cmd>Telescope dap commands<CR>", { desc = "Telescope dap commands" })
 vim.keymap.set("n", "<leader>dv", "<cmd>Telescope dap variables<CR>", { desc = "Telescope dap variables" })
@@ -252,6 +236,10 @@ vim.keymap.set("n", "<leader>do", "<cmd>lua require('dap').step_over()<CR>", { n
 vim.keymap.set("n", "<leader>du", "<cmd>lua require('dap').step_out()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>di", "<cmd>lua require('dap').step_into()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>de", "<cmd>lua require('dap').repl.open()<CR>", { noremap = true, silent = true })
+-- DiffView mappings
+vim.keymap.set("n", "<leader>dv", "<cmd>DiffviewOpen<CR>", { desc = "DiffView open" })
+vim.keymap.set("n", "<leader>dvc", "<cmd>DiffviewClose<CR>", { desc = "DiffView close" })
+vim.keymap.set("n", "<leader>dvh", "<cmd>DiffviewFileHistory<CR>", { desc = "DiffView file history" })
 -- LSP config
 require("mason-lspconfig").setup({
     ensure_installed = {
