@@ -251,6 +251,7 @@ require("mason-lspconfig").setup({
         "bashls",
         "terraformls",
         "yamlls",
+        "jsonls",
     },
     automatic_installation = true,
 })
@@ -302,3 +303,5 @@ lspconfig.bashls.setup({})
 lspconfig.terraformls.setup({})
 -- YAML
 lspconfig.yamlls.setup({})
+-- JSON
+lspconfig.jsonls.setup({})
