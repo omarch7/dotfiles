@@ -128,6 +128,10 @@ require("lazy").setup({
                 require("diffview").setup({})
             end,
         },
+        {
+            "nvim-lualine/lualine.nvim",
+            dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+        }
     },
 })
 
@@ -165,6 +169,8 @@ require("tokyonight").setup({
 
 vim.cmd("colorscheme tokyonight")
 
+-- Setup lualine
+require("lualine").setup({})
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
     callback = function()
