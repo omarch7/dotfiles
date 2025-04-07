@@ -71,12 +71,7 @@ require("lazy").setup({
         { "tpope/vim-rhubarb" },
         { 'f-person/git-blame.nvim' },
         { 'nvim-telescope/telescope.nvim',    tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' } },
-        {
-            "folke/tokyonight.nvim",
-            lazy = false,
-            priority = 1000,
-            opts = {},
-        },
+        { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
         {
             "folke/which-key.nvim",
             event = "VeryLazy",
@@ -153,39 +148,7 @@ require("lazy").setup({
     },
 })
 
--- Setup Theme
-require("tokyonight").setup({
-    -- Choose style: "storm", "moon", "night", "day"
-    style = "night",
-
-    -- Enable transparent background
-    transparent = false,
-
-    -- Configure terminal colors
-    terminal_colors = true,
-
-    -- Style options
-    styles = {
-        comments = { italic = true },
-        keywords = { italic = true },
-        functions = {},
-        variables = {},
-        sidebars = "dark",
-        floats = "dark",
-    },
-
-    -- Make darker or lighter
-    dim_inactive = false,
-    lualine_bold = false,
-
-    -- Customize colors (check docs for more options)
-    -- colors = {},
-
-    -- Sidebars configuration
-    sidebars = { "qf", "help" },
-})
-
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme catppuccin-mocha")
 
 -- Setup lualine
 require("lualine").setup({})
