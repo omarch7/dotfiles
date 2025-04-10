@@ -225,7 +225,8 @@ vim.keymap.set("n", "<leader>du", "<cmd>lua require('dap').step_out()<CR>", { no
 vim.keymap.set("n", "<leader>di", "<cmd>lua require('dap').step_into()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>de", "<cmd>lua require('dap').repl.open()<CR>", { noremap = true, silent = true })
 -- DiffView mappings
-vim.keymap.set("n", "<leader>dv", "<cmd>DiffviewOpen<CR>", { desc = "DiffView open" })
+vim.keymap.set("n", "<leader>dvm", "<cmd>DiffviewOpen master<CR>", { desc = "DiffView open against master" })
+vim.keymap.set("n", "<leader>dv1", "<cmd>DiffviewOpen HEAD~1<CR>", { desc = "DiffView open against HEAD~1" })
 vim.keymap.set("n", "<leader>dvc", "<cmd>DiffviewClose<CR>", { desc = "DiffView close" })
 vim.keymap.set("n", "<leader>dvh", "<cmd>DiffviewFileHistory<CR>", { desc = "DiffView file history" })
 -- LSP config
