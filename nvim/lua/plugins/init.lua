@@ -18,8 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 -- Load plugins
 require("lazy").setup({
     spec = {
-        { import = "plugins" },
+        { import = "plugins.specs" },
     },
 })
 
-vim.cmd("colorscheme catppuccin-latte")
+vim.cmd("colorscheme catppuccin-mocha")

@@ -24,9 +24,8 @@ keymap("n", "<leader>K", function()
 end, { noremap = true, silent = true })
 
 -- Telescope mappings
-local builtin = require("telescope.builtin")
-keymap("n", "<leader>tf", builtin.find_files, { desc = "Telescope find files" })
-keymap("n", "<leader>tg", builtin.live_grep, { desc = "Telescope find inside files" })
+keymap("n", "<leader>tf", "<cmd>Telescope find_files<CR>", { desc = "Telescope find files" })
+keymap("n", "<leader>tg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope find inside files" })
 keymap("n", "<leader>tb", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true })
 keymap("n", "<leader>tr", "<cmd>Telescope lsp_references<CR>", { noremap = true, silent = true })
 
