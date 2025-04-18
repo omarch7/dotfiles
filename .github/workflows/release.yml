@@ -42,12 +42,30 @@ jobs:
           # Default to patch
           BUMP_TYPE="patch"
           
-          # Check for major/feature keywords
-          if echo "$COMMITS" | grep -i -E "(feat|feature)!:|breaking change|BREAKING CHANGE|major|breaking"; then
+          # Get current branch name
+          BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+          echo "Current branch: $BRANCH_NAME"
+          
+          # Extract prefix from branch name (everything before the first slash)
+          BRANCH_PREFIX=$(echo "$BRANCH_NAME" | cut -d'/' -f1)
+          echo "Branch prefix: $BRANCH_PREFIX"
+          
+          # Determine bump type based on branch prefix
+          if [ "$BRANCH_PREFIX" == "major" ] || [ "$BRANCH_PREFIX" == "breaking" ]; then
             BUMP_TYPE="major"
-          # Check for minor keywords
-          elif echo "$COMMITS" | grep -i -E "feat|feature|minor|add|new"; then
+          elif [ "$BRANCH_PREFIX" == "minor" ] || [ "$BRANCH_PREFIX" == "feature" ] || [ "$BRANCH_PREFIX" == "feat" ]; then
             BUMP_TYPE="minor"
+          elif [ "$BRANCH_PREFIX" == "patch" ] || [ "$BRANCH_PREFIX" == "hotfix" ] || [ "$BRANCH_PREFIX" == "fix" ]; then
+            BUMP_TYPE="patch"
+          else
+            # Fallback to commit message analysis if branch prefix doesn't match
+            # Check for major/feature keywords
+            if echo "$COMMITS" | grep -i -E "(feat|feature)!:|breaking change|BREAKING CHANGE|major|breaking"; then
+              BUMP_TYPE="major"
+            # Check for minor keywords
+            elif echo "$COMMITS" | grep -i -E "feat|feature|minor|add|new"; then
+              BUMP_TYPE="minor"
+            fi
           fi
           
           echo "BUMP_TYPE=$BUMP_TYPE" >> $GITHUB_ENV
