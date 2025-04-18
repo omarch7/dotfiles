@@ -1,0 +1,113 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git
+        run: |
+          git config user.name "Omar Contreras"
+          git config user.email "omarch7@gmail.com"
+
+      - name: Get latest tag
+        id: get_latest_tag
+        run: |
+          # Get the latest tag or set to v0.0.0 if none exists
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
+          echo "Latest tag: $LATEST_TAG"
+
+      - name: Determine version bump type
+        id: determine_bump
+        run: |
+          # Get commit messages since last tag
+          if [ "${{ env.LATEST_TAG }}" == "v0.0.0" ]; then
+            COMMITS=$(git log --pretty=format:"%s" --no-merges)
+          else
+            COMMITS=$(git log ${{ env.LATEST_TAG }}..HEAD --pretty=format:"%s" --no-merges)
+          fi
+          
+          # Default to patch
+          BUMP_TYPE="patch"
+          
+          # Check for major/feature keywords
+          if echo "$COMMITS" | grep -i -E "(feat|feature)!:|breaking change|BREAKING CHANGE|major|breaking"; then
+            BUMP_TYPE="major"
+          # Check for minor keywords
+          elif echo "$COMMITS" | grep -i -E "feat|feature|minor|add|new"; then
+            BUMP_TYPE="minor"
+          fi
+          
+          echo "BUMP_TYPE=$BUMP_TYPE" >> $GITHUB_ENV
+          echo "Determined bump type: $BUMP_TYPE"
+
+      - name: Calculate new version
+        id: calculate_version
+        run: |
+          # Extract version numbers
+          CURRENT_VERSION=${LATEST_TAG#v}
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+          
+          # Bump version based on determined type
+          if [ "${{ env.BUMP_TYPE }}" == "major" ]; then
+            NEW_VERSION="$((MAJOR + 1)).0.0"
+          elif [ "${{ env.BUMP_TYPE }}" == "minor" ]; then
+            NEW_VERSION="${MAJOR}.$((MINOR + 1)).0"
+          else
+            NEW_VERSION="${MAJOR}.${MINOR}.$((PATCH + 1))"
+          fi
+          
+          NEW_TAG="v$NEW_VERSION"
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+          echo "New version will be: $NEW_TAG"
+
+      - name: Create and push tag
+        run: |
+          git tag ${{ env.NEW_TAG }}
+          git push origin ${{ env.NEW_TAG }}
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # Generate changelog from commits since last tag
+          if [ "${{ env.LATEST_TAG }}" == "v0.0.0" ]; then
+            CHANGELOG=$(git log --pretty=format:"* %s (%h)" --no-merges)
+          else
+            CHANGELOG=$(git log ${{ env.LATEST_TAG }}..HEAD --pretty=format:"* %s (%h)" --no-merges)
+          fi
+          
+          # Escape newlines for GitHub Actions
+          CHANGELOG="${CHANGELOG//'%'/'%25'}"
+          CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
+          CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
+          
+          echo "CHANGELOG=$CHANGELOG" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.NEW_TAG }}
+          name: Release ${{ env.NEW_TAG }}
+          body: |
+            ## Changes in this release
+            
+            ${{ env.CHANGELOG }}
+            
+            ## Version Bump
+            ${{ env.BUMP_TYPE }} bump from ${{ env.LATEST_TAG }} to ${{ env.NEW_TAG }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
