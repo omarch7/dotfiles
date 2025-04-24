@@ -15,3 +15,8 @@ g.maplocalleader = "\\"
 
 -- Syntax highlighting
 vim.cmd([[syntax on]])
+
+-- Enable Virtual Lines
+vim.diagnostic.config({
+    virtual_lines = true
+})
