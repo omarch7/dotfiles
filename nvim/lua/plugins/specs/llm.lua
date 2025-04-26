@@ -13,6 +13,12 @@ return {
                 max_tokens = 4096,
                 disable_tools = true, -- disable tools!
             },
+            ollama = {
+                model = "qwen2.5-coder:32b",
+            },
+            gemini = {
+                model = "gemini-2.5-pro-exp-03-25",
+            },
         },
         -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
         build = "make",
