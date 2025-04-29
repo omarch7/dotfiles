@@ -40,13 +40,6 @@ return {
         opts_extend = { 'sources.default' }
     },
     {
-        "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
-        config = function()
-            require("lualine").setup()
-        end
-    },
-    {
         "christoomey/vim-tmux-navigator",
         cmd = {
             "TmuxNavigateLeft",
