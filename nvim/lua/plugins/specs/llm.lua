@@ -5,6 +5,7 @@ return {
         event = "VeryLazy",
         version = false, -- Never set this value to "*"! Never!
         opts = {
+            provider = "ollama", -- default provider
             claude = {
                 endpoint = "https://api.anthropic.com",
                 model = "claude-3-7-sonnet-20250219",
@@ -14,7 +15,7 @@ return {
                 disable_tools = true, -- disable tools!
             },
             ollama = {
-                model = "qwen2.5-coder:32b",
+                model = "qwen3:30b-a3b",
             },
             gemini = {
                 model = "gemini-2.5-pro-exp-03-25",
