@@ -47,3 +47,6 @@ keymap("n", "<leader>dvm", "<cmd>DiffviewOpen master<CR>", { desc = "DiffView op
 keymap("n", "<leader>dv1", "<cmd>DiffviewOpen HEAD~1<CR>", { desc = "DiffView open against HEAD~1" })
 keymap("n", "<leader>dvc", "<cmd>DiffviewClose<CR>", { desc = "DiffView close" })
 keymap("n", "<leader>dvh", "<cmd>DiffviewFileHistory<CR>", { desc = "DiffView file history" })
+
+-- Gitsigns mapping
+keymap("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "Gitsigns preview hunk" })
