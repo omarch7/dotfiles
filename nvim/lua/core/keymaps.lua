@@ -50,3 +50,9 @@ keymap("n", "<leader>dvh", "<cmd>DiffviewFileHistory<CR>", { desc = "DiffView fi
 
 -- Gitsigns mapping
 keymap("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "Gitsigns preview hunk" })
+
+-- Vim-Test mappings
+keymap("n", "<leader>Tf", "<cmd>TestFile<CR>", { desc = "Test file" })
+keymap("n", "<leader>Ts", "<cmd>TestSuite<CR>", { desc = "Test suite" })
+keymap("n", "<leader>Tn", "<cmd>TestNearest<CR>", { desc = "Test nearest" })
+keymap("n", "<leader>Tl", "<cmd>TestLast<CR>", { desc = "Test last" })
