@@ -4,7 +4,7 @@ local keymap = vim.keymap.set
 keymap("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 -- LSP mappings
-keymap("n", "<leader>f", function()
+keymap("n", "<leader>F", function()
     vim.lsp.buf.format({ async = true })
 end, { noremap = true, silent = true })
 keymap("n", "<leader>rn", function()
@@ -13,21 +13,15 @@ end, { noremap = true, silent = true })
 keymap("n", "<leader>ca", function()
     vim.lsp.buf.code_action()
 end, { noremap = true, silent = true })
-keymap("n", "<leader>gd", function()
-    vim.lsp.buf.definition()
-end, { noremap = true, silent = true })
-keymap("n", "<leader>gr", function()
-    vim.lsp.buf.references()
-end, { noremap = true, silent = true })
 keymap("n", "<leader>K", function()
     vim.lsp.buf.hover()
 end, { noremap = true, silent = true })
 
 -- Telescope mappings
-keymap("n", "<leader>tf", "<cmd>Telescope find_files<CR>", { desc = "Telescope find files" })
-keymap("n", "<leader>tg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope find inside files" })
-keymap("n", "<leader>tb", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true })
-keymap("n", "<leader>tr", "<cmd>Telescope lsp_references<CR>", { noremap = true, silent = true })
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Telescope find files" })
+keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope find inside files" })
+keymap("n", "<leader>fb", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true })
+keymap("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { noremap = true, silent = true })
 
 -- DAP mappings
 keymap("n", "<leader>dc", "<cmd>Telescope dap commands<CR>", { desc = "Telescope dap commands" })
@@ -50,3 +44,9 @@ keymap("n", "<leader>dvh", "<cmd>DiffviewFileHistory<CR>", { desc = "DiffView fi
 
 -- Gitsigns mapping
 keymap("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "Gitsigns preview hunk" })
+
+-- Vim-Test mappings
+keymap("n", "<leader>tf", "<cmd>TestFile<CR>", { desc = "Test file" })
+keymap("n", "<leader>ts", "<cmd>TestSuite<CR>", { desc = "Test suite" })
+keymap("n", "<leader>tn", "<cmd>TestNearest<CR>", { desc = "Test nearest" })
+keymap("n", "<leader>tl", "<cmd>TestLast<CR>", { desc = "Test last" })
