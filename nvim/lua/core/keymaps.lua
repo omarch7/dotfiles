@@ -37,13 +37,15 @@ keymap("n", "<leader>di", "<cmd>lua require('dap').step_into()<CR>", { noremap =
 keymap("n", "<leader>de", "<cmd>lua require('dap').repl.open()<CR>", { noremap = true, silent = true, desc = "DAP open REPL" })
 
 -- DiffView mappings
-keymap("n", "<leader>dvm", "<cmd>DiffviewOpen master<CR>", { desc = "DiffView open against master" })
-keymap("n", "<leader>dv1", "<cmd>DiffviewOpen HEAD~1<CR>", { desc = "DiffView open against HEAD~1" })
-keymap("n", "<leader>dvc", "<cmd>DiffviewClose<CR>", { desc = "DiffView close" })
-keymap("n", "<leader>dvh", "<cmd>DiffviewFileHistory<CR>", { desc = "DiffView file history" })
+keymap("n", "<leader>gvm", "<cmd>DiffviewOpen master<CR>", { desc = "DiffView open against master" })
+keymap("n", "<leader>gv1", "<cmd>DiffviewOpen HEAD~1<CR>", { desc = "DiffView open against HEAD~1" })
+keymap("n", "<leader>gv2", "<cmd>DiffviewOpen HEAD~2<CR>", { desc = "DiffView open against HEAD~2" })
+keymap("n", "<leader>gvc", "<cmd>DiffviewClose<CR>", { desc = "DiffView close" })
+keymap("n", "<leader>gvh", "<cmd>DiffviewFileHistory<CR>", { desc = "DiffView file history" })
 
 -- Gitsigns mapping
 keymap("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { noremap = true, silent = true, desc = "Gitsigns preview hunk" })
+keymap("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { noremap = true, silent = true, desc = "Gitsigns reset hunk" })
 
 -- Vim-Test mappings
 keymap("n", "<leader>tf", "<cmd>TestFile<CR>", { noremap = true, silent = true, desc = "Run test file" })
