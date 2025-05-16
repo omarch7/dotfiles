@@ -1,21 +1,14 @@
+---@diagnostic disable-next-line: undefined-global
 local keymap = vim.keymap.set
 
 -- NvimTree Toggle
 keymap("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Toggle NvimTree" })
 
 -- LSP mappings
-keymap("n", "<leader>F", function()
-    vim.lsp.buf.format({ async = true })
-end, { noremap = true, silent = true, desc = "Format code" })
-keymap("n", "<leader>rn", function()
-    vim.lsp.buf.rename()
-end, { noremap = true, silent = true, desc = "Rename symbol" })
-keymap("n", "<leader>ca", function()
-    vim.lsp.buf.code_action()
-end, { noremap = true, silent = true, desc = "Code action" })
-keymap("n", "<leader>K", function()
-    vim.lsp.buf.hover()
-end, { noremap = true, silent = true, desc = "Hover documentation" })
+keymap("n", "<leader>F", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", { noremap = true, silent = true, desc = "Format code" })
+keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true, desc = "Rename symbol" })
+keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true, desc = "Code action" })
+keymap("n", "<leader>K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true, desc = "Hover documentation" })
 
 -- Telescope mappings
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Telescope find files" })
