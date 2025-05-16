@@ -5,7 +5,7 @@ return {
         event = "VeryLazy",
         version = false,          -- Never set this value to "*"! Never!
         opts = {
-            provider = "copilot", -- default provider
+            provider = "bedrock", -- default provider
             claude = {
                 endpoint = "https://api.anthropic.com",
                 model = "claude-3-7-sonnet-20250219",
