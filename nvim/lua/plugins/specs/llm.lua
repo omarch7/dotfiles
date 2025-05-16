@@ -3,9 +3,9 @@ return {
     {
         "yetone/avante.nvim",
         event = "VeryLazy",
-        version = false, -- Never set this value to "*"! Never!
+        version = false,          -- Never set this value to "*"! Never!
         opts = {
-            provider = "copilot", -- default provider
+            provider = "bedrock", -- default provider
             claude = {
                 endpoint = "https://api.anthropic.com",
                 model = "claude-3-7-sonnet-20250219",
@@ -19,6 +19,11 @@ return {
             },
             gemini = {
                 model = "gemini-2.5-pro-exp-03-25",
+            },
+            bedrock = {
+                model = "anthropic.claude-3-5-sonnet-20240620-v1:0",
+                aws_profile = "ds",
+                aws_region = "us-east-1",
             },
         },
         -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
