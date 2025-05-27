@@ -21,9 +21,12 @@ return {
                 model = "gemini-2.5-pro-exp-03-25",
             },
             bedrock = {
-                model = "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+                model = "us.anthropic.claude-opus-4-20250514-v1:0",
                 aws_profile = "bedrock",
-                aws_region = "eu-west-1",
+                aws_region = "us-east-1",
+                timeout = 30000, -- Timeout in milliseconds
+                temperature = 0,
+                max_tokens = 4096,
             },
         },
         -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
