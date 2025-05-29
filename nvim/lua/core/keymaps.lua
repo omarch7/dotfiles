@@ -45,3 +45,8 @@ keymap("n", "<leader>tf", "<cmd>TestFile<CR>", { noremap = true, silent = true, 
 keymap("n", "<leader>ts", "<cmd>TestSuite<CR>", { noremap = true, silent = true, desc = "Run test suite" })
 keymap("n", "<leader>tn", "<cmd>TestNearest<CR>", { noremap = true, silent = true, desc = "Run nearest test" })
 keymap("n", "<leader>tl", "<cmd>TestLast<CR>", { noremap = true, silent = true, desc = "Run last test" })
+
+-- DAP-UI mappings
+keymap("n", "<leader>dui", "<cmd>lua require('dapui').toggle()<CR>", { noremap = true, silent = true, desc = "Toggle DAP UI" })
+keymap("n", "<leader>due", "<cmd>lua require('dapui').eval()<CR>", { noremap = true, silent = true, desc = "DAP UI eval" })
+keymap("v", "<leader>due", "<cmd>lua require('dapui').eval()<CR>", { noremap = true, silent = true, desc = "DAP UI eval" })
