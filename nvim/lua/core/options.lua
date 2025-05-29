@@ -20,3 +20,5 @@ vim.cmd([[syntax on]])
 vim.diagnostic.config({
     virtual_lines = true
 })
+
+vim.o.exrc = true
