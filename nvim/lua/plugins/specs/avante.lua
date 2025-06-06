@@ -1,25 +1,5 @@
 return {
     {
-        "zbirenbaum/copilot.lua",
-        config = function()
-            require("copilot").setup({
-                suggestion = {
-                    enabled = true,
-                    auto_trigger = true,
-                    debounce = 75,
-                    keymap = {
-                        accept = "<M-l>",      -- Alt+L to accept
-                        accept_word = "<M-w>", -- Alt+W to accept word
-                        accept_line = "<M-j>", -- Alt+J to accept line
-                        next = "<M-]>",        -- Alt+] for next suggestion
-                        prev = "<M-[>",        -- Alt+[ for previous suggestion
-                        dismiss = "<C-]>",     -- Ctrl+] to dismiss
-                    },
-                },
-            })
-        end,
-    },
-    {
         "yetone/avante.nvim",
         event = "VeryLazy",
         version = false,          -- Never set this value to "*"! Never!
@@ -29,7 +9,7 @@ return {
                 claude = {
                     endpoint = "https://api.anthropic.com",
                     model = "claude-3-7-sonnet-20250219",
-                    timeout = 30000,  -- Timeout in milliseconds
+                    timeout = 30000,      -- Timeout in milliseconds
                     disable_tools = true, -- disable tools!
                     extra_request_body = {
                         temperature = 0,
@@ -95,5 +75,5 @@ return {
                 ft = { "markdown", "Avante" },
             },
         },
-    }
+    },
 }
