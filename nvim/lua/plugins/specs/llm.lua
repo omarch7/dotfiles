@@ -25,27 +25,33 @@ return {
         version = false,          -- Never set this value to "*"! Never!
         opts = {
             provider = "bedrock", -- default provider
-            claude = {
-                endpoint = "https://api.anthropic.com",
-                model = "claude-3-7-sonnet-20250219",
-                timeout = 30000, -- Timeout in milliseconds
-                temperature = 0,
-                max_tokens = 4096,
-                disable_tools = true, -- disable tools!
-            },
-            ollama = {
-                model = "qwen3:30b-a3b",
-            },
-            gemini = {
-                model = "gemini-2.5-pro-exp-03-25",
-            },
-            bedrock = {
-                model = "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
-                aws_profile = "bedrock",
-                aws_region = "eu-west-1",
-                timeout = 30000, -- Timeout in milliseconds
-                temperature = 0,
-                max_tokens = 4096,
+            providers = {
+                claude = {
+                    endpoint = "https://api.anthropic.com",
+                    model = "claude-3-7-sonnet-20250219",
+                    timeout = 30000,  -- Timeout in milliseconds
+                    disable_tools = true, -- disable tools!
+                    extra_request_body = {
+                        temperature = 0,
+                        max_tokens = 4096,
+                    },
+                },
+                ollama = {
+                    model = "qwen3:30b-a3b",
+                },
+                gemini = {
+                    model = "gemini-2.5-pro-exp-03-25",
+                },
+                bedrock = {
+                    model = "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+                    aws_profile = "bedrock",
+                    aws_region = "eu-west-1",
+                    timeout = 30000, -- Timeout in milliseconds
+                    extra_request_body = {
+                        temperature = 0,
+                        max_tokens = 4096,
+                    },
+                },
             },
         },
         -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
