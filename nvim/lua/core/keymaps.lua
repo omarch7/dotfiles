@@ -9,11 +9,11 @@ keymap("n", "<leader>F", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", { 
 keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true, desc = "Rename symbol" })
 keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true, desc = "Code action" })
 keymap("n", "<leader>K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true, desc = "Hover documentation" })
+keymap("n", "<leader>fb", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true, desc = "Go to definition"})
 
 -- Telescope mappings
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Telescope find files" })
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope find inside files" })
-keymap("n", "<leader>fb", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true, desc = "Telescope LSP definitions" })
 keymap("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { noremap = true, silent = true, desc = "Telescope LSP references" })
 
 -- DAP mappings
