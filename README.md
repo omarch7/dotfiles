@@ -11,6 +11,7 @@ My Neovim setup is designed to be modular, performant, and feature-rich. It uses
 nvim/
 ├── init.lua              # Main entry point
 ├── lazy-lock.json        # Plugin version lock file
+├── lsp/                 # Language Server Protocol configurations
 └── lua/
     ├── core/             # Core configuration
     │   ├── autocmds.lua  # Autocommands
@@ -38,10 +39,13 @@ nvim/
 - **Modular Organization**: Configuration is split into logical components
 - **Lazy Loading**: Plugins are loaded only when needed for faster startup
 - **LSP Integration**: Full Language Server Protocol support
-- **Treesitter**: Advanced syntax highlighting and code navigation
+- **Treesitter**: Enhanced syntax highlighting and code navigation with support for lua, python, rust, yaml, sql, toml and more
 - **Telescope**: Fuzzy finder for files, buffers, and more
-- **Git Integration**: Seamless Git workflow within the editor
-- **AI Assistance**: LLM integration for coding assistance
+- **Git Integration**: Seamless Git workflow with DiffView and Gitsigns
+- **AI Assistance**: LLM integration for coding assistance with multiple providers
+- **Debugging**: DAP (Debug Adapter Protocol) integration with UI and extensive keymappings
+- **Testing**: vim-test integration with custom keybindings for various test workflows
+- **Navigation**: NvimTree for file browsing and project management
 
 ### Notable Plugins
 
@@ -63,6 +67,37 @@ nvim/
 
 - **AI & LLM Integration**
   - AI-assisted coding and completion
+
+### Key Keybindings
+
+- `<C-n>`: Toggle NvimTree file explorer
+- `<leader>F`: Format code
+- `<leader>rn`: Rename symbol (LSP)
+- `<leader>ca`: Code action (LSP)
+- `<leader>ff`: Find files (Telescope)
+- `<leader>fg`: Find text in files (Telescope grep)
+
+#### Testing
+- `<leader>tf`: Run test file
+- `<leader>ts`: Run test suite
+- `<leader>tn`: Run nearest test
+- `<leader>tl`: Run last test
+
+#### Debugging
+- `<leader>dd`: Start/continue debugging
+- `<leader>dt`: Terminate debugging session
+- `<leader>db`: Toggle breakpoint
+
+## LLM Configuration
+
+My setup includes configuration for multiple LLM providers through the Avante.nvim plugin:
+
+- **Claude via Anthropic API**: Direct integration with Claude models
+- **Claude via AWS Bedrock**: Integration through AWS Bedrock service
+- **Ollama with Qwen model**: Local LLM support
+- **Google Gemini**: Integration with Google's Gemini models
+
+Configuration settings are maintained in `lua/plugins/specs/avante.lua`.
 
 ## Installation
 
