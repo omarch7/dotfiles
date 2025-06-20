@@ -56,5 +56,4 @@ keymap("n", "<leader>tl", "<cmd>TestLast<CR>", { noremap = true, silent = true, 
 
 -- DAP-UI mappings
 keymap("n", "<leader>dui", "<cmd>lua require('dapui').toggle()<CR>", { noremap = true, silent = true, desc = "Toggle DAP UI" })
-keymap("n", "<leader>due", "<cmd>lua require('dapui').eval()<CR>", { noremap = true, silent = true, desc = "DAP UI eval" })
-keymap("v", "<leader>due", "<cmd>lua require('dapui').eval()<CR>", { noremap = true, silent = true, desc = "DAP UI eval" })
+keymap({"n", "v"}, "<leader>due", "<cmd>lua require('dapui').eval()<CR>", { noremap = true, silent = true, desc = "DAP UI eval" })
