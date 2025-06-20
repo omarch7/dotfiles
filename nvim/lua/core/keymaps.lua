@@ -18,6 +18,7 @@ keymap("n", "<leader>fg", "<cmd>lua Snacks.picker.grep()<CR>", { desc = "Snacks 
 keymap("n", "<leader>fr", "<cmd>lua Snacks.picker.lsp_references()<CR>", { noremap = true, silent = true, desc = "Snacks LSP references" })
 keymap("n", "<leader>e", "<cmd>lua Snacks.explorer()<CR>", { noremap = true, silent = true, desc = "Snacks explorer" })
 keymap("n", "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", { noremap = true, silent = true, desc = "Snacks lazygit" })
+keymap({"n", "v"}, "<leader>gB", "<cmd>lua Snacks.gitbrowse()<CR>", { noremap = true, silent = true, desc = "Snacks git browse" })
 keymap("n", "<leader>sd", "<cmd>lua Snacks.picker.diagnostics()<CR>", { noremap = true, silent = true, desc = "Snacks diagnostics" })
 keymap("n", "<leader>sD", "<cmd>lua Snacks.picker.diagnostics_buffer()<CR>", { noremap = true, silent = true, desc = "Snacks diagnostics buffer" })
 keymap("n", "<c-/>", "<cmd>lua Snacks.terminal()<CR>", { noremap = true, silent = true, desc = "Snacks terminal" })
