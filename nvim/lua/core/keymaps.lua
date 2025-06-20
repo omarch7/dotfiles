@@ -18,6 +18,7 @@ keymap("n", "<leader>fg", "<cmd>lua Snacks.picker.grep()<CR>", { desc = "Snacks 
 keymap("n", "<leader>fr", "<cmd>lua Snacks.picker.lsp_references()<CR>", { noremap = true, silent = true, desc = "Snacks LSP references" })
 keymap("n", "<leader>e", "<cmd>lua Snacks.explorer()<CR>", { noremap = true, silent = true, desc = "Snacks explorer" })
 keymap("n", "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", { noremap = true, silent = true, desc = "Snacks lazygit" })
+keymap("n", "<leader>sd", "<cmd>lua Snacks.picker.diagnostics()<CR>", { noremap = true, silent = true, desc = "Snacks diagnostics" })
 
 -- DAP mappings
 keymap("n", "<leader>dc", "<cmd>Telescope dap commands<CR>", { desc = "Telescope dap commands" })
