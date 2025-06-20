@@ -1,9 +1,6 @@
 ---@diagnostic disable-next-line: undefined-global
 local keymap = vim.keymap.set
 
--- NvimTree Toggle
-keymap("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Toggle NvimTree" })
-
 -- LSP mappings
 keymap("n", "<leader>F", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", { noremap = true, silent = true, desc = "Format code" })
 keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true, desc = "Rename symbol" })
