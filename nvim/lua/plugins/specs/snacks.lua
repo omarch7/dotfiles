@@ -1,7 +1,6 @@
 return {
     {
         "folke/snacks.nvim",
-        ---@type snacks.Config
         opts = {
             dashboard = {
                 sections = {
@@ -11,7 +10,17 @@ return {
                     { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
                     { section = "startup" },
                 },
-            }
+            },
+            picker = {
+                enabled = true,
+            },
+            explorer = {
+                enabled = true,
+            },
+            notifier = {
+                enabled = true,
+                timeout = 3000,
+            },
         }
     }
 

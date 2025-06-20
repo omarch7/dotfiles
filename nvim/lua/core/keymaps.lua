@@ -11,10 +11,13 @@ keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = 
 keymap("n", "<leader>K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true, desc = "Hover documentation" })
 keymap("n", "<leader>fb", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true, desc = "Go to definition"})
 
--- Telescope mappings
-keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Telescope find files" })
-keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope find inside files" })
-keymap("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { noremap = true, silent = true, desc = "Telescope LSP references" })
+-- Snacks mappings
+keymap("n", "<leader><leader>", "<cmd>lua Snacks.picker.smart()<CR>", { desc = "Snacks smart picker" })
+keymap("n", "<leader>ff", "<cmd>lua Snacks.picker.files()<CR>", { desc = "Snacks find files" })
+keymap("n", "<leader>fg", "<cmd>lua Snacks.picker.grep()<CR>", { desc = "Snacks find inside files" })
+keymap("n", "<leader>fr", "<cmd>lua Snacks.picker.lsp_references()<CR>", { noremap = true, silent = true, desc = "Snacks LSP references" })
+keymap("n", "<leader>e", "<cmd>lua Snacks.explorer()<CR>", { noremap = true, silent = true, desc = "Snacks explorer" })
+keymap("n", "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", { noremap = true, silent = true, desc = "Snacks lazygit" })
 
 -- DAP mappings
 keymap("n", "<leader>dc", "<cmd>Telescope dap commands<CR>", { desc = "Telescope dap commands" })
