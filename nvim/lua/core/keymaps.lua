@@ -44,6 +44,8 @@ keymap("n", "<leader>gvh", "<cmd>DiffviewFileHistory<CR>", { desc = "DiffView fi
 -- Gitsigns mapping
 keymap("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { noremap = true, silent = true, desc = "Gitsigns preview hunk" })
 keymap("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { noremap = true, silent = true, desc = "Gitsigns reset hunk" })
+keymap("n", "<[c>", "<cmd>Gitsigns prev_hunk<CR>", { noremap = true, silent = true, desc = "Gitsigns previous hunk" })
+keymap("n", "]c", "<cmd>Gitsigns next_hunk<CR>", { noremap = true, silent = true, desc = "Gitsigns next hunk" })
 
 -- Vim-Test mappings
 keymap("n", "<leader>tf", "<cmd>TestFile<CR>", { noremap = true, silent = true, desc = "Run test file" })
