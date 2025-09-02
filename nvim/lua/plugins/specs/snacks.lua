@@ -15,7 +15,8 @@ return {
                 enabled = true,
                 sources = {
                     explorer = {
-                        auto_close = true,
+                        auto_close = false,
+                        hidden = true,  -- Show hidden files by default
                         win = {
                             list = {
                                 keys = {
@@ -35,10 +36,10 @@ return {
             },
             terminal = {
                 win = {
-                    position = "float",
+                    position = "bottom",
+                    height = 0.3,
                 },
             },
         }
     }
-
 }
