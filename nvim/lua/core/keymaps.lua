@@ -56,3 +56,10 @@ keymap("n", "<leader>tl", "<cmd>TestLast<CR>", { noremap = true, silent = true, 
 -- DAP-UI mappings
 keymap("n", "<leader>dui", "<cmd>lua require('dapui').toggle()<CR>", { noremap = true, silent = true, desc = "Toggle DAP UI" })
 keymap({"n", "v"}, "<leader>due", "<cmd>lua require('dapui').eval()<CR>", { noremap = true, silent = true, desc = "DAP UI eval" })
+
+-- Tmux Navigator mappings
+keymap("t", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", { noremap = true, silent = true, desc = "Tmux navigate left" })
+keymap("t", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", { noremap = true, silent = true, desc = "Tmux navigate down" })
+keymap("t", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", { noremap = true, silent = true, desc = "Tmux navigate up" })
+keymap("t", "<C-l>", "<Cmd>TmuxNavigateRight<CR>", { noremap = true, silent = true, desc = "Tmux navigate right" })
+keymap("t", "<C-\\>", "<Cmd>TmuxNavigatePrevious<CR>", { noremap = true, silent = true, desc = "Tmux navigate previous" })
