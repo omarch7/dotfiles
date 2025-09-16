@@ -25,6 +25,10 @@ return {
                             },
                         },
                     },
+                    grep = {
+                        hidden = true,
+                        no_ignore = false,
+                    },
                 },
             },
             explorer = {
