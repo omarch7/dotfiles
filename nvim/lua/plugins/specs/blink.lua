@@ -2,7 +2,7 @@ return {
     {
         'saghen/blink.cmp',
         dependencies = 'rafamadriz/friendly-snippets',
-        version = '0.11.0',
+        version = '1.7.0',
         opts = {
             keymap = { preset = 'default' },
             appearance = {
@@ -11,6 +11,10 @@ return {
             },
             sources = {
                 default = { 'lsp', 'path', 'snippets', 'buffer' },
+            },
+            cmdline = {
+                keymap = { preset = 'inherit' },
+                completion = { menu = { auto_show = true } },
             },
         },
         opts_extend = { 'sources.default' }
