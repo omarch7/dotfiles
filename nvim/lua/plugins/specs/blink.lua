@@ -16,6 +16,11 @@ return {
                 keymap = { preset = 'inherit' },
                 completion = { menu = { auto_show = true } },
             },
+            completion = {
+                menu = {
+                    auto_show_delay_ms = function(_, _) return vim.bo.filetype == 'markdown' and 10000 or 0 end,
+                },
+            },
         },
         opts_extend = { 'sources.default' }
     },
