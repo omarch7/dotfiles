@@ -44,6 +44,9 @@ return {
                     height = 0.3,
                 },
             },
+            gh = {
+                enabled = true,
+            },
         }
     }
 }

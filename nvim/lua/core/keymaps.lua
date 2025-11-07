@@ -20,6 +20,7 @@ keymap("n", "<leader>sd", "<cmd>lua Snacks.picker.diagnostics()<CR>", { noremap 
 keymap("n", "<leader>sD", "<cmd>lua Snacks.picker.diagnostics_buffer()<CR>", { noremap = true, silent = true, desc = "Snacks diagnostics buffer" })
 keymap("n", "<c-/>", "<cmd>lua Snacks.terminal()<CR>", { noremap = true, silent = true, desc = "Snacks terminal" })
 keymap("n", "<c-_>", "<cmd>lua Snacks.terminal()<CR>", { noremap = true, silent = true, desc = "which_key_ignore" })
+keymap("n", "<leader>ghpr", "<cmd>lua Snacks.picker.gh_pr()<CR>", { noremap = true, silent = true, desc = "Snacks GitHub PR" })
 
 -- DAP mappings
 keymap("n", "<leader>dc", "<cmd>Telescope dap commands<CR>", { desc = "Telescope dap commands" })
