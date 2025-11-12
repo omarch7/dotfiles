@@ -1,6 +1,6 @@
 # Omar's Dotfiles
 
-This repository contains my personal dotfiles, with a primary focus on my Neovim configuration.
+This repository contains my personal dotfiles, including configurations for Neovim and tmux designed for a productive development environment.
 
 ## Neovim Configuration
 
@@ -20,62 +20,107 @@ nvim/
     └── plugins/          # Plugin configuration
         ├── init.lua      # Plugin loader
         └── specs/        # Plugin specifications
-            ├── coding.lua
-            ├── colorscheme.lua
-            ├── completion.lua
-            ├── editor.lua
-            ├── git.lua
-            ├── lang.lua
-            ├── linting.lua
-            ├── llm.lua
-            ├── lsp.lua
-            ├── telescope.lua
-            ├── treesitter.lua
-            └── ui.lua
+            ├── avante.lua          # LLM integration
+            ├── blink.lua           # Completion engine
+            ├── catppuccin.lua      # Colorscheme
+            ├── comment.lua         # Comment utilities
+            ├── copilot.lua         # GitHub Copilot
+            ├── dap-ui.lua          # Debug UI
+            ├── dap.lua             # Debug adapter
+            ├── gitools.lua         # Git tools
+            ├── gitsigns.lua        # Git signs
+            ├── lspconfig.lua       # LSP configuration
+            ├── lualine.lua         # Status line
+            ├── mason.lua           # LSP/DAP installer
+            ├── snacks.lua          # Snacks.nvim utilities
+            ├── telescope.lua       # Fuzzy finder
+            ├── treesitter.lua      # Syntax highlighting
+            ├── ufo.lua             # Folding
+            ├── vim-bookmarks.lua   # Bookmarks
+            ├── vim-test.lua        # Testing
+            ├── vim-tmux-navigator.lua  # Tmux integration
+            └── which-key.lua       # Key helper
 ```
 
 ### Key Features
 
 - **Modular Organization**: Configuration is split into logical components
 - **Lazy Loading**: Plugins are loaded only when needed for faster startup
-- **LSP Integration**: Full Language Server Protocol support
+- **LSP Integration**: Full Language Server Protocol support via Mason and lspconfig
 - **Treesitter**: Enhanced syntax highlighting and code navigation with support for lua, python, rust, yaml, sql, toml and more
-- **Telescope**: Fuzzy finder for files, buffers, and more
-- **Git Integration**: Seamless Git workflow with DiffView and Gitsigns
-- **AI Assistance**: LLM integration for coding assistance with multiple providers
-- **Debugging**: DAP (Debug Adapter Protocol) integration with UI and extensive keymappings
+- **Snacks.nvim**: Modern UI toolkit providing file picker, explorer, terminal, Git integration, and more
+- **Blink.cmp**: Fast completion engine with LSP, path, snippets, and buffer sources
+- **Code Folding**: nvim-ufo for smart folding with LSP and indent providers
+- **Git Integration**: Seamless Git workflow with Gitsigns, DiffView, and Snacks Git Browse/LazyGit
+- **AI Assistance**: Multiple AI providers including GitHub Copilot and Avante.nvim with Claude, Bedrock, Ollama, and Gemini
+- **Debugging**: DAP (Debug Adapter Protocol) integration with rich UI and extensive keymappings
 - **Testing**: vim-test integration with custom keybindings for various test workflows
-- **Navigation**: NvimTree for file browsing and project management
+- **Tmux Integration**: Seamless navigation between Neovim and tmux panes
 
 ### Notable Plugins
 
 - **UI & Appearance**
-  - Status line, bufferline, and various UI enhancements
-  - Custom colorscheme configuration
+  - **Catppuccin Mocha**: Modern colorscheme with Treesitter and completion support
+  - **Lualine**: Customized status line with time display and modern separators
+  - **Snacks.nvim**: Dashboard, notifications, and modern UI components
 
 - **Editor Enhancements**
-  - Advanced text editing capabilities
-  - Navigation and window management tools
+  - **Blink.cmp**: Advanced completion with intelligent delays and cmdline support
+  - **nvim-ufo**: Smart code folding with LSP integration
+  - **vim-tmux-navigator**: Seamless tmux/Neovim pane navigation
+  - **Comment.nvim**: Easy code commenting
 
 - **Development Tools**
-  - LSP configuration for multiple languages
-  - Linting and formatting integrations
-  - Completion engine with snippets
+  - **Mason**: Automatic LSP/DAP server installation
+  - **nvim-lspconfig**: LSP configuration for multiple languages
+  - **Snacks Picker**: Fast file finding and grep with hidden file support
 
 - **Git Tools**
-  - Git signs, diff views, and commit integration
+  - **Gitsigns**: Inline git status, hunk preview, and reset
+  - **DiffView**: Visual diff comparison and file history
+  - **Snacks Git**: Git browse and LazyGit integration
 
 - **AI & LLM Integration**
-  - AI-assisted coding and completion
+  - **GitHub Copilot**: AI-powered code suggestions
+  - **Avante.nvim**: Multi-provider LLM assistance (Claude, Bedrock, Ollama, Gemini)
 
 ### Key Keybindings
 
-- `<C-n>`: Toggle NvimTree file explorer
+**Note**: Leader key is set to `<Space>`
+
+#### LSP & Editing
 - `<leader>F`: Format code
-- `<leader>rn`: Rename symbol (LSP)
-- `<leader>ca`: Code action (LSP)
-- `<leader>ff`: Find files (Telescope)
-- `<leader>fg`: Find text in files (Telescope grep)
+- `<leader>rn`: Rename symbol
+- `<leader>ca`: Code action
+- `<leader>K`: Hover documentation
+- `<leader>fb`: Go to definition
+
+#### File Navigation (Snacks)
+- `<leader><leader>`: Smart picker (context-aware)
+- `<leader>ff`: Find files
+- `<leader>fg`: Grep text in files
+- `<leader>fr`: LSP references
+- `<leader>e`: Toggle file explorer
+- `<leader>sd`: Show diagnostics (workspace)
+- `<leader>sD`: Show diagnostics (buffer)
+
+#### Git (Snacks & Gitsigns)
+- `<leader>gg`: LazyGit integration
+- `<leader>gB`: Git browse (open in browser)
+- `<leader>gp`: Preview hunk
+- `<leader>gr`: Reset hunk
+- `[c`: Previous hunk
+- `]c`: Next hunk
+
+#### DiffView
+- `<leader>gvm`: DiffView against master
+- `<leader>gv1`: DiffView against HEAD~1
+- `<leader>gv2`: DiffView against HEAD~2
+- `<leader>gvc`: Close DiffView
+- `<leader>gvh`: File history
+
+#### Terminal
+- `<C-/>`: Toggle terminal
 
 #### Testing
 - `<leader>tf`: Run test file
@@ -83,10 +128,68 @@ nvim/
 - `<leader>tn`: Run nearest test
 - `<leader>tl`: Run last test
 
-#### Debugging
+#### Debugging (DAP)
 - `<leader>dd`: Start/continue debugging
 - `<leader>dt`: Terminate debugging session
 - `<leader>db`: Toggle breakpoint
+- `<leader>do`: Step over
+- `<leader>du`: Step out
+- `<leader>di`: Step into
+- `<leader>de`: Open REPL
+- `<leader>dui`: Toggle DAP UI
+- `<leader>due`: Evaluate expression
+
+#### Code Folding
+- `zR`: Open all folds
+- `zM`: Close all folds
+
+#### Tmux Navigation
+- `<C-h>`: Navigate left (works in both Neovim and tmux)
+- `<C-j>`: Navigate down
+- `<C-k>`: Navigate up
+- `<C-l>`: Navigate right
+- `<C-\>`: Navigate to previous pane
+
+## Tmux Configuration
+
+My tmux setup is designed for seamless integration with Neovim and features a modern, visually appealing interface.
+
+### Key Features
+
+- **Prefix Key**: `<C-s>` (Control + s) for all tmux commands
+- **Mouse Support**: Disabled for keyboard-focused workflow
+- **Vi Mode**: Vi-style key bindings in copy mode
+- **True Color Support**: 256-color terminal with RGB support
+- **Top Status Bar**: Status bar positioned at the top
+- **Catppuccin Mocha Theme**: Matching Neovim colorscheme for visual consistency
+
+### Plugins (via TPM)
+
+- **tmux-sensible**: Sensible default settings
+- **vim-tmux-navigator**: Seamless navigation between tmux and Neovim panes
+- **tmux-fzf-url**: FZF-based URL picker
+- **tmux-cpu**: CPU usage monitoring
+- **tmux-battery**: Battery status display
+- **catppuccin/tmux**: Beautiful Catppuccin Mocha theme
+
+### Status Bar Modules
+
+The status bar includes:
+- Application name
+- CPU usage
+- Session name
+- System uptime
+- Battery status
+
+### Key Bindings
+
+- `<C-s>r`: Reload tmux configuration
+- `<C-s>h`: Select left pane
+- `<C-s>j`: Select down pane
+- `<C-s>k`: Select up pane
+- `<C-s>l`: Select right pane
+
+**Note**: When used with vim-tmux-navigator, `<C-h/j/k/l>` navigates seamlessly between tmux panes and Neovim splits.
 
 ## LLM Configuration
 
@@ -108,10 +211,23 @@ Configuration settings are maintained in `lua/plugins/specs/avante.lua`.
 
 2. Create symbolic links:
    ```bash
+   # Neovim configuration
    ln -s ~/.dotfiles/nvim ~/.config/nvim
+
+   # Tmux configuration
+   ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
    ```
 
-3. Launch Neovim, and the plugin manager will automatically install all plugins.
+3. Install Neovim plugins:
+   - Launch Neovim, and lazy.nvim will automatically install all configured plugins
+
+4. Install tmux plugins (optional):
+   ```bash
+   # Install TPM (Tmux Plugin Manager)
+   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+   # Launch tmux and press <C-s>I (Control+s then Shift+i) to install plugins
+   ```
 
 ## Customization
 
