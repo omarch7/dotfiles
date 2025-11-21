@@ -4,8 +4,8 @@ return {
         'kevinhwang91/nvim-ufo',
         dependencies = 'kevinhwang91/promise-async',
         config = function()
-            vim.o.foldcolumn = '1' -- Show fold column
-            vim.o.foldlevel = 99 -- Open all folds by default
+            vim.o.foldcolumn = '0' -- Show fold column
+            vim.o.foldlevel = 99   -- Open all folds by default
             vim.o.foldlevelstart = 99
             vim.o.foldenable = true
 
@@ -19,4 +19,5 @@ return {
                 end
             })
         end
-    } }
+    }
+}
