@@ -16,7 +16,7 @@ return {
                 sources = {
                     explorer = {
                         auto_close = false,
-                        hidden = true,  -- Show hidden files by default
+                        hidden = true, -- Show hidden files by default
                         win = {
                             list = {
                                 keys = {
