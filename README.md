@@ -20,18 +20,21 @@ nvim/
     └── plugins/          # Plugin configuration
         ├── init.lua      # Plugin loader
         └── specs/        # Plugin specifications
-            ├── avante.lua          # LLM integration
             ├── blink.lua           # Completion engine
             ├── catppuccin.lua      # Colorscheme
             ├── comment.lua         # Comment utilities
             ├── copilot.lua         # GitHub Copilot
             ├── dap-ui.lua          # Debug UI
             ├── dap.lua             # Debug adapter
+            ├── fzf-lua.lua         # FZF integration
             ├── gitools.lua         # Git tools
             ├── gitsigns.lua        # Git signs
+            ├── ibl.lua             # Indent blankline
+            ├── img-clip.lua        # Image clipboard
             ├── lspconfig.lua       # LSP configuration
             ├── lualine.lua         # Status line
             ├── mason.lua           # LSP/DAP installer
+            ├── render-markdown.lua # Markdown rendering
             ├── snacks.lua          # Snacks.nvim utilities
             ├── telescope.lua       # Fuzzy finder
             ├── treesitter.lua      # Syntax highlighting
@@ -52,7 +55,7 @@ nvim/
 - **Blink.cmp**: Fast completion engine with LSP, path, snippets, and buffer sources
 - **Code Folding**: nvim-ufo for smart folding with LSP and indent providers
 - **Git Integration**: Seamless Git workflow with Gitsigns, DiffView, and Snacks Git Browse/LazyGit
-- **AI Assistance**: Multiple AI providers including GitHub Copilot and Avante.nvim with Claude, Bedrock, Ollama, and Gemini
+- **AI Assistance**: GitHub Copilot for AI-powered code suggestions
 - **Debugging**: DAP (Debug Adapter Protocol) integration with rich UI and extensive keymappings
 - **Testing**: vim-test integration with custom keybindings for various test workflows
 - **Tmux Integration**: Seamless navigation between Neovim and tmux panes
@@ -80,9 +83,8 @@ nvim/
   - **DiffView**: Visual diff comparison and file history
   - **Snacks Git**: Git browse and LazyGit integration
 
-- **AI & LLM Integration**
+- **AI Integration**
   - **GitHub Copilot**: AI-powered code suggestions
-  - **Avante.nvim**: Multi-provider LLM assistance (Claude, Bedrock, Ollama, Gemini)
 
 ### Key Keybindings
 
@@ -190,17 +192,6 @@ The status bar includes:
 - `<C-s>l`: Select right pane
 
 **Note**: When used with vim-tmux-navigator, `<C-h/j/k/l>` navigates seamlessly between tmux panes and Neovim splits.
-
-## LLM Configuration
-
-My setup includes configuration for multiple LLM providers through the Avante.nvim plugin:
-
-- **Claude via Anthropic API**: Direct integration with Claude models
-- **Claude via AWS Bedrock**: Integration through AWS Bedrock service
-- **Ollama with Qwen model**: Local LLM support
-- **Google Gemini**: Integration with Google's Gemini models
-
-Configuration settings are maintained in `lua/plugins/specs/avante.lua`.
 
 ## Installation
 
