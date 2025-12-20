@@ -49,6 +49,14 @@ return {
             },
             input = {
                 enabled = true,
+                win = {
+                    relative = "cursor",
+                    row = -3,
+                    col = 0,
+                }
+            },
+            indent = {
+                enabled = true,
             },
         }
     }
