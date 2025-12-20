@@ -47,6 +47,9 @@ return {
             gh = {
                 enabled = true,
             },
+            input = {
+                enabled = true,
+            },
         }
     }
 }
