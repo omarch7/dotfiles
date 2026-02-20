@@ -6,8 +6,8 @@ return {
                 ui = {
                     icons = {
                         -- Using more reliable Nerd Font icons
-                        package_installed = "✓",  -- Simple checkmark
-                        package_pending = "➜",    -- Arrow
+                        package_installed = "✓", -- Simple checkmark
+                        package_pending = "➜", -- Arrow
                         package_uninstalled = "✗", -- X mark
                     },
                 }
