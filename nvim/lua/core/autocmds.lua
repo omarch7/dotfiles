@@ -1,33 +1,20 @@
 vim.api.nvim_create_autocmd("BufEnter", {
     nested = true,
     callback = function()
-        if vim.bo.filetype == "snacks_dashboard" then
-            return
-        end
+        local tree_wins = {}
+        local normal_wins = {}
 
-        local dominated_by_special = true
         for _, win in ipairs(vim.api.nvim_list_wins()) do
-            local buf = vim.api.nvim_win_get_buf(win)
-            if (vim.bo[buf].buflisted and vim.bo[buf].buftype == "") or vim.bo[buf].filetype == "snacks_dashboard" then
-                dominated_by_special = false
-                break
+            local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win))
+            if bufname:match("NvimTree_") then
+                table.insert(tree_wins, win)
+            else
+                table.insert(normal_wins, win)
             end
         end
 
-        if dominated_by_special then
-            local current_win = vim.api.nvim_get_current_win()
-            for _, win in ipairs(vim.api.nvim_list_wins()) do
-                if win ~= current_win then
-                    pcall(vim.api.nvim_win_close, win, true)
-                end
-            end
-
-            local ok = pcall(function()
-                Snacks.dashboard.open()
-            end)
-            if not ok then
-                vim.cmd("quit")
-            end
+        if #normal_wins == 0 then
+            vim.cmd("quit")
         end
     end,
 })
