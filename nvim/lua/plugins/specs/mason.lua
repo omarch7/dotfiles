@@ -32,8 +32,22 @@ return {
                     "yamlls",
                     "jsonls",
                     "ts_ls",
+                    "graphql",
                 },
                 automatic_installation = true,
+            })
+        end
+    },
+    {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+        },
+        config = function()
+            require("mason-tool-installer").setup({
+                ensure_installed = {
+                    "prettier",
+                },
             })
         end
     },
