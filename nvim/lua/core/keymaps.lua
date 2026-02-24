@@ -2,7 +2,7 @@
 local keymap = vim.keymap.set
 
 -- LSP mappings
-keymap("n", "<leader>F", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", { noremap = true, silent = true, desc = "Format code" })
+keymap("n", "<leader>F", "<cmd>lua require('conform').format({ async = true })<CR>", { noremap = true, silent = true, desc = "Format code" })
 keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true, desc = "Rename symbol" })
 keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true, desc = "Code action" })
 keymap("n", "<leader>K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true, desc = "Hover documentation" })
