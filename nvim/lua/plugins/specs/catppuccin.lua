@@ -11,12 +11,10 @@ return {
                     dark = "mocha",
                 },
                 integrations = {
-                    cmp = true,
+                    blink_cmp = true,
                     treesitter = true,
                     diffview = true,
                     gitsigns = true,
-                    notify = true,
-                    dashboard = true,
                     fzf = true,
                     lualine = true,
                     dap_ui = true,
@@ -25,9 +23,10 @@ return {
                     snacks = {
                         enabled = true,
                     },
-                    telescope = true,
+                    telescope = {
+                        enabled = true,
+                    },
                     which_key = true,
-
                 },
             }
         end,
