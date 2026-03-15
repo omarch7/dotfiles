@@ -19,6 +19,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end,
 })
 
+
 vim.api.nvim_create_autocmd("User", {
     pattern = "BlinkCmpMenuOpen",
     callback = function()

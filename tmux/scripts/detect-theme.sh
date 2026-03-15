@@ -43,6 +43,19 @@ fi
 
 current=$(tmux show-option -gqv @catppuccin_flavor)
 if [ "$current" != "$flavor" ]; then
+    # Unset all catppuccin-generated options so the -o flag doesn't skip them.
+    # This covers @thm_* (palette), @_ctp_* (internals), @catppuccin_status_*
+    # (compiled modules), and @catppuccin_*_color (module accent colors).
+    tmux show-options -g \
+        | awk '/^@(thm_|_ctp_|catppuccin_status_|catppuccin_[a-z_]+_color )/ {print $1}' \
+        | while read -r opt; do
+            tmux set -gu "$opt"
+        done
+
     tmux set -g @catppuccin_flavor "$flavor"
-    tmux run ~/.tmux/plugins/tmux/catppuccin.tmux
+    bash ~/.tmux/plugins/tmux/catppuccin.tmux
+    tmux source ~/.tmux/scripts/status.conf
+    # Re-run plugin scripts to replace #{battery_percentage} etc. with #(script) calls
+    bash ~/.tmux/plugins/tmux-battery/battery.tmux
+    bash ~/.tmux/plugins/tmux-cpu/cpu.tmux
 fi
