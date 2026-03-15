@@ -58,4 +58,10 @@ if [ "$current" != "$flavor" ]; then
     # Re-run plugin scripts to replace #{battery_percentage} etc. with #(script) calls
     bash ~/.tmux/plugins/tmux-battery/battery.tmux
     bash ~/.tmux/plugins/tmux-cpu/cpu.tmux
+
+    # Switch lsd color theme
+    lsd_theme="$HOME/.config/lsd/themes/catppuccin-${flavor}/colors.yaml"
+    if [ -f "$lsd_theme" ]; then
+        cp "$lsd_theme" "$HOME/.config/lsd/colors.yaml"
+    fi
 fi
