@@ -64,4 +64,12 @@ if [ "$current" != "$flavor" ]; then
     if [ -f "$lsd_theme" ]; then
         cp "$lsd_theme" "$HOME/.config/lsd/colors.yaml"
     fi
+
+    # Switch bat theme
+    bat_config="$HOME/.config/bat/config"
+    if [ -f "$bat_config" ]; then
+        # Capitalize first letter: mocha -> Mocha, latte -> Latte
+        bat_flavor="$(echo "$flavor" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')"
+        sed -i'' -e "s/--theme=\"Catppuccin .*\"/--theme=\"Catppuccin ${bat_flavor}\"/" "$bat_config"
+    fi
 fi
