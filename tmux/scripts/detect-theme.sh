@@ -72,4 +72,12 @@ if [ "$current" != "$flavor" ]; then
         bat_flavor="$(echo "$flavor" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')"
         sed -i'' -e "s/--theme=\"Catppuccin .*\"/--theme=\"Catppuccin ${bat_flavor}\"/" "$bat_config"
     fi
+
+    # Switch television theme with a random accent
+    tv_config="$HOME/.config/television/config.toml"
+    if [ -f "$tv_config" ]; then
+        accents=(blue flamingo green lavender maroon mauve peach pink red rosewater sapphire sky teal yellow)
+        accent="${accents[$((RANDOM % ${#accents[@]}))]}"
+        sed -i'' -e "s/theme = \"catppuccin-[a-z]*-[a-z]*\"/theme = \"catppuccin-${flavor}-${accent}\"/" "$tv_config"
+    fi
 fi
