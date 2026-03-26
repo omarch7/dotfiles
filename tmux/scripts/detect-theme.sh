@@ -73,6 +73,13 @@ if [ "$current" != "$flavor" ]; then
         sed -i'' -e "s/--theme=\"Catppuccin .*\"/--theme=\"Catppuccin ${bat_flavor}\"/" "$bat_config"
     fi
 
+    # Switch glow theme
+    glow_config="$HOME/Library/Preferences/glow/glow.yml"
+    if [ -f "$glow_config" ]; then
+        glow_theme="$HOME/.config/glow/themes/catppuccin-${flavor}.json"
+        sed -i'' -e "s|style: \".*\"|style: \"${glow_theme}\"|" "$glow_config"
+    fi
+
     # Switch television theme with a random accent
     tv_config="$HOME/.config/television/config.toml"
     if [ -f "$tv_config" ]; then
