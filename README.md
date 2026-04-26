@@ -7,8 +7,11 @@ This repository contains my personal dotfiles, including configurations for Neov
 My Neovim setup is designed to be modular, performant, and feature-rich. It uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 
 ### Structure
+
+Files live inside a stow package (`nvim/.config/nvim/`) so they map to `~/.config/nvim/` when stowed.
+
 ```
-nvim/
+nvim/.config/nvim/
 ├── init.lua              # Main entry point
 ├── lazy-lock.json        # Plugin version lock file
 ├── lsp/                 # Language Server Protocol configurations
@@ -20,20 +23,23 @@ nvim/
     └── plugins/          # Plugin configuration
         ├── init.lua      # Plugin loader
         └── specs/        # Plugin specifications
+            ├── auto-dark-mode.lua  # Auto light/dark mode switcher
             ├── blink.lua           # Completion engine
             ├── catppuccin.lua      # Colorscheme
             ├── comment.lua         # Comment utilities
+            ├── conform.lua         # Code formatter
             ├── copilot.lua         # GitHub Copilot
             ├── dap-ui.lua          # Debug UI
             ├── dap.lua             # Debug adapter
             ├── fzf-lua.lua         # FZF integration
             ├── gitools.lua         # Git tools
             ├── gitsigns.lua        # Git signs
-            ├── ibl.lua             # Indent blankline
             ├── img-clip.lua        # Image clipboard
             ├── lspconfig.lua       # LSP configuration
             ├── lualine.lua         # Status line
             ├── mason.lua           # LSP/DAP installer
+            ├── noice.lua           # Command/message UI
+            ├── octo.lua            # GitHub PRs & issues
             ├── render-markdown.lua # Markdown rendering
             ├── snacks.lua          # Snacks.nvim utilities
             ├── telescope.lua       # Fuzzy finder
@@ -53,8 +59,11 @@ nvim/
 - **Treesitter**: Enhanced syntax highlighting and code navigation with support for lua, python, rust, yaml, sql, toml and more
 - **Snacks.nvim**: Modern UI toolkit providing file picker, explorer, terminal, Git integration, and more
 - **Blink.cmp**: Fast completion engine with LSP, path, snippets, and buffer sources
+- **Formatting**: conform.nvim for fast, async code formatting across languages
 - **Code Folding**: nvim-ufo for smart folding with LSP and indent providers
-- **Git Integration**: Seamless Git workflow with Gitsigns, DiffView, and Snacks Git Browse/LazyGit
+- **Git Integration**: Seamless Git workflow with Gitsigns, DiffView, Snacks Git Browse/LazyGit, and Octo for GitHub PRs/issues
+- **Modern UI**: Noice.nvim for cleaner cmdline, messages, and notifications
+- **Theme Awareness**: Auto Dark Mode switches between light/dark variants with the system
 - **AI Assistance**: GitHub Copilot for AI-powered code suggestions
 - **Debugging**: DAP (Debug Adapter Protocol) integration with rich UI and extensive keymappings
 - **Testing**: vim-test integration with custom keybindings for various test workflows
@@ -63,25 +72,35 @@ nvim/
 ### Notable Plugins
 
 - **UI & Appearance**
-  - **Catppuccin Mocha**: Modern colorscheme with Treesitter and completion support
+  - **Catppuccin**: Modern colorscheme with Treesitter and completion support
+  - **Auto Dark Mode**: Follows the system's light/dark preference
   - **Lualine**: Customized status line with time display and modern separators
+  - **Noice.nvim**: Replaces the default cmdline, messages, and popupmenu UI
   - **Snacks.nvim**: Dashboard, notifications, and modern UI components
+  - **render-markdown.nvim**: Pretty in-buffer Markdown rendering
 
 - **Editor Enhancements**
   - **Blink.cmp**: Advanced completion with intelligent delays and cmdline support
+  - **conform.nvim**: Async, multi-language code formatting
   - **nvim-ufo**: Smart code folding with LSP integration
   - **vim-tmux-navigator**: Seamless tmux/Neovim pane navigation
   - **Comment.nvim**: Easy code commenting
+  - **vim-bookmarks**: Persistent file bookmarks
+  - **which-key.nvim**: Discoverable keybinding hints
+  - **img-clip.nvim**: Paste images from the clipboard into Markdown/notes
 
 - **Development Tools**
   - **Mason**: Automatic LSP/DAP server installation
   - **nvim-lspconfig**: LSP configuration for multiple languages
   - **Snacks Picker**: Fast file finding and grep with hidden file support
+  - **fzf-lua**: Powerful fzf-based pickers
+  - **Telescope**: Extensible fuzzy finder for additional workflows
 
 - **Git Tools**
   - **Gitsigns**: Inline git status, hunk preview, and reset
   - **DiffView**: Visual diff comparison and file history
   - **Snacks Git**: Git browse and LazyGit integration
+  - **Octo.nvim**: Review and manage GitHub PRs and issues from Neovim
 
 - **AI Integration**
   - **GitHub Copilot**: AI-powered code suggestions
@@ -195,24 +214,42 @@ The status bar includes:
 
 ## Installation
 
-1. Clone this repository:
+This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/) package layout. Each top-level directory (`nvim`, `tmux`) mirrors the file tree that should appear in `$HOME`, so `stow` will create the appropriate symlinks for you.
+
+1. Install GNU Stow:
+   ```bash
+   # Arch
+   sudo pacman -S stow
+
+   # Debian/Ubuntu
+   sudo apt install stow
+
+   # macOS
+   brew install stow
+   ```
+
+2. Clone this repository into your home directory:
    ```bash
    gh repo clone omarch7/dotfiles ~/.dotfiles
    ```
 
-2. Create symbolic links:
+3. Stow the configurations from inside the repository:
    ```bash
-   # Neovim configuration
-   ln -s ~/.dotfiles/nvim ~/.config/nvim
+   cd ~/.dotfiles
 
-   # Tmux configuration
-   ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
+   # Neovim configuration → ~/.config/nvim
+   stow nvim
+
+   # Tmux configuration → ~/.tmux.conf and ~/.tmux/
+   stow tmux
    ```
 
-3. Install Neovim plugins:
+   To remove the symlinks later, run `stow -D <package>` from the same directory.
+
+4. Install Neovim plugins:
    - Launch Neovim, and lazy.nvim will automatically install all configured plugins
 
-4. Install tmux plugins (optional):
+5. Install tmux plugins (optional):
    ```bash
    # Install TPM (Tmux Plugin Manager)
    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
