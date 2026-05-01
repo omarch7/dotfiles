@@ -1,0 +1,1005 @@
+{
+  "__VERSION__": "266",
+  "FanControl": {
+    "Controls": [
+      {
+        "NickName": "Pump",
+        "Identifier": "/lpc/nct6687dr/control/0",
+        "IsHidden": false,
+        "Enable": true,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": {
+          "Identifier": "/lpc/nct6687dr/fan/0"
+        },
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": true,
+        "ForceApply": false,
+        "Calibration": [
+          [
+            70,
+            2214
+          ],
+          [
+            90,
+            2214
+          ],
+          [
+            100,
+            2247
+          ]
+        ]
+      },
+      {
+        "NickName": "Pump Fan",
+        "Identifier": "/lpc/nct6687dr/control/1",
+        "IsHidden": true,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": []
+      },
+      {
+        "NickName": "Chipset Fan",
+        "Identifier": "/lpc/nct6687dr/control/2",
+        "IsHidden": true,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": []
+      },
+      {
+        "NickName": "Top Left",
+        "Identifier": "/lpc/nct6687dr/control/10",
+        "IsHidden": false,
+        "Enable": true,
+        "SelectedFanCurve": {
+          "Name": "Mix"
+        },
+        "SelectedOffset": 0,
+        "PairedFanSensor": {
+          "Identifier": "/lpc/nct6687dr/fan/10"
+        },
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": [
+          [
+            50,
+            809
+          ],
+          [
+            60,
+            1059
+          ],
+          [
+            70,
+            1273
+          ],
+          [
+            80,
+            1465
+          ],
+          [
+            90,
+            1634
+          ],
+          [
+            100,
+            1811
+          ]
+        ]
+      },
+      {
+        "NickName": "System Fan #2",
+        "Identifier": "/lpc/nct6687dr/control/11",
+        "IsHidden": true,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": []
+      },
+      {
+        "NickName": "Bottom",
+        "Identifier": "/lpc/nct6687dr/control/12",
+        "IsHidden": false,
+        "Enable": true,
+        "SelectedFanCurve": {
+          "Name": "GPU"
+        },
+        "SelectedOffset": 0,
+        "PairedFanSensor": {
+          "Identifier": "/lpc/nct6687dr/fan/12"
+        },
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": [
+          [
+            10,
+            819
+          ],
+          [
+            20,
+            824
+          ],
+          [
+            30,
+            828
+          ],
+          [
+            40,
+            828
+          ],
+          [
+            50,
+            836
+          ],
+          [
+            60,
+            1072
+          ],
+          [
+            70,
+            1276
+          ],
+          [
+            80,
+            1500
+          ],
+          [
+            90,
+            1688
+          ],
+          [
+            100,
+            1910
+          ]
+        ]
+      },
+      {
+        "NickName": "Intake",
+        "Identifier": "/lpc/nct6687dr/control/13",
+        "IsHidden": false,
+        "Enable": true,
+        "SelectedFanCurve": {
+          "Name": "CPU"
+        },
+        "SelectedOffset": 0,
+        "PairedFanSensor": {
+          "Identifier": "/lpc/nct6687dr/fan/13"
+        },
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": [
+          [
+            1,
+            470
+          ],
+          [
+            10,
+            471
+          ],
+          [
+            20,
+            471
+          ],
+          [
+            30,
+            477
+          ],
+          [
+            40,
+            478
+          ],
+          [
+            50,
+            614
+          ],
+          [
+            60,
+            788
+          ],
+          [
+            70,
+            942
+          ],
+          [
+            80,
+            1101
+          ],
+          [
+            90,
+            1244
+          ],
+          [
+            100,
+            1413
+          ]
+        ]
+      },
+      {
+        "NickName": "Top Right",
+        "Identifier": "/lpc/nct6687dr/control/14",
+        "IsHidden": false,
+        "Enable": true,
+        "SelectedFanCurve": {
+          "Name": "Mix"
+        },
+        "SelectedOffset": 0,
+        "PairedFanSensor": {
+          "Identifier": "/lpc/nct6687dr/fan/14"
+        },
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": [
+          [
+            20,
+            651
+          ],
+          [
+            30,
+            658
+          ],
+          [
+            40,
+            736
+          ],
+          [
+            50,
+            836
+          ],
+          [
+            60,
+            922
+          ],
+          [
+            70,
+            999
+          ],
+          [
+            80,
+            1077
+          ],
+          [
+            90,
+            1154
+          ],
+          [
+            100,
+            1229
+          ]
+        ]
+      },
+      {
+        "NickName": "Outtake",
+        "Identifier": "/lpc/nct6687dr/control/15",
+        "IsHidden": false,
+        "Enable": true,
+        "SelectedFanCurve": {
+          "Name": "Mix"
+        },
+        "SelectedOffset": 0,
+        "PairedFanSensor": {
+          "Identifier": "/lpc/nct6687dr/fan/15"
+        },
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": [
+          [
+            0,
+            828
+          ],
+          [
+            20,
+            829
+          ],
+          [
+            30,
+            838
+          ],
+          [
+            40,
+            838
+          ],
+          [
+            50,
+            845
+          ],
+          [
+            60,
+            1078
+          ],
+          [
+            70,
+            1274
+          ],
+          [
+            80,
+            1464
+          ],
+          [
+            90,
+            1631
+          ],
+          [
+            100,
+            1829
+          ]
+        ]
+      },
+      {
+        "NickName": "EZ-Connect Fan",
+        "Identifier": "/lpc/nct6687dr/control/3",
+        "IsHidden": true,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": []
+      },
+      {
+        "NickName": "Control 1 - NVIDIA GeForce RTX 5090",
+        "Identifier": "NVApiWrapper/0-GB202-A/control/0",
+        "IsHidden": false,
+        "Enable": true,
+        "SelectedFanCurve": {
+          "Name": "GPU"
+        },
+        "SelectedOffset": 0,
+        "PairedFanSensor": {
+          "Identifier": "NVApiWrapper/0-GB202-A/fan/0"
+        },
+        "SelectedStart": 9,
+        "SelectedStop": 6,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1085
+          ],
+          [
+            10,
+            1085
+          ],
+          [
+            20,
+            1085
+          ],
+          [
+            30,
+            1085
+          ],
+          [
+            40,
+            1342
+          ],
+          [
+            50,
+            1597
+          ],
+          [
+            60,
+            1856
+          ],
+          [
+            70,
+            2113
+          ],
+          [
+            80,
+            2368
+          ],
+          [
+            90,
+            2618
+          ],
+          [
+            100,
+            2876
+          ]
+        ]
+      },
+      {
+        "NickName": "Control 2 - NVIDIA GeForce RTX 5090",
+        "Identifier": "NVApiWrapper/0-GB202-A/control/1",
+        "IsHidden": false,
+        "Enable": true,
+        "SelectedFanCurve": {
+          "Name": "GPU"
+        },
+        "SelectedOffset": 0,
+        "PairedFanSensor": {
+          "Identifier": "NVApiWrapper/0-GB202-A/fan/1"
+        },
+        "SelectedStart": 9,
+        "SelectedStop": 6,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1084
+          ],
+          [
+            10,
+            1084
+          ],
+          [
+            20,
+            1084
+          ],
+          [
+            30,
+            1084
+          ],
+          [
+            40,
+            1344
+          ],
+          [
+            50,
+            1601
+          ],
+          [
+            60,
+            1858
+          ],
+          [
+            70,
+            2124
+          ],
+          [
+            80,
+            2378
+          ],
+          [
+            90,
+            2638
+          ],
+          [
+            100,
+            2864
+          ]
+        ]
+      },
+      {
+        "NickName": "CPU Fan",
+        "Identifier": "/lpc/nct6687dr/control/0",
+        "IsHidden": false,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": null
+      },
+      {
+        "NickName": "Pump Fan",
+        "Identifier": "/lpc/nct6687dr/control/1",
+        "IsHidden": false,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": null
+      },
+      {
+        "NickName": "Chipset Fan",
+        "Identifier": "/lpc/nct6687dr/control/2",
+        "IsHidden": false,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": null
+      },
+      {
+        "NickName": "System Fan #1",
+        "Identifier": "/lpc/nct6687dr/control/10",
+        "IsHidden": false,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": null
+      },
+      {
+        "NickName": "System Fan #2",
+        "Identifier": "/lpc/nct6687dr/control/11",
+        "IsHidden": false,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": null
+      },
+      {
+        "NickName": "System Fan #3",
+        "Identifier": "/lpc/nct6687dr/control/12",
+        "IsHidden": false,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": null
+      },
+      {
+        "NickName": "System Fan #4",
+        "Identifier": "/lpc/nct6687dr/control/13",
+        "IsHidden": false,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": null
+      },
+      {
+        "NickName": "System Fan #5",
+        "Identifier": "/lpc/nct6687dr/control/14",
+        "IsHidden": false,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": null
+      },
+      {
+        "NickName": "System Fan #6",
+        "Identifier": "/lpc/nct6687dr/control/15",
+        "IsHidden": false,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": null
+      },
+      {
+        "NickName": "EZ-Connect Fan",
+        "Identifier": "/lpc/nct6687dr/control/3",
+        "IsHidden": false,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": null
+      },
+      {
+        "NickName": "Control 1 - NVIDIA GeForce RTX 5090",
+        "Identifier": "NVApiWrapper/0-GB202-A/control/0",
+        "IsHidden": false,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": null
+      },
+      {
+        "NickName": "Control 2 - NVIDIA GeForce RTX 5090",
+        "Identifier": "NVApiWrapper/0-GB202-A/control/1",
+        "IsHidden": false,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 50,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": null
+      }
+    ],
+    "CustomSensors": [],
+    "FanCurves": [
+      {
+        "Name": "CPU",
+        "IsHidden": false,
+        "CommandMode": 0,
+        "SelectedTempSource": {
+          "Identifier": "/amdcpu/0/temperature/2"
+        },
+        "Points": [
+          "20,24.321777777777783",
+          "39.78341440086584,28.32177777777777",
+          "55.94238646874862,40.321777777777775",
+          "67.4,54.18844444444444",
+          "76.78292988340118,66.18844444444443",
+          "85.99505414639978,81.38844444444445",
+          "94.15004939561166,100"
+        ],
+        "MaximumTemperature": 100,
+        "MinimumTemperature": 20,
+        "MaximumCommand": 100,
+        "HysteresisConfig": {
+          "ResponseTimeUp": 1,
+          "ResponseTimeDown": 1,
+          "HysteresisValueUp": 2,
+          "HysteresisValueDown": 2,
+          "IgnoreHysteresisAtLimits": false
+        }
+      },
+      {
+        "Name": "GPU",
+        "IsHidden": false,
+        "CommandMode": 0,
+        "SelectedTempSource": {
+          "Identifier": "NVApiWrapper/0-GB202-A/sensor/0"
+        },
+        "Points": [
+          "20.1,30.188444444444443",
+          "36.25335858697089,30.45511111111111",
+          "47.48535435845483,33.121777777777766",
+          "55.41382196185526,37.655111111111104",
+          "60.69946703078888,40.321777777777775",
+          "67.8,45.12177777777777",
+          "73.1207329427829,54.18844444444444",
+          "79.19922477205657,68.85511111111111",
+          "82.10632955997005,78.98844444444444",
+          "85.54199885477689,93.92177777777778",
+          "90,100"
+        ],
+        "MaximumTemperature": 90,
+        "MinimumTemperature": 20,
+        "MaximumCommand": 100,
+        "HysteresisConfig": {
+          "ResponseTimeUp": 1,
+          "ResponseTimeDown": 1,
+          "HysteresisValueUp": 2,
+          "HysteresisValueDown": 2,
+          "IgnoreHysteresisAtLimits": false
+        }
+      },
+      {
+        "Name": "Mix",
+        "IsHidden": false,
+        "CommandMode": 0,
+        "SelectedFanCurves": [
+          {
+            "Name": "CPU"
+          },
+          {
+            "Name": "GPU"
+          }
+        ],
+        "SelectedMixFunction": 0
+      }
+    ],
+    "FanSensors": [
+      {
+        "Identifier": "/lpc/nct6687dr/fan/10",
+        "IsHidden": false,
+        "NickName": "Top Left"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/12",
+        "IsHidden": false,
+        "NickName": "Bottom"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/13",
+        "IsHidden": false,
+        "NickName": "Front"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/15",
+        "IsHidden": false,
+        "NickName": "Outtake"
+      },
+      {
+        "Identifier": "NVApiWrapper/0-GB202-A/fan/0",
+        "IsHidden": false,
+        "NickName": "Control 1 - NVIDIA GeForce RTX 5090"
+      },
+      {
+        "Identifier": "NVApiWrapper/0-GB202-A/fan/1",
+        "IsHidden": false,
+        "NickName": "Control 2 - NVIDIA GeForce RTX 5090"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/0",
+        "IsHidden": false,
+        "NickName": "CPU Fan"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/1",
+        "IsHidden": false,
+        "NickName": "Pump Fan #1"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/2",
+        "IsHidden": false,
+        "NickName": "Chipset Fan"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/11",
+        "IsHidden": false,
+        "NickName": "System Fan #2"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/14",
+        "IsHidden": false,
+        "NickName": "System Fan #5"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/3",
+        "IsHidden": false,
+        "NickName": "EZ-Connect Fan"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/0",
+        "IsHidden": false,
+        "NickName": "CPU Fan"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/1",
+        "IsHidden": false,
+        "NickName": "Pump Fan #1"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/2",
+        "IsHidden": false,
+        "NickName": "Chipset Fan"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/10",
+        "IsHidden": false,
+        "NickName": "System Fan #1"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/11",
+        "IsHidden": false,
+        "NickName": "System Fan #2"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/12",
+        "IsHidden": false,
+        "NickName": "System Fan #3"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/13",
+        "IsHidden": false,
+        "NickName": "System Fan #4"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/14",
+        "IsHidden": false,
+        "NickName": "System Fan #5"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/15",
+        "IsHidden": false,
+        "NickName": "System Fan #6"
+      },
+      {
+        "Identifier": "/lpc/nct6687dr/fan/3",
+        "IsHidden": false,
+        "NickName": "EZ-Connect Fan"
+      },
+      {
+        "Identifier": "NVApiWrapper/0-GB202-A/fan/0",
+        "IsHidden": false,
+        "NickName": "Fan 1 - NVIDIA GeForce RTX 5090"
+      },
+      {
+        "Identifier": "NVApiWrapper/0-GB202-A/fan/1",
+        "IsHidden": false,
+        "NickName": "Fan 2 - NVIDIA GeForce RTX 5090"
+      }
+    ],
+    "TemperatureSensors": []
+  },
+  "Sensors": {
+    "AdlxWrapperSettings": {
+      "Enabled": false
+    },
+    "DisabledPlugins": [],
+    "DisableStorageSensors": true,
+    "LibreHardwareMonitorSettings": {
+      "Controller": false,
+      "CPU": true,
+      "EmbeddedEC": false,
+      "GPU": true,
+      "Memory": false,
+      "Motherboard": true,
+      "PowerMonitor": false,
+      "PSU": false,
+      "Storage": false,
+      "StorageUpdateInterval": "00:01:00",
+      "ZeroRPMOverride": true
+    },
+    "NvAPIWrapperSettings": {
+      "Enabled": true,
+      "ZeroRPMOverride": true
+    }
+  },
+  "MainWindow": {
+    "Fahrenheit": false,
+    "HideCalibration": false,
+    "HideFanSpeedCards": true,
+    "HorizontalUIOrientation": false,
+    "PrimaryColor": "#FF607D8B",
+    "SecondaryColor": "#FFAEEA00",
+    "SelectedTheme": "",
+    "ShowHiddenCards": false,
+    "SyncThemeWithWindows": true,
+    "SyncTrayIconColorWithWindows": true,
+    "TrayIconColor": null,
+    "TrayIcons": []
+  }
+}
