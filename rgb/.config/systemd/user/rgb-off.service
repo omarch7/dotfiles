@@ -1,0 +1,12 @@
+[Unit]
+Description=Turn off RAM and Lian Li fan RGB
+After=lianli-daemon.service
+Wants=lianli-daemon.service
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/rgb-off
+RemainAfterExit=no
+
+[Install]
+WantedBy=default.target
