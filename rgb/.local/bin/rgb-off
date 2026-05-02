@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+"""Turn off RGB on G.Skill RAM (via OpenRGB) and Lian Li UNI Hub SL fans
+(via lianli-daemon IPC). Idempotent; intended to run at boot via systemd."""
+
+import json
+import os
+import socket
+import subprocess
+import sys
+import time
+
+LIANLI_SOCK = f"/run/user/{os.getuid()}/lianli-daemon.sock"
+LIANLI_DEVICE_PREFIX = "hid:6243168001:group"
+LIANLI_GROUPS = range(4)
+DAEMON_WAIT_SECS = 30
+
+
+def turn_off_ram() -> int:
+    return subprocess.call(
+        ["openrgb", "--device", "ENE DRAM", "--mode", "off"],
+        stdout=subprocess.DEVNULL,
+    )
+
+
+def wait_for_daemon(deadline: float) -> socket.socket | None:
+    while time.monotonic() < deadline:
+        if os.path.exists(LIANLI_SOCK):
+            try:
+                s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+                s.settimeout(2)
+                s.connect(LIANLI_SOCK)
+                return s
+            except OSError:
+                pass
+        time.sleep(0.5)
+    return None
+
+
+def ipc_call(sock: socket.socket, buf: bytearray, req: dict) -> dict:
+    sock.sendall((json.dumps(req) + "\n").encode())
+    while b"\n" not in buf:
+        chunk = sock.recv(4096)
+        if not chunk:
+            raise RuntimeError("daemon closed socket")
+        buf.extend(chunk)
+    line, _, rest = bytes(buf).partition(b"\n")
+    buf.clear()
+    buf.extend(rest)
+    return json.loads(line)
+
+
+def turn_off_fans() -> int:
+    deadline = time.monotonic() + DAEMON_WAIT_SECS
+    sock = wait_for_daemon(deadline)
+    if sock is None:
+        print("rgb-off: lianli-daemon socket not available", file=sys.stderr)
+        return 1
+
+    buf = bytearray()
+    effect = {
+        "mode": "Static",
+        "colors": [[0, 0, 0]],
+        "speed": 0,
+        "brightness": 0,
+        "direction": "Clockwise",
+        "scope": "All",
+        "disabled": False,
+    }
+
+    rc = 0
+    try:
+        for g in LIANLI_GROUPS:
+            device_id = f"{LIANLI_DEVICE_PREFIX}{g}"
+            r = ipc_call(sock, buf, {
+                "method": "SetMbRgbSync",
+                "params": {"device_id": device_id, "enabled": False},
+            })
+            if r.get("status") != "ok":
+                print(f"rgb-off: SetMbRgbSync {device_id} failed: {r}", file=sys.stderr)
+                rc = 1
+            r = ipc_call(sock, buf, {
+                "method": "SetRgbEffect",
+                "params": {"device_id": device_id, "zone": 0, "effect": effect},
+            })
+            if r.get("status") != "ok":
+                print(f"rgb-off: SetRgbEffect {device_id} failed: {r}", file=sys.stderr)
+                rc = 1
+    finally:
+        sock.close()
+    return rc
+
+
+def main() -> int:
+    rc_ram = turn_off_ram()
+    rc_fan = turn_off_fans()
+    return rc_ram or rc_fan
+
+
+if __name__ == "__main__":
+    sys.exit(main())

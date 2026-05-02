@@ -1,0 +1,88 @@
+{
+  "default_fps": 30.0,
+  "hid_driver": "hidapi",
+  "lcds": [],
+  "fan_curves": [],
+  "fans": null,
+  "rgb": {
+    "enabled": true,
+    "openrgb_server": false,
+    "openrgb_port": 6743,
+    "devices": [
+      {
+        "device_id": "hid:6243168001:group0",
+        "mb_rgb_sync": false,
+        "zones": [
+          {
+            "zone_index": 0,
+            "effect": {
+              "mode": "Static",
+              "colors": [[0, 0, 0]],
+              "speed": 0,
+              "brightness": 0,
+              "direction": "Clockwise",
+              "scope": "All",
+              "disabled": false
+            }
+          }
+        ]
+      },
+      {
+        "device_id": "hid:6243168001:group1",
+        "mb_rgb_sync": false,
+        "zones": [
+          {
+            "zone_index": 0,
+            "effect": {
+              "mode": "Static",
+              "colors": [[0, 0, 0]],
+              "speed": 0,
+              "brightness": 0,
+              "direction": "Clockwise",
+              "scope": "All",
+              "disabled": false
+            }
+          }
+        ]
+      },
+      {
+        "device_id": "hid:6243168001:group2",
+        "mb_rgb_sync": false,
+        "zones": [
+          {
+            "zone_index": 0,
+            "effect": {
+              "mode": "Static",
+              "colors": [[0, 0, 0]],
+              "speed": 0,
+              "brightness": 0,
+              "direction": "Clockwise",
+              "scope": "All",
+              "disabled": false
+            }
+          }
+        ]
+      },
+      {
+        "device_id": "hid:6243168001:group3",
+        "mb_rgb_sync": false,
+        "zones": [
+          {
+            "zone_index": 0,
+            "effect": {
+              "mode": "Static",
+              "colors": [[0, 0, 0]],
+              "speed": 0,
+              "brightness": 0,
+              "direction": "Clockwise",
+              "scope": "All",
+              "disabled": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "aio": {},
+  "ene6k77": {}
+}
