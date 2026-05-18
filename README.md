@@ -1,6 +1,6 @@
 # Omar's Dotfiles
 
-This repository contains my personal dotfiles, including configurations for Neovim and tmux designed for a productive development environment.
+This repository contains my personal dotfiles, including configurations for Neovim, tmux, and Starship designed for a productive development environment.
 
 ## Neovim Configuration
 
@@ -38,7 +38,7 @@ nvim/.config/nvim/
             ├── lspconfig.lua       # LSP configuration
             ├── lualine.lua         # Status line
             ├── mason.lua           # LSP/DAP installer
-            ├── noice.lua           # Command/message UI
+            ├── noice.lua           # Command/message/UI
             ├── octo.lua            # GitHub PRs & issues
             ├── render-markdown.lua # Markdown rendering
             ├── snacks.lua          # Snacks.nvim utilities
@@ -57,7 +57,7 @@ nvim/.config/nvim/
 - **Lazy Loading**: Plugins are loaded only when needed for faster startup
 - **LSP Integration**: Full Language Server Protocol support via Mason and lspconfig
 - **Treesitter**: Enhanced syntax highlighting and code navigation with support for lua, python, rust, yaml, sql, toml and more
-- **Snacks.nvim**: Modern UI toolkit providing file picker, explorer, terminal, Git integration, and more
+- **Snacks.nvim**: Modern UI toolkit providing file explorer, picker (files/grep/references/diagnostics), terminal, LazyGit, Git browse, and more
 - **Blink.cmp**: Fast completion engine with LSP, path, snippets, and buffer sources
 - **Formatting**: conform.nvim for fast, async code formatting across languages
 - **Code Folding**: nvim-ufo for smart folding with LSP and indent providers
@@ -76,7 +76,7 @@ nvim/.config/nvim/
   - **Auto Dark Mode**: Follows the system's light/dark preference
   - **Lualine**: Customized status line with time display and modern separators
   - **Noice.nvim**: Replaces the default cmdline, messages, and popupmenu UI
-  - **Snacks.nvim**: Dashboard, notifications, and modern UI components
+  - **Snacks.nvim**: Dashboard, notifications, file explorer, pickers, terminal, and modern UI components
   - **render-markdown.nvim**: Pretty in-buffer Markdown rendering
 
 - **Editor Enhancements**
@@ -128,6 +128,7 @@ nvim/.config/nvim/
 #### Git (Snacks & Gitsigns)
 - `<leader>gg`: LazyGit integration
 - `<leader>gB`: Git browse (open in browser)
+- `<leader>ghpr`: GitHub PR picker
 - `<leader>gp`: Preview hunk
 - `<leader>gr`: Reset hunk
 - `[c`: Previous hunk
@@ -159,6 +160,9 @@ nvim/.config/nvim/
 - `<leader>de`: Open REPL
 - `<leader>dui`: Toggle DAP UI
 - `<leader>due`: Evaluate expression
+- `<leader>dc`: DAP commands (Telescope)
+- `<leader>dv`: DAP variables (Telescope)
+- `<leader>df`: DAP frames (Telescope)
 
 #### Code Folding
 - `zR`: Open all folds
@@ -183,12 +187,16 @@ My tmux setup is designed for seamless integration with Neovim and features a mo
 - **True Color Support**: 256-color terminal with RGB support
 - **Top Status Bar**: Status bar positioned at the top
 - **Catppuccin Mocha Theme**: Matching Neovim colorscheme for visual consistency
+- **Auto Theme Detection**: Dynamically switches theme on client focus/attach
+- **Window Renumbering**: Automatic window renumbering on close
+- **1-based Indexing**: Windows and panes start at index 1
 
 ### Plugins (via TPM)
 
 - **tmux-sensible**: Sensible default settings
 - **vim-tmux-navigator**: Seamless navigation between tmux and Neovim panes
 - **tmux-fzf-url**: FZF-based URL picker
+- **tmux-fzf**: FZF integration for tmux
 - **tmux-cpu**: CPU usage monitoring
 - **tmux-battery**: Battery status display
 - **catppuccin/tmux**: Beautiful Catppuccin Mocha theme
@@ -209,12 +217,38 @@ The status bar includes:
 - `<C-s>j`: Select down pane
 - `<C-s>k`: Select up pane
 - `<C-s>l`: Select right pane
+- `Alt+1-9`: Switch to window 1-9
+- `Alt+Left/Right`: Navigate to previous/next window
+- `Alt+Shift+Left/Right`: Swap window with previous/next
+- `Ctrl+Alt+Shift+h/j/k/l`: Resize pane by 5 cells
 
 **Note**: When used with vim-tmux-navigator, `<C-h/j/k/l>` navigates seamlessly between tmux panes and Neovim splits.
 
+## Starship Configuration
+
+A custom [Starship](https://starship.rs/) prompt configuration with Catppuccin Mocha theming is included.
+
+### Structure
+
+Files live inside a stow package (`starship/.config/`) so they map to `~/.config/` when stowed.
+
+```
+starship/.config/
+└── starship.toml       # Starship prompt configuration
+```
+
+### Key Features
+
+- **Catppuccin Mocha Palette**: Custom color palette matching the Neovim and tmux theme
+- **Frappe Palette Support**: Includes Catppuccin Frappe for alternative theming
+- **Custom Character**: Colored prompt symbols with Catppuccin peach accents
+- **Git Branch Display**: Bold mauve git branch style
+- **Directory Truncation**: Truncated directory paths for cleaner prompts
+- **VimCMD Support**: Custom symbol for vim command mode (works with zsh-vi-mode)
+
 ## Installation
 
-This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/) package layout. Each top-level directory (`nvim`, `tmux`) mirrors the file tree that should appear in `$HOME`, so `stow` will create the appropriate symlinks for you.
+This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/) package layout. Each top-level directory (`nvim`, `tmux`, `starship`) mirrors the file tree that should appear in `$HOME`, so `stow` will create the appropriate symlinks for you.
 
 1. Install GNU Stow:
    ```bash
@@ -242,6 +276,9 @@ This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/)
 
    # Tmux configuration → ~/.tmux.conf and ~/.tmux/
    stow tmux
+
+   # Starship configuration → ~/.config/starship.toml
+   stow starship
    ```
 
    To remove the symlinks later, run `stow -D <package>` from the same directory.
