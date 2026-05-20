@@ -1,6 +1,9 @@
 ---@diagnostic disable-next-line: undefined-global
 local keymap = vim.keymap.set
 
+-- Tab Management
+keymap("n", "<leader>nt", "<cmd>tabnew<CR>", { noremap = true, silent = true, desc = "Open new tab" })
+
 -- LSP mappings
 keymap("n", "<leader>F", "<cmd>lua require('conform').format({ async = true })<CR>", { noremap = true, silent = true, desc = "Format code" })
 keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true, desc = "Rename symbol" })
