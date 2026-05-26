@@ -1,3 +1,4 @@
 lazy-lock.json
 tmux/.tmux/plugins/
 !claude/.claude/
+.graphify_python

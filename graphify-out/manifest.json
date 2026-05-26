@@ -1,0 +1,247 @@
+{
+  "/Users/oc/dotfiles/.graphify_detect.json": {
+    "mtime": 1779799513.1040554,
+    "ast_hash": "a1160052611e793fd0f43e307d13c8c1",
+    "semantic_hash": "a1160052611e793fd0f43e307d13c8c1"
+  },
+  "/Users/oc/dotfiles/.graphify_ast.json": {
+    "mtime": 1779799531.1033618,
+    "ast_hash": "f3d639b7c0ee92fc513f7840bb9b8fba",
+    "semantic_hash": "f3d639b7c0ee92fc513f7840bb9b8fba"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/init.lua": {
+    "mtime": 1777299538.350066,
+    "ast_hash": "160addfd626ec2a5b682f7901e787d75",
+    "semantic_hash": "160addfd626ec2a5b682f7901e787d75"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/.luarc.json": {
+    "mtime": 1777299538.3498693,
+    "ast_hash": "bb52b5379ee9e78dbd6b3390a6ca3d2f",
+    "semantic_hash": "bb52b5379ee9e78dbd6b3390a6ca3d2f"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lsp/luals.lua": {
+    "mtime": 1777299538.3507133,
+    "ast_hash": "80eba80da99e10ce123ed27ba1962381",
+    "semantic_hash": "80eba80da99e10ce123ed27ba1962381"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lsp/pylsp.lua": {
+    "mtime": 1777299538.3509614,
+    "ast_hash": "85850bb661ad8f0d52a17ac0f6dc7e4e",
+    "semantic_hash": "85850bb661ad8f0d52a17ac0f6dc7e4e"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lsp/graphql.lua": {
+    "mtime": 1777299538.3504143,
+    "ast_hash": "f0849714d8b0e64ca9586a3a5612e718",
+    "semantic_hash": "f0849714d8b0e64ca9586a3a5612e718"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/core/init.lua": {
+    "mtime": 1777299538.3517041,
+    "ast_hash": "c4c290880400ef14a6067704bf5adbaa",
+    "semantic_hash": "c4c290880400ef14a6067704bf5adbaa"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/core/autocmds.lua": {
+    "mtime": 1777299538.3514447,
+    "ast_hash": "8368cbaf476753de0c9266f20e5ae774",
+    "semantic_hash": "8368cbaf476753de0c9266f20e5ae774"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/core/keymaps.lua": {
+    "mtime": 1779276723.7572818,
+    "ast_hash": "4494fe383c9809b4ad3f42fe8064ee5a",
+    "semantic_hash": "4494fe383c9809b4ad3f42fe8064ee5a"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/core/options.lua": {
+    "mtime": 1777299538.3522651,
+    "ast_hash": "6145e6569c8fc4950455ebbb25e5720f",
+    "semantic_hash": "6145e6569c8fc4950455ebbb25e5720f"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/init.lua": {
+    "mtime": 1777299538.352598,
+    "ast_hash": "4e4ced9c15dce86f9aaa044cf81920a1",
+    "semantic_hash": "4e4ced9c15dce86f9aaa044cf81920a1"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/noice.lua": {
+    "mtime": 1777299538.3562417,
+    "ast_hash": "55a202ce53042f5f061c5f92b1f6843f",
+    "semantic_hash": "55a202ce53042f5f061c5f92b1f6843f"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/fzf-lua.lua": {
+    "mtime": 1777299538.354652,
+    "ast_hash": "a081c81d24ce51bee73fbb01d0bb8db2",
+    "semantic_hash": "a081c81d24ce51bee73fbb01d0bb8db2"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/catppuccin.lua": {
+    "mtime": 1777299538.3533337,
+    "ast_hash": "694e4b6b374d2414858564af09c79a7a",
+    "semantic_hash": "694e4b6b374d2414858564af09c79a7a"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/dap-ui.lua": {
+    "mtime": 1777299538.3542342,
+    "ast_hash": "10b4388507f6605636e0a937270a6c42",
+    "semantic_hash": "10b4388507f6605636e0a937270a6c42"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/lspconfig.lua": {
+    "mtime": 1777299538.3554893,
+    "ast_hash": "2b845d1750fb1cfbabfecd5e3f47e5df",
+    "semantic_hash": "2b845d1750fb1cfbabfecd5e3f47e5df"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/telescope.lua": {
+    "mtime": 1777299538.3570485,
+    "ast_hash": "64bba178721b3b34ba27b8fc3689fad7",
+    "semantic_hash": "64bba178721b3b34ba27b8fc3689fad7"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/copilot.lua": {
+    "mtime": 1777299538.3540134,
+    "ast_hash": "123447570fd5425b5b4b838606ab85e7",
+    "semantic_hash": "123447570fd5425b5b4b838606ab85e7"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/vim-test.lua": {
+    "mtime": 1777299538.3577964,
+    "ast_hash": "86977901184b88f3925e179e2d18efc4",
+    "semantic_hash": "86977901184b88f3925e179e2d18efc4"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/lualine.lua": {
+    "mtime": 1777299538.3557231,
+    "ast_hash": "e2d509d89c0d7a2070225f8245bf5379",
+    "semantic_hash": "e2d509d89c0d7a2070225f8245bf5379"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/blink.lua": {
+    "mtime": 1777299538.3531322,
+    "ast_hash": "07fa144e9a10cac150d11aaccef9cebf",
+    "semantic_hash": "07fa144e9a10cac150d11aaccef9cebf"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/gitools.lua": {
+    "mtime": 1777299538.3548748,
+    "ast_hash": "d706dda52bf752acdf4654c2c19a1b41",
+    "semantic_hash": "d706dda52bf752acdf4654c2c19a1b41"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/octo.lua": {
+    "mtime": 1777299538.3564625,
+    "ast_hash": "b1217d1d5e77f52b45a741edc0e6859d",
+    "semantic_hash": "b1217d1d5e77f52b45a741edc0e6859d"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/img-clip.lua": {
+    "mtime": 1777299538.3552744,
+    "ast_hash": "17f3d2032ab284186b9c2350d7b60826",
+    "semantic_hash": "17f3d2032ab284186b9c2350d7b60826"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/gitsigns.lua": {
+    "mtime": 1777299538.3550735,
+    "ast_hash": "911c86002f9a2f48dc7ac60d68dbc12c",
+    "semantic_hash": "911c86002f9a2f48dc7ac60d68dbc12c"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/ufo.lua": {
+    "mtime": 1777299538.3574386,
+    "ast_hash": "5e9c06dfc2c4a760d035780686cf701c",
+    "semantic_hash": "5e9c06dfc2c4a760d035780686cf701c"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/comment.lua": {
+    "mtime": 1777299538.3535705,
+    "ast_hash": "e43bab4a743b05c770cfc377b75e15a6",
+    "semantic_hash": "e43bab4a743b05c770cfc377b75e15a6"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/snacks.lua": {
+    "mtime": 1777299538.3568585,
+    "ast_hash": "726ecd5bf8b9ca38444dbf675509904e",
+    "semantic_hash": "726ecd5bf8b9ca38444dbf675509904e"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/auto-dark-mode.lua": {
+    "mtime": 1777299538.352912,
+    "ast_hash": "087434d50f9d97f7e054cf3b83412560",
+    "semantic_hash": "087434d50f9d97f7e054cf3b83412560"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/conform.lua": {
+    "mtime": 1777299538.3537898,
+    "ast_hash": "05d776ab1e12fc781bb8f0801be92979",
+    "semantic_hash": "05d776ab1e12fc781bb8f0801be92979"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/which-key.lua": {
+    "mtime": 1777299538.3581736,
+    "ast_hash": "04504e4f9a89889c8eb18d7546dcb99f",
+    "semantic_hash": "04504e4f9a89889c8eb18d7546dcb99f"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/vim-tmux-navigator.lua": {
+    "mtime": 1777299538.357991,
+    "ast_hash": "818ef87250dbfaeea0444238af12001f",
+    "semantic_hash": "818ef87250dbfaeea0444238af12001f"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/vim-bookmarks.lua": {
+    "mtime": 1777299538.357623,
+    "ast_hash": "7364101526872a3d6f75b72b212b3312",
+    "semantic_hash": "7364101526872a3d6f75b72b212b3312"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/treesitter.lua": {
+    "mtime": 1777299538.3572483,
+    "ast_hash": "269692dadec034c967f559fdc7536f81",
+    "semantic_hash": "269692dadec034c967f559fdc7536f81"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/dap.lua": {
+    "mtime": 1777299538.3544455,
+    "ast_hash": "5214096f708bdeab6ef42de296ec8e3f",
+    "semantic_hash": "5214096f708bdeab6ef42de296ec8e3f"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/render-markdown.lua": {
+    "mtime": 1777299538.3566518,
+    "ast_hash": "39fcef676ec08bb60e0f6b5ceb20aadc",
+    "semantic_hash": "39fcef676ec08bb60e0f6b5ceb20aadc"
+  },
+  "/Users/oc/dotfiles/nvim/.config/nvim/lua/plugins/specs/mason.lua": {
+    "mtime": 1777299538.3559391,
+    "ast_hash": "e8a6f4a8bc3d6998200dda7d3db6f769",
+    "semantic_hash": "e8a6f4a8bc3d6998200dda7d3db6f769"
+  },
+  "/Users/oc/dotfiles/claude/.claude/scripts/context-bar.sh": {
+    "mtime": 1777555436.343137,
+    "ast_hash": "1ed5d598711ad24e619b22cc75b27bdb",
+    "semantic_hash": "1ed5d598711ad24e619b22cc75b27bdb"
+  },
+  "/Users/oc/dotfiles/claude/.claude/themes/catppuccin-mocha.json": {
+    "mtime": 1778503430.1881535,
+    "ast_hash": "78dfd53803b523037e4d564cf33efa8d",
+    "semantic_hash": "78dfd53803b523037e4d564cf33efa8d"
+  },
+  "/Users/oc/dotfiles/.claude/settings.local.json": {
+    "mtime": 1779276629.5282722,
+    "ast_hash": "a5a1f0031286554489e08f08f183f4b3",
+    "semantic_hash": "a5a1f0031286554489e08f08f183f4b3"
+  },
+  "/Users/oc/dotfiles/rgb/.config/lianli/config.json": {
+    "mtime": 1777839911.5097759,
+    "ast_hash": "8a8105a43eabe5c271150698b28c2821",
+    "semantic_hash": "8a8105a43eabe5c271150698b28c2821"
+  },
+  "/Users/oc/dotfiles/rgb/.local/bin/rgb-off": {
+    "mtime": 1777839911.5108247,
+    "ast_hash": "e6000652ec43d2ef51411e9a6b2a0621",
+    "semantic_hash": "e6000652ec43d2ef51411e9a6b2a0621"
+  },
+  "/Users/oc/dotfiles/tmux/.tmux/scripts/detect-theme.sh": {
+    "mtime": 1777299538.359071,
+    "ast_hash": "4d7ef8d996a30e8cbd292879f20275ad",
+    "semantic_hash": "4d7ef8d996a30e8cbd292879f20275ad"
+  },
+  "/Users/oc/dotfiles/.graphify_uncached.txt": {
+    "mtime": 1779799522.8539581,
+    "ast_hash": "d01591e564729beae8f667d273f4f103",
+    "semantic_hash": "d01591e564729beae8f667d273f4f103"
+  },
+  "/Users/oc/dotfiles/README.md": {
+    "mtime": 1779165800.5488224,
+    "ast_hash": "6f33a2249e72b4c96c91ac6e93ae5195",
+    "semantic_hash": "6f33a2249e72b4c96c91ac6e93ae5195"
+  },
+  "/Users/oc/dotfiles/CLAUDE.md": {
+    "mtime": 1749569641.316585,
+    "ast_hash": "890bcebd5ca7fe88938ec830e57673db",
+    "semantic_hash": "890bcebd5ca7fe88938ec830e57673db"
+  },
+  "/Users/oc/dotfiles/.github/workflows/release.yml": {
+    "mtime": 1745173917.7564204,
+    "ast_hash": "13d89ee8b6d8112500c750e141794954",
+    "semantic_hash": "13d89ee8b6d8112500c750e141794954"
+  },
+  "/Users/oc/dotfiles/.github/workflows/lint-dotfiles.yml": {
+    "mtime": 1777299538.3481765,
+    "ast_hash": "0c64c9ce50a91ef41f90febb3287d5ed",
+    "semantic_hash": "0c64c9ce50a91ef41f90febb3287d5ed"
+  }
+}

@@ -1,0 +1,2651 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "dotfiles_components",
+        "label": "Dotfiles Components",
+        "nodes": [
+          "README_OmarDotfiles",
+          "CLAUDE_NeovimConfig",
+          "README_TmuxConfig",
+          "README_Starship"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "README.md"
+      },
+      {
+        "id": "ai_integration_ecosystem",
+        "label": "AI Integration Ecosystem",
+        "nodes": [
+          "CLAUDE_AILLMIntegration",
+          "CLAUDE_Copilot",
+          "CLAUDE_AvanteNvim",
+          "CLAUDE_AvanteProviders"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "CLAUDE.md"
+      },
+      {
+        "id": "ci_pipeline",
+        "label": "CI/CD Pipeline",
+        "nodes": [
+          "release_ReleaseWorkflow",
+          "lint_LintWorkflow",
+          "release_SemVer",
+          "lint_Luacheck"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.8,
+        "source_file": ".github/workflows/release.yml"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": ".graphify_detect.json",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "graphify_detect_json",
+      "community": 2,
+      "norm_label": ".graphify_detect.json"
+    },
+    {
+      "label": "files",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_files",
+      "community": 2,
+      "norm_label": "files"
+    },
+    {
+      "label": "code",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_files_code",
+      "community": 2,
+      "norm_label": "code"
+    },
+    {
+      "label": "document",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_files_document",
+      "community": 2,
+      "norm_label": "document"
+    },
+    {
+      "label": "paper",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_files_paper",
+      "community": 2,
+      "norm_label": "paper"
+    },
+    {
+      "label": "image",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_files_image",
+      "community": 2,
+      "norm_label": "image"
+    },
+    {
+      "label": "video",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_files_video",
+      "community": 2,
+      "norm_label": "video"
+    },
+    {
+      "label": "total_files",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_total_files",
+      "community": 2,
+      "norm_label": "total_files"
+    },
+    {
+      "label": "total_words",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_total_words",
+      "community": 2,
+      "norm_label": "total_words"
+    },
+    {
+      "label": "needs_graph",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_needs_graph",
+      "community": 2,
+      "norm_label": "needs_graph"
+    },
+    {
+      "label": "warning",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_warning",
+      "community": 2,
+      "norm_label": "warning"
+    },
+    {
+      "label": "skipped_sensitive",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_skipped_sensitive",
+      "community": 2,
+      "norm_label": "skipped_sensitive"
+    },
+    {
+      "label": "graphifyignore_patterns",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_graphifyignore_patterns",
+      "community": 2,
+      "norm_label": "graphifyignore_patterns"
+    },
+    {
+      "label": "scan_root",
+      "file_type": "code",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "id": "dotfiles_graphify_detect_scan_root",
+      "community": 2,
+      "norm_label": "scan_root"
+    },
+    {
+      "label": ".graphify_ast.json",
+      "file_type": "code",
+      "source_file": ".graphify_ast.json",
+      "source_location": "L1",
+      "id": "graphify_ast_json",
+      "community": 6,
+      "norm_label": ".graphify_ast.json"
+    },
+    {
+      "label": "nodes",
+      "file_type": "code",
+      "source_file": ".graphify_ast.json",
+      "source_location": "L2",
+      "id": "dotfiles_graphify_ast_nodes",
+      "community": 6,
+      "norm_label": "nodes"
+    },
+    {
+      "label": "edges",
+      "file_type": "code",
+      "source_file": ".graphify_ast.json",
+      "source_location": "L871",
+      "id": "dotfiles_graphify_ast_edges",
+      "community": 6,
+      "norm_label": "edges"
+    },
+    {
+      "label": "input_tokens",
+      "file_type": "code",
+      "source_file": ".graphify_ast.json",
+      "source_location": "L2317",
+      "id": "dotfiles_graphify_ast_input_tokens",
+      "community": 6,
+      "norm_label": "input_tokens"
+    },
+    {
+      "label": "output_tokens",
+      "file_type": "code",
+      "source_file": ".graphify_ast.json",
+      "source_location": "L2318",
+      "id": "dotfiles_graphify_ast_output_tokens",
+      "community": 6,
+      "norm_label": "output_tokens"
+    },
+    {
+      "label": "init.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/init.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_init_lua",
+      "community": 13,
+      "norm_label": "init.lua"
+    },
+    {
+      "label": ".luarc.json",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_luarc_json",
+      "community": 4,
+      "norm_label": ".luarc.json"
+    },
+    {
+      "label": "runtime.version",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L2",
+      "id": "nvim_luarc_runtime_version",
+      "community": 4,
+      "norm_label": "runtime.version"
+    },
+    {
+      "label": "runtime.path",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L3",
+      "id": "nvim_luarc_runtime_path",
+      "community": 4,
+      "norm_label": "runtime.path"
+    },
+    {
+      "label": "diagnostics.globals",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L7",
+      "id": "nvim_luarc_diagnostics_globals",
+      "community": 4,
+      "norm_label": "diagnostics.globals"
+    },
+    {
+      "label": "workspace.library",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L10",
+      "id": "nvim_luarc_workspace_library",
+      "community": 4,
+      "norm_label": "workspace.library"
+    },
+    {
+      "label": "workspace.checkThirdParty",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L15",
+      "id": "nvim_luarc_workspace_checkthirdparty",
+      "community": 4,
+      "norm_label": "workspace.checkthirdparty"
+    },
+    {
+      "label": "telemetry.enable",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L16",
+      "id": "nvim_luarc_telemetry_enable",
+      "community": 4,
+      "norm_label": "telemetry.enable"
+    },
+    {
+      "label": "luals.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lsp/luals.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lsp_luals_lua",
+      "community": 14,
+      "norm_label": "luals.lua"
+    },
+    {
+      "label": "pylsp.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lsp/pylsp.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lsp_pylsp_lua",
+      "community": 15,
+      "norm_label": "pylsp.lua"
+    },
+    {
+      "label": "graphql.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lsp/graphql.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lsp_graphql_lua",
+      "community": 16,
+      "norm_label": "graphql.lua"
+    },
+    {
+      "label": "init.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/core/init.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_core_init_lua",
+      "community": 17,
+      "norm_label": "init.lua"
+    },
+    {
+      "label": "autocmds.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/core/autocmds.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_core_autocmds_lua",
+      "community": 18,
+      "norm_label": "autocmds.lua"
+    },
+    {
+      "label": "keymaps.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/core/keymaps.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_core_keymaps_lua",
+      "community": 19,
+      "norm_label": "keymaps.lua"
+    },
+    {
+      "label": "options.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/core/options.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_core_options_lua",
+      "community": 20,
+      "norm_label": "options.lua"
+    },
+    {
+      "label": "init.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/init.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_init_lua",
+      "community": 21,
+      "norm_label": "init.lua"
+    },
+    {
+      "label": "noice.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/noice.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_noice_lua",
+      "community": 22,
+      "norm_label": "noice.lua"
+    },
+    {
+      "label": "fzf-lua.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/fzf-lua.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_fzf_lua_lua",
+      "community": 23,
+      "norm_label": "fzf-lua.lua"
+    },
+    {
+      "label": "catppuccin.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/catppuccin.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_catppuccin_lua",
+      "community": 24,
+      "norm_label": "catppuccin.lua"
+    },
+    {
+      "label": "dap-ui.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/dap-ui.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_dap_ui_lua",
+      "community": 25,
+      "norm_label": "dap-ui.lua"
+    },
+    {
+      "label": "lspconfig.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/lspconfig.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_lspconfig_lua",
+      "community": 26,
+      "norm_label": "lspconfig.lua"
+    },
+    {
+      "label": "telescope.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/telescope.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_telescope_lua",
+      "community": 27,
+      "norm_label": "telescope.lua"
+    },
+    {
+      "label": "copilot.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/copilot.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_copilot_lua",
+      "community": 28,
+      "norm_label": "copilot.lua"
+    },
+    {
+      "label": "vim-test.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/vim-test.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_vim_test_lua",
+      "community": 29,
+      "norm_label": "vim-test.lua"
+    },
+    {
+      "label": "lualine.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/lualine.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_lualine_lua",
+      "community": 30,
+      "norm_label": "lualine.lua"
+    },
+    {
+      "label": "blink.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/blink.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_blink_lua",
+      "community": 31,
+      "norm_label": "blink.lua"
+    },
+    {
+      "label": "gitools.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/gitools.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_gitools_lua",
+      "community": 32,
+      "norm_label": "gitools.lua"
+    },
+    {
+      "label": "octo.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/octo.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_octo_lua",
+      "community": 33,
+      "norm_label": "octo.lua"
+    },
+    {
+      "label": "img-clip.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/img-clip.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_img_clip_lua",
+      "community": 34,
+      "norm_label": "img-clip.lua"
+    },
+    {
+      "label": "gitsigns.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/gitsigns.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_gitsigns_lua",
+      "community": 35,
+      "norm_label": "gitsigns.lua"
+    },
+    {
+      "label": "ufo.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/ufo.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_ufo_lua",
+      "community": 36,
+      "norm_label": "ufo.lua"
+    },
+    {
+      "label": "comment.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/comment.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_comment_lua",
+      "community": 37,
+      "norm_label": "comment.lua"
+    },
+    {
+      "label": "snacks.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/snacks.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_snacks_lua",
+      "community": 38,
+      "norm_label": "snacks.lua"
+    },
+    {
+      "label": "auto-dark-mode.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/auto-dark-mode.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_auto_dark_mode_lua",
+      "community": 39,
+      "norm_label": "auto-dark-mode.lua"
+    },
+    {
+      "label": "conform.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/conform.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_conform_lua",
+      "community": 40,
+      "norm_label": "conform.lua"
+    },
+    {
+      "label": "which-key.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/which-key.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_which_key_lua",
+      "community": 41,
+      "norm_label": "which-key.lua"
+    },
+    {
+      "label": "vim-tmux-navigator.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/vim-tmux-navigator.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_vim_tmux_navigator_lua",
+      "community": 42,
+      "norm_label": "vim-tmux-navigator.lua"
+    },
+    {
+      "label": "vim-bookmarks.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/vim-bookmarks.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_vim_bookmarks_lua",
+      "community": 43,
+      "norm_label": "vim-bookmarks.lua"
+    },
+    {
+      "label": "treesitter.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/treesitter.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_treesitter_lua",
+      "community": 44,
+      "norm_label": "treesitter.lua"
+    },
+    {
+      "label": "dap.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/dap.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_dap_lua",
+      "community": 45,
+      "norm_label": "dap.lua"
+    },
+    {
+      "label": "render-markdown.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/render-markdown.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_render_markdown_lua",
+      "community": 46,
+      "norm_label": "render-markdown.lua"
+    },
+    {
+      "label": "mason.lua",
+      "file_type": "code",
+      "source_file": "nvim/.config/nvim/lua/plugins/specs/mason.lua",
+      "source_location": "L1",
+      "id": "nvim_config_nvim_lua_plugins_specs_mason_lua",
+      "community": 47,
+      "norm_label": "mason.lua"
+    },
+    {
+      "label": "context-bar.sh",
+      "file_type": "code",
+      "source_file": "claude/.claude/scripts/context-bar.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "id": "claude_claude_scripts_context_bar_sh",
+      "community": 12,
+      "norm_label": "context-bar.sh"
+    },
+    {
+      "label": "context-bar.sh script",
+      "file_type": "code",
+      "source_file": "claude/.claude/scripts/context-bar.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "id": "users_oc_dotfiles_claude_claude_scripts_context_bar_sh__entry",
+      "community": 12,
+      "norm_label": "context-bar.sh script"
+    },
+    {
+      "label": "catppuccin-mocha.json",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L1",
+      "id": "claude_claude_themes_catppuccin_mocha_json",
+      "community": 9,
+      "norm_label": "catppuccin-mocha.json"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L2",
+      "id": "themes_catppuccin_mocha_name",
+      "community": 9,
+      "norm_label": "name"
+    },
+    {
+      "label": "base",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L3",
+      "id": "themes_catppuccin_mocha_base",
+      "community": 9,
+      "norm_label": "base"
+    },
+    {
+      "label": "overrides",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L4",
+      "id": "themes_catppuccin_mocha_overrides",
+      "community": 0,
+      "norm_label": "overrides"
+    },
+    {
+      "label": "claude",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L5",
+      "id": "themes_catppuccin_mocha_overrides_claude",
+      "community": 0,
+      "norm_label": "claude"
+    },
+    {
+      "label": "claudeShimmer",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L6",
+      "id": "themes_catppuccin_mocha_overrides_claudeshimmer",
+      "community": 0,
+      "norm_label": "claudeshimmer"
+    },
+    {
+      "label": "text",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L8",
+      "id": "themes_catppuccin_mocha_overrides_text",
+      "community": 0,
+      "norm_label": "text"
+    },
+    {
+      "label": "inverseText",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L9",
+      "id": "themes_catppuccin_mocha_overrides_inversetext",
+      "community": 0,
+      "norm_label": "inversetext"
+    },
+    {
+      "label": "inactive",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L10",
+      "id": "themes_catppuccin_mocha_overrides_inactive",
+      "community": 0,
+      "norm_label": "inactive"
+    },
+    {
+      "label": "subtle",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L11",
+      "id": "themes_catppuccin_mocha_overrides_subtle",
+      "community": 0,
+      "norm_label": "subtle"
+    },
+    {
+      "label": "permission",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L12",
+      "id": "themes_catppuccin_mocha_overrides_permission",
+      "community": 0,
+      "norm_label": "permission"
+    },
+    {
+      "label": "remember",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L13",
+      "id": "themes_catppuccin_mocha_overrides_remember",
+      "community": 0,
+      "norm_label": "remember"
+    },
+    {
+      "label": "success",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L15",
+      "id": "themes_catppuccin_mocha_overrides_success",
+      "community": 0,
+      "norm_label": "success"
+    },
+    {
+      "label": "error",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L16",
+      "id": "themes_catppuccin_mocha_overrides_error",
+      "community": 0,
+      "norm_label": "error"
+    },
+    {
+      "label": "warning",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L17",
+      "id": "themes_catppuccin_mocha_overrides_warning",
+      "community": 0,
+      "norm_label": "warning"
+    },
+    {
+      "label": "warningShimmer",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L18",
+      "id": "themes_catppuccin_mocha_overrides_warningshimmer",
+      "community": 0,
+      "norm_label": "warningshimmer"
+    },
+    {
+      "label": "merged",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L19",
+      "id": "themes_catppuccin_mocha_overrides_merged",
+      "community": 0,
+      "norm_label": "merged"
+    },
+    {
+      "label": "promptBorder",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L21",
+      "id": "themes_catppuccin_mocha_overrides_promptborder",
+      "community": 0,
+      "norm_label": "promptborder"
+    },
+    {
+      "label": "promptBorderShimmer",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L22",
+      "id": "themes_catppuccin_mocha_overrides_promptbordershimmer",
+      "community": 0,
+      "norm_label": "promptbordershimmer"
+    },
+    {
+      "label": "planMode",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L23",
+      "id": "themes_catppuccin_mocha_overrides_planmode",
+      "community": 0,
+      "norm_label": "planmode"
+    },
+    {
+      "label": "autoAccept",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L24",
+      "id": "themes_catppuccin_mocha_overrides_autoaccept",
+      "community": 0,
+      "norm_label": "autoaccept"
+    },
+    {
+      "label": "bashBorder",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L25",
+      "id": "themes_catppuccin_mocha_overrides_bashborder",
+      "community": 0,
+      "norm_label": "bashborder"
+    },
+    {
+      "label": "ide",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L26",
+      "id": "themes_catppuccin_mocha_overrides_ide",
+      "community": 0,
+      "norm_label": "ide"
+    },
+    {
+      "label": "fastMode",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L27",
+      "id": "themes_catppuccin_mocha_overrides_fastmode",
+      "community": 0,
+      "norm_label": "fastmode"
+    },
+    {
+      "label": "diffAdded",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L29",
+      "id": "themes_catppuccin_mocha_overrides_diffadded",
+      "community": 0,
+      "norm_label": "diffadded"
+    },
+    {
+      "label": "diffRemoved",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L30",
+      "id": "themes_catppuccin_mocha_overrides_diffremoved",
+      "community": 0,
+      "norm_label": "diffremoved"
+    },
+    {
+      "label": "diffAddedDimmed",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L31",
+      "id": "themes_catppuccin_mocha_overrides_diffaddeddimmed",
+      "community": 0,
+      "norm_label": "diffaddeddimmed"
+    },
+    {
+      "label": "diffRemovedDimmed",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L32",
+      "id": "themes_catppuccin_mocha_overrides_diffremoveddimmed",
+      "community": 0,
+      "norm_label": "diffremoveddimmed"
+    },
+    {
+      "label": "diffAddedWord",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L33",
+      "id": "themes_catppuccin_mocha_overrides_diffaddedword",
+      "community": 0,
+      "norm_label": "diffaddedword"
+    },
+    {
+      "label": "diffRemovedWord",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L34",
+      "id": "themes_catppuccin_mocha_overrides_diffremovedword",
+      "community": 0,
+      "norm_label": "diffremovedword"
+    },
+    {
+      "label": "diffAddedWordDimmed",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L35",
+      "id": "themes_catppuccin_mocha_overrides_diffaddedworddimmed",
+      "community": 0,
+      "norm_label": "diffaddedworddimmed"
+    },
+    {
+      "label": "diffRemovedWordDimmed",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L36",
+      "id": "themes_catppuccin_mocha_overrides_diffremovedworddimmed",
+      "community": 0,
+      "norm_label": "diffremovedworddimmed"
+    },
+    {
+      "label": "userMessageBackground",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L38",
+      "id": "themes_catppuccin_mocha_overrides_usermessagebackground",
+      "community": 0,
+      "norm_label": "usermessagebackground"
+    },
+    {
+      "label": "selectionBg",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L39",
+      "id": "themes_catppuccin_mocha_overrides_selectionbg",
+      "community": 0,
+      "norm_label": "selectionbg"
+    },
+    {
+      "label": "red_FOR_SUBAGENTS_ONLY",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L41",
+      "id": "themes_catppuccin_mocha_overrides_red_for_subagents_only",
+      "community": 0,
+      "norm_label": "red_for_subagents_only"
+    },
+    {
+      "label": "blue_FOR_SUBAGENTS_ONLY",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L42",
+      "id": "themes_catppuccin_mocha_overrides_blue_for_subagents_only",
+      "community": 0,
+      "norm_label": "blue_for_subagents_only"
+    },
+    {
+      "label": "green_FOR_SUBAGENTS_ONLY",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L43",
+      "id": "themes_catppuccin_mocha_overrides_green_for_subagents_only",
+      "community": 0,
+      "norm_label": "green_for_subagents_only"
+    },
+    {
+      "label": "yellow_FOR_SUBAGENTS_ONLY",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L44",
+      "id": "themes_catppuccin_mocha_overrides_yellow_for_subagents_only",
+      "community": 0,
+      "norm_label": "yellow_for_subagents_only"
+    },
+    {
+      "label": "purple_FOR_SUBAGENTS_ONLY",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L45",
+      "id": "themes_catppuccin_mocha_overrides_purple_for_subagents_only",
+      "community": 0,
+      "norm_label": "purple_for_subagents_only"
+    },
+    {
+      "label": "orange_FOR_SUBAGENTS_ONLY",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L46",
+      "id": "themes_catppuccin_mocha_overrides_orange_for_subagents_only",
+      "community": 0,
+      "norm_label": "orange_for_subagents_only"
+    },
+    {
+      "label": "pink_FOR_SUBAGENTS_ONLY",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L47",
+      "id": "themes_catppuccin_mocha_overrides_pink_for_subagents_only",
+      "community": 0,
+      "norm_label": "pink_for_subagents_only"
+    },
+    {
+      "label": "cyan_FOR_SUBAGENTS_ONLY",
+      "file_type": "code",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L48",
+      "id": "themes_catppuccin_mocha_overrides_cyan_for_subagents_only",
+      "community": 0,
+      "norm_label": "cyan_for_subagents_only"
+    },
+    {
+      "label": "settings.local.json",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L1",
+      "id": "claude_settings_local_json",
+      "community": 5,
+      "norm_label": "settings.local.json"
+    },
+    {
+      "label": "permissions",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L2",
+      "id": "claude_settings_local_permissions",
+      "community": 5,
+      "norm_label": "permissions"
+    },
+    {
+      "label": "allow",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L3",
+      "id": "claude_settings_local_permissions_allow",
+      "community": 5,
+      "norm_label": "allow"
+    },
+    {
+      "label": "deny",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L22",
+      "id": "claude_settings_local_permissions_deny",
+      "community": 5,
+      "norm_label": "deny"
+    },
+    {
+      "label": "ask",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L23",
+      "id": "claude_settings_local_permissions_ask",
+      "community": 5,
+      "norm_label": "ask"
+    },
+    {
+      "label": "config.json",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L1",
+      "id": "rgb_config_lianli_config_json",
+      "community": 3,
+      "norm_label": "config.json"
+    },
+    {
+      "label": "default_fps",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L2",
+      "id": "lianli_config_default_fps",
+      "community": 3,
+      "norm_label": "default_fps"
+    },
+    {
+      "label": "hid_driver",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L3",
+      "id": "lianli_config_hid_driver",
+      "community": 3,
+      "norm_label": "hid_driver"
+    },
+    {
+      "label": "lcds",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L4",
+      "id": "lianli_config_lcds",
+      "community": 3,
+      "norm_label": "lcds"
+    },
+    {
+      "label": "fan_curves",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L5",
+      "id": "lianli_config_fan_curves",
+      "community": 3,
+      "norm_label": "fan_curves"
+    },
+    {
+      "label": "fans",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L6",
+      "id": "lianli_config_fans",
+      "community": 3,
+      "norm_label": "fans"
+    },
+    {
+      "label": "rgb",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L7",
+      "id": "lianli_config_rgb",
+      "community": 3,
+      "norm_label": "rgb"
+    },
+    {
+      "label": "enabled",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L8",
+      "id": "lianli_config_rgb_enabled",
+      "community": 3,
+      "norm_label": "enabled"
+    },
+    {
+      "label": "openrgb_server",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L9",
+      "id": "lianli_config_rgb_openrgb_server",
+      "community": 3,
+      "norm_label": "openrgb_server"
+    },
+    {
+      "label": "openrgb_port",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L10",
+      "id": "lianli_config_rgb_openrgb_port",
+      "community": 3,
+      "norm_label": "openrgb_port"
+    },
+    {
+      "label": "devices",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L11",
+      "id": "lianli_config_rgb_devices",
+      "community": 3,
+      "norm_label": "devices"
+    },
+    {
+      "label": "aio",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L86",
+      "id": "lianli_config_aio",
+      "community": 3,
+      "norm_label": "aio"
+    },
+    {
+      "label": "ene6k77",
+      "file_type": "code",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L87",
+      "id": "lianli_config_ene6k77",
+      "community": 3,
+      "norm_label": "ene6k77"
+    },
+    {
+      "label": "detect-theme.sh",
+      "file_type": "code",
+      "source_file": "tmux/.tmux/scripts/detect-theme.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "id": "tmux_tmux_scripts_detect_theme_sh",
+      "community": 10,
+      "norm_label": "detect-theme.sh"
+    },
+    {
+      "label": "detect-theme.sh script",
+      "file_type": "code",
+      "source_file": "tmux/.tmux/scripts/detect-theme.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "id": "users_oc_dotfiles_tmux_tmux_scripts_detect_theme_sh__entry",
+      "community": 10,
+      "norm_label": "detect-theme.sh script"
+    },
+    {
+      "label": "detect_mode()",
+      "file_type": "code",
+      "source_file": "tmux/.tmux/scripts/detect-theme.sh",
+      "source_location": "L5",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "id": "scripts_detect_theme_detect_mode",
+      "community": 10,
+      "norm_label": "detect_mode()"
+    },
+    {
+      "label": "Repository Overview",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_RepositoryOverview",
+      "community": 48,
+      "norm_label": "repository overview"
+    },
+    {
+      "label": "Omar's Dotfiles Repository",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_DotfilesRepo",
+      "community": 1,
+      "norm_label": "omar's dotfiles repository"
+    },
+    {
+      "label": "Modular Neovim Configuration",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_NeovimConfig",
+      "community": 1,
+      "norm_label": "modular neovim configuration"
+    },
+    {
+      "label": "Lazy Plugin Manager",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_LazyNvim",
+      "community": 1,
+      "norm_label": "lazy plugin manager"
+    },
+    {
+      "label": "LSP Integration",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_LSPIntegration",
+      "community": 1,
+      "norm_label": "lsp integration"
+    },
+    {
+      "label": "Treesitter Syntax Engine",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_Treesitter",
+      "community": 1,
+      "norm_label": "treesitter syntax engine"
+    },
+    {
+      "label": "AI & LLM Integration",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_AILLMIntegration",
+      "community": 7,
+      "norm_label": "ai & llm integration"
+    },
+    {
+      "label": "GitHub Copilot",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_Copilot",
+      "community": 7,
+      "norm_label": "github copilot"
+    },
+    {
+      "label": "Avante.nvim LLM Plugin",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_AvanteNvim",
+      "community": 7,
+      "norm_label": "avante.nvim llm plugin"
+    },
+    {
+      "label": "Avante LLM Providers (Bedrock, Claude, Ollama, Gemini)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_AvanteProviders",
+      "community": 7,
+      "norm_label": "avante llm providers (bedrock, claude, ollama, gemini)"
+    },
+    {
+      "label": "DAP Debugging Integration",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_DAPDebugging",
+      "community": 1,
+      "norm_label": "dap debugging integration"
+    },
+    {
+      "label": "vim-test Testing Framework",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_VimTest",
+      "community": 1,
+      "norm_label": "vim-test testing framework"
+    },
+    {
+      "label": "Git Integration (DiffView, Gitsigns)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_GitTools",
+      "community": 1,
+      "norm_label": "git integration (diffview, gitsigns)"
+    },
+    {
+      "label": "Navigation & Productivity (Telescope, NvimTree)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "CLAUDE_Navigation",
+      "community": 1,
+      "norm_label": "navigation & productivity (telescope, nvimtree)"
+    },
+    {
+      "label": "Omar's Dotfiles",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_OmarDotfiles",
+      "community": 1,
+      "norm_label": "omar's dotfiles"
+    },
+    {
+      "label": "Modular Organization Principle",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_ModularOrg",
+      "community": 1,
+      "norm_label": "modular organization principle"
+    },
+    {
+      "label": "Lazy Loading Strategy",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_LazyLoading",
+      "community": 1,
+      "norm_label": "lazy loading strategy"
+    },
+    {
+      "label": "Snacks.nvim UI Toolkit",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_SnacksNvim",
+      "community": 11,
+      "norm_label": "snacks.nvim ui toolkit"
+    },
+    {
+      "label": "Blink.cmp Completion Engine",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_BlinkCmp",
+      "community": 1,
+      "norm_label": "blink.cmp completion engine"
+    },
+    {
+      "label": "Catppuccin Mocha Colorscheme",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_Catppuccin",
+      "community": 1,
+      "norm_label": "catppuccin mocha colorscheme"
+    },
+    {
+      "label": "conform.nvim Code Formatter",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_Conform",
+      "community": 49,
+      "norm_label": "conform.nvim code formatter"
+    },
+    {
+      "label": "nvim-ufo Smart Folding",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_Ufo",
+      "community": 50,
+      "norm_label": "nvim-ufo smart folding"
+    },
+    {
+      "label": "Noice.nvim UI Enhancer",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_Noice",
+      "community": 51,
+      "norm_label": "noice.nvim ui enhancer"
+    },
+    {
+      "label": "Auto Dark Mode Switcher",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_AutoDarkMode",
+      "community": 1,
+      "norm_label": "auto dark mode switcher"
+    },
+    {
+      "label": "fzf-lua Fuzzy Finder",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_FzfLua",
+      "community": 52,
+      "norm_label": "fzf-lua fuzzy finder"
+    },
+    {
+      "label": "Git Tools (Gitsigns, DiffView, Octo)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_GitTools",
+      "community": 53,
+      "norm_label": "git tools (gitsigns, diffview, octo)"
+    },
+    {
+      "label": "Mason LSP/DAP Installer",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_Mason",
+      "community": 54,
+      "norm_label": "mason lsp/dap installer"
+    },
+    {
+      "label": "Tmux Configuration",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_TmuxConfig",
+      "community": 1,
+      "norm_label": "tmux configuration"
+    },
+    {
+      "label": "Tmux Plugins (TPM)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_TmuxPlugins",
+      "community": 1,
+      "norm_label": "tmux plugins (tpm)"
+    },
+    {
+      "label": "Starship Prompt Configuration",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_Starship",
+      "community": 1,
+      "norm_label": "starship prompt configuration"
+    },
+    {
+      "label": "GNU Stow Deployment",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_GNUStow",
+      "community": 1,
+      "norm_label": "gnu stow deployment"
+    },
+    {
+      "label": "Keybinding System",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "README_Keybindings",
+      "community": 11,
+      "norm_label": "keybinding system"
+    },
+    {
+      "label": "GitHub Release Workflow",
+      "file_type": "code",
+      "source_file": ".github/workflows/release.yml",
+      "id": "release_ReleaseWorkflow",
+      "community": 8,
+      "norm_label": "github release workflow"
+    },
+    {
+      "label": "Semantic Version Bumping",
+      "file_type": "code",
+      "source_file": ".github/workflows/release.yml",
+      "id": "release_SemVer",
+      "community": 8,
+      "norm_label": "semantic version bumping"
+    },
+    {
+      "label": "Branch Prefix Convention (major/minor/patch)",
+      "file_type": "code",
+      "source_file": ".github/workflows/release.yml",
+      "id": "release_BranchPrefix",
+      "community": 8,
+      "norm_label": "branch prefix convention (major/minor/patch)"
+    },
+    {
+      "label": "Auto-generated Changelog",
+      "file_type": "code",
+      "source_file": ".github/workflows/release.yml",
+      "id": "release_Changelog",
+      "community": 8,
+      "norm_label": "auto-generated changelog"
+    },
+    {
+      "label": "CI Lint Workflow",
+      "file_type": "code",
+      "source_file": ".github/workflows/lint-dotfiles.yml",
+      "id": "lint_LintWorkflow",
+      "community": 1,
+      "norm_label": "ci lint workflow"
+    },
+    {
+      "label": "Lua Linting (luacheck)",
+      "file_type": "code",
+      "source_file": ".github/workflows/lint-dotfiles.yml",
+      "id": "lint_Luacheck",
+      "community": 1,
+      "norm_label": "lua linting (luacheck)"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "graphify_detect_json",
+      "target": "dotfiles_graphify_detect_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "graphify_detect_json",
+      "target": "dotfiles_graphify_detect_total_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "graphify_detect_json",
+      "target": "dotfiles_graphify_detect_total_words",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "graphify_detect_json",
+      "target": "dotfiles_graphify_detect_needs_graph",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "graphify_detect_json",
+      "target": "dotfiles_graphify_detect_warning",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "graphify_detect_json",
+      "target": "dotfiles_graphify_detect_skipped_sensitive",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "graphify_detect_json",
+      "target": "dotfiles_graphify_detect_graphifyignore_patterns",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "graphify_detect_json",
+      "target": "dotfiles_graphify_detect_scan_root",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "dotfiles_graphify_detect_files",
+      "target": "dotfiles_graphify_detect_files_code",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "dotfiles_graphify_detect_files",
+      "target": "dotfiles_graphify_detect_files_document",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "dotfiles_graphify_detect_files",
+      "target": "dotfiles_graphify_detect_files_paper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "dotfiles_graphify_detect_files",
+      "target": "dotfiles_graphify_detect_files_image",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_detect.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "dotfiles_graphify_detect_files",
+      "target": "dotfiles_graphify_detect_files_video",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_ast.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "graphify_ast_json",
+      "target": "dotfiles_graphify_ast_nodes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_ast.json",
+      "source_location": "L871",
+      "weight": 1.0,
+      "source": "graphify_ast_json",
+      "target": "dotfiles_graphify_ast_edges",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_ast.json",
+      "source_location": "L2317",
+      "weight": 1.0,
+      "source": "graphify_ast_json",
+      "target": "dotfiles_graphify_ast_input_tokens",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".graphify_ast.json",
+      "source_location": "L2318",
+      "weight": 1.0,
+      "source": "graphify_ast_json",
+      "target": "dotfiles_graphify_ast_output_tokens",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "nvim_config_nvim_luarc_json",
+      "target": "nvim_luarc_runtime_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "nvim_config_nvim_luarc_json",
+      "target": "nvim_luarc_runtime_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "nvim_config_nvim_luarc_json",
+      "target": "nvim_luarc_diagnostics_globals",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "nvim_config_nvim_luarc_json",
+      "target": "nvim_luarc_workspace_library",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "nvim_config_nvim_luarc_json",
+      "target": "nvim_luarc_workspace_checkthirdparty",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "nvim/.config/nvim/.luarc.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "nvim_config_nvim_luarc_json",
+      "target": "nvim_luarc_telemetry_enable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/scripts/context-bar.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "claude_claude_scripts_context_bar_sh",
+      "target": "users_oc_dotfiles_claude_claude_scripts_context_bar_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "claude_claude_themes_catppuccin_mocha_json",
+      "target": "themes_catppuccin_mocha_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "claude_claude_themes_catppuccin_mocha_json",
+      "target": "themes_catppuccin_mocha_base",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "claude_claude_themes_catppuccin_mocha_json",
+      "target": "themes_catppuccin_mocha_overrides",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_claude",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_claudeshimmer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_inversetext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_inactive",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_subtle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_permission",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_remember",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_success",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_warning",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_warningshimmer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_merged",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_promptborder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_promptbordershimmer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_planmode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_autoaccept",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_bashborder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_ide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_fastmode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_diffadded",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_diffremoved",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_diffaddeddimmed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_diffremoveddimmed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_diffaddedword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_diffremovedword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_diffaddedworddimmed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_diffremovedworddimmed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_usermessagebackground",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_selectionbg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_red_for_subagents_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_blue_for_subagents_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_green_for_subagents_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_yellow_for_subagents_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_purple_for_subagents_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_orange_for_subagents_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_pink_for_subagents_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "claude/.claude/themes/catppuccin-mocha.json",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "themes_catppuccin_mocha_overrides",
+      "target": "themes_catppuccin_mocha_overrides_cyan_for_subagents_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "claude_settings_local_json",
+      "target": "claude_settings_local_permissions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "claude_settings_local_permissions",
+      "target": "claude_settings_local_permissions_allow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "claude_settings_local_permissions",
+      "target": "claude_settings_local_permissions_deny",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "claude_settings_local_permissions",
+      "target": "claude_settings_local_permissions_ask",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "rgb_config_lianli_config_json",
+      "target": "lianli_config_default_fps",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "rgb_config_lianli_config_json",
+      "target": "lianli_config_hid_driver",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "rgb_config_lianli_config_json",
+      "target": "lianli_config_lcds",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "rgb_config_lianli_config_json",
+      "target": "lianli_config_fan_curves",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "rgb_config_lianli_config_json",
+      "target": "lianli_config_fans",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "rgb_config_lianli_config_json",
+      "target": "lianli_config_rgb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "rgb_config_lianli_config_json",
+      "target": "lianli_config_aio",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "rgb_config_lianli_config_json",
+      "target": "lianli_config_ene6k77",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "lianli_config_rgb",
+      "target": "lianli_config_rgb_enabled",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "lianli_config_rgb",
+      "target": "lianli_config_rgb_openrgb_server",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "lianli_config_rgb",
+      "target": "lianli_config_rgb_openrgb_port",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "rgb/.config/lianli/config.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "lianli_config_rgb",
+      "target": "lianli_config_rgb_devices",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tmux/.tmux/scripts/detect-theme.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tmux_tmux_scripts_detect_theme_sh",
+      "target": "users_oc_dotfiles_tmux_tmux_scripts_detect_theme_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "tmux/.tmux/scripts/detect-theme.sh",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tmux_tmux_scripts_detect_theme_sh",
+      "target": "scripts_detect_theme_detect_mode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_DotfilesRepo",
+      "target": "CLAUDE_NeovimConfig"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_DotfilesRepo",
+      "target": "CLAUDE_LazyNvim"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "README.md",
+      "source": "README_OmarDotfiles",
+      "target": "CLAUDE_DotfilesRepo"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_NeovimConfig",
+      "target": "CLAUDE_LazyNvim"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_NeovimConfig",
+      "target": "CLAUDE_LSPIntegration"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_NeovimConfig",
+      "target": "CLAUDE_Treesitter"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_NeovimConfig",
+      "target": "CLAUDE_AILLMIntegration"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_NeovimConfig",
+      "target": "CLAUDE_DAPDebugging"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_NeovimConfig",
+      "target": "CLAUDE_VimTest"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_NeovimConfig",
+      "target": "CLAUDE_GitTools"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_NeovimConfig",
+      "target": "CLAUDE_Navigation"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "README.md",
+      "source": "README_ModularOrg",
+      "target": "CLAUDE_NeovimConfig"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": ".github/workflows/lint-dotfiles.yml",
+      "source": "lint_LintWorkflow",
+      "target": "CLAUDE_NeovimConfig"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "README.md",
+      "source": "README_LazyLoading",
+      "target": "CLAUDE_LazyNvim"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "README.md",
+      "source": "README_BlinkCmp",
+      "target": "CLAUDE_LSPIntegration"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_AILLMIntegration",
+      "target": "CLAUDE_Copilot"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_AILLMIntegration",
+      "target": "CLAUDE_AvanteNvim"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source": "CLAUDE_AvanteNvim",
+      "target": "CLAUDE_AvanteProviders"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "README_OmarDotfiles",
+      "target": "README_ModularOrg"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "README_OmarDotfiles",
+      "target": "README_LazyLoading"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "README_OmarDotfiles",
+      "target": "README_TmuxConfig"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "README_OmarDotfiles",
+      "target": "README_Starship"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "README_OmarDotfiles",
+      "target": "README_GNUStow"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "README.md",
+      "source": "README_SnacksNvim",
+      "target": "README_Keybindings"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "README.md",
+      "source": "README_Catppuccin",
+      "target": "README_AutoDarkMode"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "README_TmuxConfig",
+      "target": "README_Catppuccin"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "README_Starship",
+      "target": "README_Catppuccin"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source": "README_TmuxConfig",
+      "target": "README_TmuxPlugins"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/release.yml",
+      "source": "release_ReleaseWorkflow",
+      "target": "release_SemVer"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/release.yml",
+      "source": "release_ReleaseWorkflow",
+      "target": "release_BranchPrefix"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/release.yml",
+      "source": "release_ReleaseWorkflow",
+      "target": "release_Changelog"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/release.yml",
+      "source": "release_SemVer",
+      "target": "release_BranchPrefix"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/lint-dotfiles.yml",
+      "source": "lint_LintWorkflow",
+      "target": "lint_Luacheck"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "dotfiles_components",
+      "label": "Dotfiles Components",
+      "nodes": [
+        "README_OmarDotfiles",
+        "CLAUDE_NeovimConfig",
+        "README_TmuxConfig",
+        "README_Starship"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "README.md"
+    },
+    {
+      "id": "ai_integration_ecosystem",
+      "label": "AI Integration Ecosystem",
+      "nodes": [
+        "CLAUDE_AILLMIntegration",
+        "CLAUDE_Copilot",
+        "CLAUDE_AvanteNvim",
+        "CLAUDE_AvanteProviders"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "ci_pipeline",
+      "label": "CI/CD Pipeline",
+      "nodes": [
+        "release_ReleaseWorkflow",
+        "lint_LintWorkflow",
+        "release_SemVer",
+        "lint_Luacheck"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": ".github/workflows/release.yml"
+    }
+  ],
+  "built_at_commit": "ecd19c4765b75fb3889a0d2ad98d8f40aec38f9b"
+}
