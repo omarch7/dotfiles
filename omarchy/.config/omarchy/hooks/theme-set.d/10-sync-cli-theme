@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Omarchy theme-set hook: re-sync the catppuccin light/dark flavor across CLI
+# tools (tmux, starship, bat, lsd, glow) that Omarchy itself doesn't theme.
+# Omarchy runs this via `omarchy-hook theme-set <name>` after switching themes;
+# the theme name arg is ignored because we re-detect light/dark from scratch.
+exec "$HOME/.tmux/scripts/detect-theme.sh"
