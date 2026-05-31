@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Detect system dark/light mode and sync the catppuccin flavor across CLI tools
-# (tmux, starship, bat, lsd, glow, television) that aren't themed elsewhere.
+# (tmux, starship, bat, lsd, glow, television, btop) that aren't themed elsewhere.
 # Supports macOS, WSL2, and native Linux (Omarchy marker + freedesktop fallback).
 
 detect_mode() {
@@ -114,6 +114,16 @@ apply_theme() {
             accents=(blue flamingo green lavender maroon mauve peach pink red rosewater sapphire sky teal yellow)
             accent="${accents[$((RANDOM % ${#accents[@]}))]}"
             sed -i'' -e "s/theme = \"catppuccin-[a-z]*-[a-z]*\"/theme = \"catppuccin-${flavor}-${accent}\"/" "$tv_config"
+        fi
+    fi
+
+    # --- btop (macOS only; skipped on Linux where Omarchy manages the theme) ---
+    if [ "$(uname -s)" = "Darwin" ] && command -v btop &>/dev/null; then
+        btop_theme_dir="$HOME/.config/btop/themes"
+        btop_theme_file="${btop_theme_dir}/catppuccin-${flavor}.theme"
+        btop_link="${btop_theme_dir}/current.theme"
+        if [ -f "$btop_theme_file" ]; then
+            ln -sf "$btop_theme_file" "$btop_link"
         fi
     fi
 
