@@ -17,7 +17,7 @@
 **Files:**
 - Modify: `starship/.config/starship.toml` (append after the `catppuccin_mocha` block ending at line 102)
 
-- [ ] **Step 1: Append the latte palette block**
+- [x] **Step 1: Append the latte palette block**
 
 Add this block at the end of `starship/.config/starship.toml` (after the last line of `[palettes.catppuccin_mocha]`). These are the official Catppuccin Latte hex values:
 
@@ -52,7 +52,7 @@ mantle = "#e6e9ef"
 crust = "#dce0e8"
 ```
 
-- [ ] **Step 2: Verify both palettes are present and the file still parses**
+- [x] **Step 2: Verify both palettes are present and the file still parses**
 
 Run:
 ```bash
@@ -71,12 +71,14 @@ Expected: first command prints `4`; Python prints `OK ['catppuccin_frappe', 'cat
 
 (If `tomllib` is unavailable — Python < 3.11 — the `grep -c` returning `4` is sufficient.)
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add starship/.config/starship.toml
 git commit -m "feat(starship): add catppuccin latte palette for light mode"
 ```
+
+Committed: `19e8f4e feat(starship): add catppuccin latte palette for light mode`
 
 ---
 
@@ -85,7 +87,7 @@ git commit -m "feat(starship): add catppuccin latte palette for light mode"
 **Files:**
 - Modify (full rewrite): `tmux/.tmux/scripts/detect-theme.sh`
 
-- [ ] **Step 1: Replace the entire file with the new version**
+- [x] **Step 1: Replace the entire file with the new version**
 
 Write `tmux/.tmux/scripts/detect-theme.sh` with exactly this content:
 
@@ -220,7 +222,7 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
 fi
 ```
 
-- [ ] **Step 2: Lint the script**
+- [x] **Step 2: Lint the script**
 
 Run:
 ```bash
@@ -229,7 +231,7 @@ command -v shellcheck >/dev/null && shellcheck -S error tmux/.tmux/scripts/detec
 ```
 Expected: `syntax OK`, and shellcheck reports no errors (or is skipped if not installed).
 
-- [ ] **Step 3: Smoke-test detection by sourcing (no side effects)**
+- [x] **Step 3: Smoke-test detection by sourcing (no side effects)**
 
 Run:
 ```bash
@@ -246,7 +248,7 @@ bash -c '
 ```
 Expected: `marker -> light` then `no-marker/dark -> dark`. (Confirms sourcing runs no `apply_theme` side effects and the new branches work.)
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add tmux/.tmux/scripts/detect-theme.sh
@@ -259,6 +261,14 @@ television on Linux. Refactor into detect_mode/apply_theme with a
 source guard for testability."
 ```
 
+Committed: `41564e1 feat(theme): native Linux/Omarchy detection + state-file gating`
+
+> **Note:** The lsd block also required adding the source theme files
+> (catppuccin-mocha and catppuccin-latte `colors.yaml`) as a new
+> `lsd/` stow package — these were missing from the original plan but
+> are needed for the `cp` in the script to have anything to copy from.
+> Committed separately as `50cf683 feat(lsd): add catppuccin theme files for dark-light switching`.
+
 ---
 
 ### Task 3: Add a regression test for Linux detection
@@ -266,7 +276,7 @@ source guard for testability."
 **Files:**
 - Create: `tmux/.tmux/scripts/test-detect-theme.sh`
 
-- [ ] **Step 1: Write the test script**
+- [x] **Step 1: Write the test script**
 
 Write `tmux/.tmux/scripts/test-detect-theme.sh` with exactly this content:
 
@@ -322,7 +332,7 @@ rm -rf "$tmp"
 exit $fail
 ```
 
-- [ ] **Step 2: Make it executable and run it**
+- [x] **Step 2: Make it executable and run it**
 
 Run:
 ```bash
@@ -331,12 +341,14 @@ bash tmux/.tmux/scripts/test-detect-theme.sh; echo "exit=$?"
 ```
 Expected: four `PASS:` lines and `exit=0`.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add tmux/.tmux/scripts/test-detect-theme.sh
 git commit -m "test(theme): cover native Linux detect_mode branches"
 ```
+
+Committed: `616b5fb test(theme): cover native Linux detect_mode branches`
 
 ---
 
@@ -345,7 +357,7 @@ git commit -m "test(theme): cover native Linux detect_mode branches"
 **Files:**
 - Create: `omarchy/.config/omarchy/hooks/theme-set.d/10-sync-cli-theme`
 
-- [ ] **Step 1: Create the hook script**
+- [x] **Step 1: Create the hook script**
 
 Write `omarchy/.config/omarchy/hooks/theme-set.d/10-sync-cli-theme` with exactly this content:
 
@@ -358,7 +370,7 @@ Write `omarchy/.config/omarchy/hooks/theme-set.d/10-sync-cli-theme` with exactly
 exec "$HOME/.tmux/scripts/detect-theme.sh"
 ```
 
-- [ ] **Step 2: Make it executable (stow preserves the mode)**
+- [x] **Step 2: Make it executable (stow preserves the mode)**
 
 Run:
 ```bash
@@ -367,7 +379,7 @@ test -x omarchy/.config/omarchy/hooks/theme-set.d/10-sync-cli-theme && echo "exe
 ```
 Expected: `executable OK`. (`git add` in Step 4 records the executable bit automatically.)
 
-- [ ] **Step 3: Stow the package and verify the symlink**
+- [x] **Step 3: Stow the package and verify the symlink**
 
 Run:
 ```bash
@@ -378,12 +390,14 @@ Expected: a symlink pointing into the repo's `omarchy/.config/omarchy/hooks/them
 
 (If `stow` reports a conflict because `~/.config/omarchy/hooks/` is a real dir owned by Omarchy, run `stow --no-folding -v -t "$HOME" omarchy` so only the leaf file is symlinked rather than the whole directory.)
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add omarchy/.config/omarchy/hooks/theme-set.d/10-sync-cli-theme
 git commit -m "feat(omarchy): hook theme-set to re-sync CLI catppuccin flavor"
 ```
+
+Committed: `0632cc6 feat(omarchy): hook theme-set to re-sync CLI catppuccin flavor`
 
 ---
 
