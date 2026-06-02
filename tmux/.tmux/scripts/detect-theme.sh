@@ -50,12 +50,21 @@ apply_theme() {
         flavor="mocha"
     fi
 
-    # Gate on a state file so this is correct whether triggered by tmux
-    # focus-in or the Omarchy theme-set hook (which has no attached client).
+    # Gate so we don't re-apply needlessly. The state file keeps this correct when
+    # triggered by the Omarchy theme-set hook, which has no attached client/server.
+    # But a fresh tmux server reloads the hardcoded @catppuccin_flavor default from
+    # tmux.conf, which the cache can't see — so when a server is running we also
+    # reconcile against its live flavor and re-apply if it has drifted.
     state_file="${XDG_CACHE_HOME:-$HOME/.cache}/dotfiles-theme/flavor"
     current=""
     [ -f "$state_file" ] && current=$(cat "$state_file")
-    [ "$current" = "$flavor" ] && return 0
+    if [ "$current" = "$flavor" ]; then
+        if tmux info &>/dev/null; then
+            [ "$(tmux show-option -gqv @catppuccin_flavor)" = "$flavor" ] && return 0
+        else
+            return 0
+        fi
+    fi
 
     # --- tmux (only when a server is running) ---
     if tmux info &>/dev/null; then
