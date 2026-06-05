@@ -20,7 +20,7 @@ Detection runs at script start, before any output is built, in this priority ord
 | Provider | Icon | Codepoint | Color | ANSI (256-color) |
 |----------|------|-----------|-------|------------------|
 | Claude   | `󰛄`  | `\Uf01c4` | Anthropic orange | `\033[38;5;166m` |
-| Bedrock  | ``  | `\Uf270`  | AWS yellow       | `\033[38;5;220m` |
+| Bedrock  | `󰧑`  | `󰧑` | AWS yellow   | `\033[38;5;220m` |
 | Local    | `󰍹`  | `\Uf0379` | NVIDIA green     | `\033[38;5;112m` |
 
 Font requirement: Hack Nerd Font (already in use).
@@ -37,7 +37,7 @@ Font requirement: Hack Nerd Font (already in use).
 
 **Bedrock** (yellow):
 ```
- eu.anthropic.claude-sonnet-4-6 | dotfiles | main (0 files, synced 2m ago) | ████░░░░░░ 12% of 200k tokens
+󰧑 eu.anthropic.claude-sonnet-4-6 | dotfiles | main (0 files, synced 2m ago) | ████░░░░░░ 12% of 200k tokens
 ```
 
 **Claude subscription** (orange):
