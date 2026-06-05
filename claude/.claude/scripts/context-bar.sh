@@ -15,11 +15,11 @@ model_id=$(echo "$input" | jq -r '.model.id // ""')
 if [[ -n "${ANTHROPIC_BASE_URL:-}" ]]; then
     PROVIDER_ICON='󰍹'
     PROVIDER_LABEL='󰍹'
-    C_ACCENT='\033[38;5;112m'  # NVIDIA green
+    C_ACCENT='\033[38;5;112m'  # local/self-hosted green
 elif [[ "$model_id" == *anthropic* ]]; then
     PROVIDER_ICON='󰧑'
     PROVIDER_LABEL='󰧑'
-    C_ACCENT='\033[38;5;220m'  # AWS yellow
+    C_ACCENT='\033[38;5;74m'  # Bedrock blue
 else
     PROVIDER_ICON='󰛄'
     PROVIDER_LABEL='󰛄'
@@ -169,7 +169,7 @@ else
 fi
 
 # Build output: Model | Dir | Branch (uncommitted) | Context
-output="${PROVIDER_ICON} ${C_ACCENT}${model}${C_GRAY} |   ${dir}"
+output="${C_ACCENT}${PROVIDER_ICON} ${model}${C_GRAY} |   ${dir}"
 [[ -n "$branch" ]] && output+=" |  ${branch} ${git_status}"
 output+=" | ${ctx}${C_RESET}"
 
