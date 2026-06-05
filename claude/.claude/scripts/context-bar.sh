@@ -1,30 +1,30 @@
 #!/bin/bash
 
-# Color theme: gray, orange, blue, teal, green, lavender, rose, gold, slate, cyan
-# Preview colors with: bash scripts/color-preview.sh
-COLOR="blue"
-
 # Color codes
 C_RESET='\033[0m'
-C_GRAY='\033[38;5;245m'  # explicit gray for default text
+C_GRAY='\033[38;5;245m'
 C_BAR_EMPTY='\033[38;5;238m'
-case "$COLOR" in
-    orange)   C_ACCENT='\033[38;5;173m' ;;
-    blue)     C_ACCENT='\033[38;5;74m' ;;
-    teal)     C_ACCENT='\033[38;5;66m' ;;
-    green)    C_ACCENT='\033[38;5;71m' ;;
-    lavender) C_ACCENT='\033[38;5;139m' ;;
-    rose)     C_ACCENT='\033[38;5;132m' ;;
-    gold)     C_ACCENT='\033[38;5;136m' ;;
-    slate)    C_ACCENT='\033[38;5;60m' ;;
-    cyan)     C_ACCENT='\033[38;5;37m' ;;
-    *)        C_ACCENT="$C_GRAY" ;;  # gray: all same color
-esac
 
 input=$(cat)
 
 # Extract model, directory, and cwd
 model=$(echo "$input" | jq -r '.model.display_name // .model.id // "?"')
+model_id=$(echo "$input" | jq -r '.model.id // ""')
+
+# Detect provider from model ID and environment
+if [[ -n "${ANTHROPIC_BASE_URL:-}" ]]; then
+    PROVIDER_ICON='󰍹'
+    PROVIDER_LABEL='󰍹'
+    C_ACCENT='\033[38;2;186;213;178m'  # local/self-hosted green
+elif [[ "$model_id" == *anthropic* ]]; then
+    PROVIDER_ICON='󰧑'
+    PROVIDER_LABEL='󰧑'
+    C_ACCENT='\033[38;5;74m'  # Bedrock blue
+else
+    PROVIDER_ICON='󰛄'
+    PROVIDER_LABEL='󰛄'
+    C_ACCENT='\033[38;2;199;141;136m'  # Anthropic orange
+fi
 cwd=$(echo "$input" | jq -r '.cwd // empty')
 dir=$(basename "$cwd" 2>/dev/null || echo "?")
 
@@ -169,7 +169,7 @@ else
 fi
 
 # Build output: Model | Dir | Branch (uncommitted) | Context
-output="󰛄 ${C_ACCENT}${model}${C_GRAY} |   ${dir}"
+output="${C_ACCENT}${PROVIDER_ICON} ${model}${C_GRAY} |   ${dir}"
 [[ -n "$branch" ]] && output+=" |  ${branch} ${git_status}"
 output+=" | ${ctx}${C_RESET}"
 
@@ -178,7 +178,7 @@ printf '%b\n' "$output"
 # Get user's last message (text only, not tool results, skip unhelpful messages)
 if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
     # Calculate visible length (without ANSI codes) - 10 chars for bar + content
-    plain_output="󰛄 ${model} |   ${dir}"
+    plain_output="${PROVIDER_LABEL} ${model} |   ${dir}"
     [[ -n "$branch" ]] && plain_output+=" |  ${branch} ${git_status}"
     plain_output+=" | xxxxxxxxxx ${pct}% of ${max_k}k tokens"
     max_len=${#plain_output}
