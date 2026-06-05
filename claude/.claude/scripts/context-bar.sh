@@ -15,7 +15,7 @@ model_id=$(echo "$input" | jq -r '.model.id // ""')
 if [[ -n "${ANTHROPIC_BASE_URL:-}" ]]; then
     PROVIDER_ICON='󰍹'
     PROVIDER_LABEL='󰍹'
-    C_ACCENT='\033[38;5;112m'  # local/self-hosted green
+    C_ACCENT='\033[38;2;186;213;178m'  # local/self-hosted green
 elif [[ "$model_id" == *anthropic* ]]; then
     PROVIDER_ICON='󰧑'
     PROVIDER_LABEL='󰧑'
@@ -23,7 +23,7 @@ elif [[ "$model_id" == *anthropic* ]]; then
 else
     PROVIDER_ICON='󰛄'
     PROVIDER_LABEL='󰛄'
-    C_ACCENT='\033[38;5;166m'  # Anthropic orange
+    C_ACCENT='\033[38;2;199;141;136m'  # Anthropic orange
 fi
 cwd=$(echo "$input" | jq -r '.cwd // empty')
 dir=$(basename "$cwd" 2>/dev/null || echo "?")
