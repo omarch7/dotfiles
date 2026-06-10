@@ -97,6 +97,28 @@ fi
 # Get transcript path for context calculation and last message feature
 transcript_path=$(echo "$input" | jq -r '.transcript_path // empty')
 
+# Get cost and duration from session
+total_cost=$(echo "$input" | jq -r '.cost.total_cost_usd // empty')
+total_duration_ms=$(echo "$input" | jq -r '.cost.total_duration_ms // empty')
+
+cost_str=""
+if [[ -n "$total_cost" && "$total_cost" != "0" ]]; then
+    cost_euro=$(echo "$total_cost" | awk '{printf "%.2f", $1}')
+    cost_str="${C_GRAY} ${cost_euro}€${C_RESET}"
+fi
+
+duration_str=""
+if [[ -n "$total_duration_ms" && "$total_duration_ms" != "0" ]]; then
+    duration_sec=$((total_duration_ms / 1000))
+    if [[ $duration_sec -ge 3600 ]]; then
+        duration_str="${C_GRAY}󰔚 $((duration_sec / 3600))h $(( (duration_sec % 3600) / 60 ))m${C_RESET}"
+    elif [[ $duration_sec -ge 60 ]]; then
+        duration_str="${C_GRAY}󰔚 $((duration_sec / 60))m${C_RESET}"
+    else
+        duration_str="${C_GRAY}󰔚 ${duration_sec}s${C_RESET}"
+    fi
+fi
+
 # Get context window size from JSON (accurate), but calculate tokens from transcript
 # (more accurate than total_input_tokens which excludes system prompt/tools/memory)
 # See: github.com/anthropics/claude-code/issues/13652
@@ -118,7 +140,7 @@ if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
     # 20k baseline: includes system prompt (~3k), tools (~15k), memory (~300),
     # plus ~2k for git status, env block, XML framing, and other dynamic context
     baseline=20000
-    bar_width=10
+    bar_width=12
 
     if [[ "$context_length" -gt 0 ]]; then
         pct=$((context_length * 100 / max_context))
@@ -133,7 +155,7 @@ if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
 
     bar=""
     for ((i=0; i<bar_width; i++)); do
-        bar_start=$((i * 10))
+        bar_start=$((i * 8))
         progress=$((pct - bar_start))
         if [[ $progress -ge 8 ]]; then
             bar+="${C_ACCENT}█${C_RESET}"
@@ -148,13 +170,13 @@ if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
 else
     # Transcript not available yet - show baseline estimate
     baseline=20000
-    bar_width=10
+    bar_width=12
     pct=$((baseline * 100 / max_context))
     [[ $pct -gt 100 ]] && pct=100
 
     bar=""
     for ((i=0; i<bar_width; i++)); do
-        bar_start=$((i * 10))
+        bar_start=$((i * 8))
         progress=$((pct - bar_start))
         if [[ $progress -ge 8 ]]; then
             bar+="${C_ACCENT}█${C_RESET}"
@@ -168,20 +190,26 @@ else
     ctx="${bar} ${C_GRAY}~${pct}% of ${max_k}k tokens"
 fi
 
-# Build output: Model | Dir | Branch (uncommitted) | Context
-output="${C_ACCENT}${PROVIDER_ICON} ${model}${C_GRAY} |   ${dir}"
-[[ -n "$branch" ]] && output+=" |  ${branch} ${git_status}"
-output+=" | ${ctx}${C_RESET}"
+# Build output: Line 1 = Model + Context bar + Cost + Duration
+#            : Line 2 = Dir + Branch (Git info)
+line1="${C_ACCENT}${PROVIDER_ICON} ${model}${C_GRAY} | ${ctx}${C_RESET}"
+[[ -n "$cost_str" ]] && line1+=" | ${cost_str}"
+[[ -n "$duration_str" ]] && line1+=" | ${duration_str}"
+line2="${C_GRAY}  ${dir}"
+[[ -n "$branch" ]] && line2+=" |  ${branch} ${git_status}"
 
-printf '%b\n' "$output"
+printf '%b\n' "$line1"
+printf '%b\n' "$line2"
 
 # Get user's last message (text only, not tool results, skip unhelpful messages)
 if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
-    # Calculate visible length (without ANSI codes) - 10 chars for bar + content
-    plain_output="${PROVIDER_LABEL} ${model} |   ${dir}"
-    [[ -n "$branch" ]] && plain_output+=" |  ${branch} ${git_status}"
-    plain_output+=" | xxxxxxxxxx ${pct}% of ${max_k}k tokens"
-    max_len=${#plain_output}
+    # Calculate visible length (without ANSI codes) - bar + content for truncation
+    plain_line1="${PROVIDER_LABEL} ${model} | xxxxxxxxxx ${pct}% of ${max_k}k tokens"
+    [[ -n "$cost_str" ]] && plain_line1+=" |  0.00€"
+    [[ -n "$duration_str" ]] && plain_line1+=" | 󰔚 12m"
+    plain_line2="  ${dir}"
+    [[ -n "$branch" ]] && plain_line2+=" |  ${branch} ${git_status}"
+    max_len=${#plain_line1}
     last_user_msg=$(jq -rs '
         # Messages to skip (not useful as context)
         def is_unhelpful:
