@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Detect system dark/light mode and sync the catppuccin flavor across CLI tools
-# (tmux, starship, bat, lsd, glow, television, btop) that aren't themed elsewhere.
+# (tmux, starship, bat, lsd, glow, television, btop, claude code) that aren't
+# themed elsewhere.
 # Supports macOS, WSL2, and native Linux (Omarchy marker + freedesktop fallback).
 
 detect_mode() {
@@ -114,6 +115,19 @@ apply_theme() {
     if [ -f "$glow_config" ]; then
         glow_theme="$HOME/.config/glow/themes/catppuccin-${flavor}.json"
         sed -i'' -e "s|style: \".*\"|style: \"${glow_theme}\"|" "$glow_config"
+    fi
+
+    # --- claude code (custom themes live in ~/.claude/themes; Claude Code's
+    # "auto" theme only toggles the built-in presets, so point the theme
+    # setting at the matching custom flavor instead) ---
+    claude_settings="$HOME/.claude/settings.json"
+    if [ -f "$claude_settings" ] && command -v jq &>/dev/null; then
+        claude_tmp=$(mktemp)
+        if jq --arg theme "custom:catppuccin-${flavor}" '.theme = $theme' "$claude_settings" >"$claude_tmp" 2>/dev/null; then
+            mv "$claude_tmp" "$claude_settings"
+        else
+            rm -f "$claude_tmp"
+        fi
     fi
 
     # --- television (random accent; skipped on Linux, not installed there) ---
