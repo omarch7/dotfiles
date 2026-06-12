@@ -224,6 +224,35 @@ The status bar includes:
 
 **Note**: When used with vim-tmux-navigator, `<C-h/j/k/l>` navigates seamlessly between tmux panes and Neovim splits.
 
+### Claude Code Attention Indicators
+
+When running multiple Claude Code sessions across panes and windows, tmux surfaces what each one is doing at a glance with a three-state colour:
+
+| State | Pane border | Window number | When |
+|-------|-------------|---------------|------|
+| **Needs a decision** | red `󰂟` bell | red (`@thm_red`) | Claude is waiting for a permission prompt |
+| **Running** | yellow `󰑮` figure | yellow (`@thm_yellow`) | Claude is actively working |
+| **Idle / done** | none | normal | turn finished or waiting idle |
+
+A window's number reflects the highest-priority state among its panes (attention > running > idle), so a window with any pane awaiting a decision shows red even if other panes are merely running.
+
+These are driven by Claude Code hooks that set per-pane (`@claude_state`) and per-window (`@claude_win`) tmux options via a single script in the `claude` stow package, symlinked into `~/.claude/hooks/`:
+
+```
+claude/.claude/
+├── hooks/
+│   └── claude-tmux-state.sh  # <attention|running|idle> — sets pane + window state
+└── settings.hooks.json       # Reference registration snippet (see below)
+```
+
+The script is wired to five hook events: `Notification` → attention, `UserPromptSubmit`/`PostToolUse` → running, `Stop`/`SessionStart` → idle. (`PostToolUse` is what recovers a pane from red back to yellow once you grant a permission.) The `Notification` event fires for both permission prompts and idle "waiting for input" nudges, so the script reads `notification_type` from the payload and only goes red for an actual `permission_prompt`. It also guards on `$TMUX_PANE` round-tripping to itself, so background tasks, agent teammates, and detached sessions can't pollute the focused pane.
+
+**Setup** (one-time, because the hook registration must live in `~/.claude/settings.json`, which is intentionally untracked since it holds secrets):
+
+1. `stow claude` to symlink the script into `~/.claude/hooks/`
+2. Merge the `hooks` block from `claude/.claude/settings.hooks.json` into your `~/.claude/settings.json`
+3. Reload tmux (`<C-s>r`) and open `/hooks` in Claude Code (or restart it) to load the registration
+
 ## Starship Configuration
 
 A custom [Starship](https://starship.rs/) prompt configuration with Catppuccin Mocha theming is included.
