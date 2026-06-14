@@ -1,0 +1,55 @@
+{
+  "_comment": "Reference snippet — NOT loaded automatically. Merge the `hooks` entries below into your real ~/.claude/settings.json (which holds secrets and is intentionally untracked). The script itself is versioned in claude/.claude/hooks/ and symlinked into ~/.claude/hooks/. See README 'Claude Code Attention Indicators'.",
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/oc/.claude/hooks/claude-tmux-state.sh attention"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/oc/.claude/hooks/claude-tmux-state.sh running"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/oc/.claude/hooks/claude-tmux-state.sh running"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/oc/.claude/hooks/claude-tmux-state.sh idle"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/oc/.claude/hooks/claude-tmux-state.sh idle"
+          }
+        ]
+      }
+    ]
+  }
+}
