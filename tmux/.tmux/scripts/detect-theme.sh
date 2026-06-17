@@ -72,8 +72,16 @@ apply_theme() {
         # Unset all catppuccin-generated options so the -o flag doesn't skip them.
         # This covers @thm_* (palette), @_ctp_* (internals), @catppuccin_status_*
         # (compiled modules), and @catppuccin_*_color (module accent colors).
+        #
+        # EXCEPT @catppuccin_window_(current_)number_color: these hold our custom
+        # Claude-state formulas (set in tmux.conf, reference @thm_* live so they
+        # still track the flavor). Catppuccin bakes them into window-status-format
+        # at load via set -ogq, so if we unset them here the plugin re-creates them
+        # at its stock defaults and the Claude window-number indicator is lost on
+        # every flavor switch (it only survived on the boot flavor, mocha).
         tmux show-options -g \
-            | awk '/^@(thm_|_ctp_|catppuccin_status_|catppuccin_[a-z_]+_color )/ {print $1}' \
+            | awk '/^@(thm_|_ctp_|catppuccin_status_|catppuccin_[a-z_]+_color )/ \
+                   && $1 !~ /^@catppuccin_window_(current_)?number_color$/ {print $1}' \
             | while read -r opt; do
                 tmux set -gu "$opt"
             done
