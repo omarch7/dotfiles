@@ -96,8 +96,9 @@ apply_theme() {
 
     # --- starship ---
     starship_config="$HOME/.config/starship.toml"
-    if [ -f "$starship_config" ]; then
-        sed -i'' -e "s/^palette = \"catppuccin_[a-z]*\"/palette = \"catppuccin_${flavor}\"/" "$starship_config"
+    starship_source="$HOME/.config/starship-${flavor}.toml"
+    if [ -f "$starship_source" ]; then
+        ln -sf "$starship_source" "$starship_config"
     fi
 
     # --- lsd ---
