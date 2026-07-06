@@ -26,6 +26,18 @@ next_tab = "alt+right"
 # tmux: bind , command-prompt -p "Rename window:" "rename-window '%%'"
 rename_tab = "prefix+comma"
 
+# Workspace navigation: layers shift on top of the alt+1..9 tab scheme, so the
+# number row stays consistent (tabs = alt, workspaces = alt+shift).
+switch_workspace = "alt+shift+1..9"
+previous_workspace = "alt+shift+left"
+next_workspace = "alt+shift+right"
+
+# Agent navigation: same number row again, on ctrl+shift (distinct from the
+# alt-based tab/workspace family and from the ctrl+hjkl pane nav below).
+focus_agent = "ctrl+shift+1..9"
+previous_agent = "ctrl+shift+left"
+next_agent = "ctrl+shift+right"
+
 # --- Seamless nvim <-> herdr pane navigation (smart-splits.nvim) ---
 # Bare ctrl+h/j/k/l move; nav.sh forwards the chord into nvim when it is the
 # focused pane's foreground process (nvim's smart-splits then moves splits and
