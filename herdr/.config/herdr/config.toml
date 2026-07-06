@@ -25,3 +25,50 @@ next_tab = "alt+right"
 
 # tmux: bind , command-prompt -p "Rename window:" "rename-window '%%'"
 rename_tab = "prefix+comma"
+
+# --- Seamless nvim <-> herdr pane navigation (smart-splits.nvim) ---
+# Bare ctrl+h/j/k/l move; nav.sh forwards the chord into nvim when it is the
+# focused pane's foreground process (nvim's smart-splits then moves splits and
+# crosses back into herdr at the edge), else moves the herdr pane directly.
+# prefix+h/j/k/l above remains the always-move-the-pane escape hatch.
+[[keys.command]]
+key = "ctrl+h"
+type = "shell"
+command = "~/.config/herdr/scripts/nav.sh focus left ctrl+h"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "shell"
+command = "~/.config/herdr/scripts/nav.sh focus down ctrl+j"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "shell"
+command = "~/.config/herdr/scripts/nav.sh focus up ctrl+k"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "shell"
+command = "~/.config/herdr/scripts/nav.sh focus right ctrl+l"
+
+# Resize: ctrl+alt+h/j/k/l (nav.sh uses a 0.05 herdr ratio, matching the nvim
+# backend's HERDR_RESIZE_RATIO so cross-boundary and direct resize steps match).
+[[keys.command]]
+key = "ctrl+alt+h"
+type = "shell"
+command = "~/.config/herdr/scripts/nav.sh resize left ctrl+alt+h"
+
+[[keys.command]]
+key = "ctrl+alt+j"
+type = "shell"
+command = "~/.config/herdr/scripts/nav.sh resize down ctrl+alt+j"
+
+[[keys.command]]
+key = "ctrl+alt+k"
+type = "shell"
+command = "~/.config/herdr/scripts/nav.sh resize up ctrl+alt+k"
+
+[[keys.command]]
+key = "ctrl+alt+l"
+type = "shell"
+command = "~/.config/herdr/scripts/nav.sh resize right ctrl+alt+l"
