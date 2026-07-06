@@ -1,11 +1,12 @@
 # Interactive Runbook — nvim ↔ herdr Navigation (human-run steps)
 
-The nvim side (Tasks 1, 2, 4) is implemented, reviewed, and committed on branch
-`patch/herdr-config-stow`. These steps need a **live herdr + nvim session** and cannot
-be run headless. Do them in order; each says exactly what to type and what you should see.
+Both the nvim side (Tasks 1, 2, 4) and the herdr side (Task 3) are implemented, reviewed,
+and committed on branch `patch/herdr-config-stow`. These steps need a **live herdr + nvim
+session** to *verify* the shipped feature and cannot be run headless. Do them in order; each
+says exactly what to type and what you should see.
 
 Full detail lives in `docs/superpowers/plans/2026-07-06-nvim-herdr-navigation.md`
-(Tasks 0 and 3). This is the condensed operator's version.
+(Task 0 is the empirical verification gate). This is the condensed operator's version.
 
 ---
 
@@ -88,34 +89,30 @@ If all pass, the shipped nvim side is verified.
 
 ---
 
-## STEP D — Task 3: herdr-side script + bindings
+## STEP D — Task 3: herdr-side script + bindings (already implemented)
 
-This is the only unwritten task. It has two files. Detailed spec + exact code in the plan's Task 3.
+Task 3 is now **committed on this branch** (`herdr/.config/herdr/scripts/nav.sh` + the 8
+`[[keys.command]]` blocks in `config.toml`). No files to create — these steps are just to
+verify the shipped artifacts load and behave. The `send-keys` re-entrancy risk from STEP B
+was verified safe (see the `nav.sh` header comment), so the forwarding variant is in use.
 
-**D1. Create `herdr/.config/herdr/scripts/nav.sh`** — copy the script verbatim from the plan
-(Task 3, Step 1). `chmod +x` it. If STEP B found `SEND_KEYS_LOOPS=true`, use the mitigation
-variant (the plan quotes it: `if foreground_is_vim; then exit 0; fi` instead of forwarding).
+The nvim backend and `nav.sh` both use a 0.05 resize ratio so cross-boundary and direct
+resize match (see the resize-ratio fix rationale).
 
-Note: the nvim backend uses a 0.05 resize ratio; `nav.sh`'s direct-herdr resize should use the
-**same** `0.05` so cross-boundary and direct resize match (see the resize-ratio fix rationale).
+**D1. Confirm both artifacts are present and stowed live:**
 
-**D2. Append the 8 `[[keys.command]]` blocks** to `config.toml` (plan Task 3 Step 3). Substitute
-your `FORWARD_KEY` form if it wasn't `ctrl+h`.
+```bash
+test -x herdr/.config/herdr/scripts/nav.sh && echo "nav.sh present + executable"
+grep -c 'nav.sh' herdr/.config/herdr/config.toml   # expect 8 (focus + resize x h/j/k/l)
+```
 
-**D3. Reload and verify zero diagnostics:**
+**D2. Reload and verify zero diagnostics:**
 
 ```bash
 herdr server reload-config | jq '.result.diagnostics // .diagnostics'   # MUST be []
 ```
 
 A non-empty array = a rejected binding (partial reload). Fix the reported field/key and reload again.
-
-**D4. Commit** (plan Task 3 Step 6 message):
-
-```bash
-git add herdr/.config/herdr/scripts/nav.sh herdr/.config/herdr/config.toml
-git commit  # use the multi-line message from the plan, with the Co-Authored-By trailer
-```
 
 ---
 
@@ -133,14 +130,10 @@ All must pass in a real herdr session:
 
 ---
 
-## STEP F — finish + PR
+## STEP F — finish + PR (already open)
 
-Branch `patch/herdr-config-stow` already exists. When STEP E passes:
-
-```bash
-git push -u origin patch/herdr-config-stow
-gh pr create --fill   # or with a written body
-```
+Branch `patch/herdr-config-stow` is pushed and PR #86 is open. Once STEP E passes in a real
+session, drop the confirmation in the PR's test-plan checklist and merge.
 
 **PR labels: do NOT add `tribe:`/`squad:`** — this is the personal `omarch7/dotfiles` repo,
 not a HelloFresh org repo (per your label policy).

@@ -29,8 +29,11 @@ amount="${4:-0.05}"
 # nav.sh does not hard-fail on an env-var name change across herdr versions.
 pane="${HERDR_ACTIVE_PANE_ID:-}"
 if [ -z "$pane" ]; then
+  # `|| pane=""` keeps set -e/pipefail from aborting here if `herdr pane list`
+  # fails (daemon down, CLI error): fall through to the graceful exit below.
   pane="$(herdr pane list 2>/dev/null \
-    | jq -r '.result.panes[] | select(.focused==true) | .pane_id' | head -n1)"
+    | jq -r '.result.panes[] | select(.focused==true) | .pane_id' 2>/dev/null \
+    | head -n1)" || pane=""
 fi
 
 if [ -n "${HERDR_NAV_DEBUG:-}" ]; then

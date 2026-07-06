@@ -281,7 +281,7 @@ A [Herdr](https://herdr.dev/) configuration that mirrors the tmux keybindings (p
 
 ### Structure
 
-Files live inside a stow package (`herdr/.config/herdr/`) so they map to `~/.config/herdr/` when stowed. Only `config.toml` is tracked; Herdr's runtime state (sockets, logs, `session.json`) stays out of the repo.
+Files live inside a stow package (`herdr/.config/herdr/`) so they map to `~/.config/herdr/` when stowed. Only the config and helper scripts are tracked (`config.toml`, `scripts/nav.sh`); Herdr's runtime state (sockets, logs, `session.json`) is gitignored and stays out of the repo.
 
 ```
 herdr/.config/herdr/
@@ -339,7 +339,7 @@ This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/)
    # Starship configuration → ~/.config/starship.toml
    stow starship
 
-   # Herdr configuration → ~/.config/herdr/config.toml
+   # Herdr configuration → ~/.config/herdr/ (config.toml + scripts/nav.sh)
    stow herdr
    ```
 
