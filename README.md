@@ -275,9 +275,29 @@ starship/.config/
 - **Directory Truncation**: Truncated directory paths for cleaner prompts
 - **VimCMD Support**: Custom symbol for vim command mode (works with zsh-vi-mode)
 
+## Herdr Configuration
+
+A [Herdr](https://herdr.dev/) configuration that mirrors the tmux keybindings (prefix, splits, pane navigation, and tab switching) for the terminal workspace manager.
+
+### Structure
+
+Files live inside a stow package (`herdr/.config/herdr/`) so they map to `~/.config/herdr/` when stowed. Only `config.toml` is tracked; Herdr's runtime state (sockets, logs, `session.json`) stays out of the repo.
+
+```
+herdr/.config/herdr/
+└── config.toml         # Herdr keybindings
+```
+
+### Key Features
+
+- **`Ctrl-s` Prefix**: Matches the tmux prefix (`set -g prefix C-s`)
+- **tmux-style Splits**: `prefix+%` for side-by-side, `prefix+"` for stacked
+- **Vim-style Pane Navigation**: `prefix+h/j/k/l` to focus panes left/down/up/right
+- **Tab Switching**: `Alt+1..9` to jump to a tab, `Alt+←/→` to cycle, `prefix+,` to rename
+
 ## Installation
 
-This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/) package layout. Each top-level directory (`nvim`, `tmux`, `starship`) mirrors the file tree that should appear in `$HOME`, so `stow` will create the appropriate symlinks for you.
+This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/) package layout. Each top-level directory (`nvim`, `tmux`, `starship`, `herdr`) mirrors the file tree that should appear in `$HOME`, so `stow` will create the appropriate symlinks for you.
 
 1. Install GNU Stow:
    ```bash
@@ -308,6 +328,9 @@ This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/)
 
    # Starship configuration → ~/.config/starship.toml
    stow starship
+
+   # Herdr configuration → ~/.config/herdr/config.toml
+   stow herdr
    ```
 
    To remove the symlinks later, run `stow -D <package>` from the same directory.

@@ -1,0 +1,27 @@
+# herdr configuration
+# Place this file at ~/.config/herdr/config.toml
+
+[keys]
+# Matches tmux prefix (set -g prefix C-s)
+prefix = "ctrl+s"
+
+# tmux: bind % split-window -h   (side-by-side)  -> herdr split_vertical = side-by-side
+# tmux: bind '"' split-window -v (stacked)       -> herdr split_horizontal = stacked
+split_vertical = "prefix+%"
+split_horizontal = "prefix+\""
+
+# tmux: bind-key h/j/k/l select-pane -L/-D/-U/-R
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# tmux: bind -n M-1..9 select-window -t 1..9 (direct, no prefix)
+switch_tab = "alt+1..9"
+
+# tmux: bind -n M-Left/M-Right select-window -t -1/+1 (direct, no prefix)
+previous_tab = "alt+left"
+next_tab = "alt+right"
+
+# tmux: bind , command-prompt -p "Rename window:" "rename-window '%%'"
+rename_tab = "prefix+comma"
