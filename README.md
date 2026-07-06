@@ -285,7 +285,9 @@ Files live inside a stow package (`herdr/.config/herdr/`) so they map to `~/.con
 
 ```
 herdr/.config/herdr/
-└── config.toml         # Herdr keybindings
+├── config.toml         # Herdr keybindings
+└── scripts/
+    └── nav.sh          # nvim <-> herdr seamless navigation/resize helper
 ```
 
 ### Key Features
@@ -294,6 +296,14 @@ herdr/.config/herdr/
 - **tmux-style Splits**: `prefix+%` for side-by-side, `prefix+"` for stacked
 - **Vim-style Pane Navigation**: `prefix+h/j/k/l` to focus panes left/down/up/right
 - **Tab Switching**: `Alt+1..9` to jump to a tab, `Alt+←/→` to cycle, `prefix+,` to rename
+- **Seamless nvim ↔ pane navigation**: bare `Ctrl-h/j/k/l` move and
+  `Ctrl-Alt-h/j/k/l` resize both within Neovim splits and across into adjacent
+  Herdr panes. `scripts/nav.sh` checks the focused pane's foreground process: if
+  it is `(n)vim` the chord is forwarded into the pane (handled by
+  [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim) via a
+  custom `herdr` multiplexer backend at `nvim/.config/nvim/lua/smart-splits/mux/herdr.lua`);
+  otherwise Herdr moves/resizes the pane directly. `prefix+h/j/k/l` remains the
+  always-move escape hatch.
 
 ## Installation
 
