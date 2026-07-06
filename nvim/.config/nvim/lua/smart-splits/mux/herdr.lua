@@ -12,6 +12,12 @@ local types = require("smart-splits.types")
 local Direction = types.Direction
 local utils = require("smart-splits.utils")
 
+-- herdr resize --amount is a fractional ratio (not tmux-style cell counts).
+-- smart-splits passes config.default_amount (=3 cells), which is meaningless to
+-- herdr's ratio-based resize, so we use a fixed herdr-native step matching
+-- herdr/.config/herdr/scripts/nav.sh's 0.05.
+local HERDR_RESIZE_RATIO = 0.05
+
 ---Run a herdr CLI command; return its decoded `.result` table (or nil) and exit code.
 ---@param args string[]
 ---@return table|nil result, integer code
@@ -67,12 +73,13 @@ function M.next_pane(direction)
   return code == 0
 end
 
-function M.resize_pane(direction, amount)
+function M.resize_pane(direction, amount) ---@diagnostic disable-line: unused-local
   if not M.is_in_session() then
     return false
   end
+  -- `amount` (cell count) intentionally unused; herdr uses a ratio.
   local _, code = herdr_json({
-    "pane", "resize", "--direction", direction, "--amount", tostring(amount), "--current",
+    "pane", "resize", "--direction", direction, "--amount", tostring(HERDR_RESIZE_RATIO), "--current",
   })
   return code == 0
 end
