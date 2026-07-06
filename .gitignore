@@ -4,3 +4,6 @@ tmux/.tmux/plugins/
 .graphify_python
 graphify-out/cache/
 .superpowers/
+herdr/.config/herdr/*.log
+herdr/.config/herdr/session.json
+claude/.claude/hooks/herdr-agent-state.sh
