@@ -73,11 +73,13 @@ function M.next_pane(direction)
   return code == 0
 end
 
-function M.resize_pane(direction, amount) ---@diagnostic disable-line: unused-local
+-- `_amount` (smart-splits' cell count) is intentionally unused: herdr's resize
+-- takes a fractional ratio, so we send HERDR_RESIZE_RATIO instead. The `_`
+-- prefix marks it unused for both luacheck and lua-language-server.
+function M.resize_pane(direction, _amount)
   if not M.is_in_session() then
     return false
   end
-  -- `amount` (cell count) intentionally unused; herdr uses a ratio.
   local _, code = herdr_json({
     "pane", "resize", "--direction", direction, "--amount", tostring(HERDR_RESIZE_RATIO), "--current",
   })
