@@ -275,9 +275,39 @@ starship/.config/
 - **Directory Truncation**: Truncated directory paths for cleaner prompts
 - **VimCMD Support**: Custom symbol for vim command mode (works with zsh-vi-mode)
 
+## Herdr Configuration
+
+A [Herdr](https://herdr.dev/) configuration that mirrors the tmux keybindings (prefix, splits, pane navigation, and tab switching) for the terminal workspace manager.
+
+### Structure
+
+Files live inside a stow package (`herdr/.config/herdr/`) so they map to `~/.config/herdr/` when stowed. Only the config and helper scripts are tracked (`config.toml`, `scripts/nav.sh`); Herdr's runtime state (sockets, logs, `session.json`) is gitignored and stays out of the repo.
+
+```
+herdr/.config/herdr/
+├── config.toml         # Herdr keybindings
+└── scripts/
+    └── nav.sh          # nvim <-> herdr seamless navigation/resize helper
+```
+
+### Key Features
+
+- **`Ctrl-s` Prefix**: Matches the tmux prefix (`set -g prefix C-s`)
+- **tmux-style Splits**: `prefix+%` for side-by-side, `prefix+"` for stacked
+- **Vim-style Pane Navigation**: `prefix+h/j/k/l` to focus panes left/down/up/right
+- **Tab Switching**: `Alt+1..9` to jump to a tab, `Alt+←/→` to cycle, `prefix+,` to rename
+- **Seamless nvim ↔ pane navigation**: bare `Ctrl-h/j/k/l` move and
+  `Ctrl-Alt-h/j/k/l` resize both within Neovim splits and across into adjacent
+  Herdr panes. `scripts/nav.sh` checks the focused pane's foreground process: if
+  it is `(n)vim` the chord is forwarded into the pane (handled by
+  [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim) via a
+  custom `herdr` multiplexer backend at `nvim/.config/nvim/lua/smart-splits/mux/herdr.lua`);
+  otherwise Herdr moves/resizes the pane directly. `prefix+h/j/k/l` remains the
+  always-move escape hatch.
+
 ## Installation
 
-This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/) package layout. Each top-level directory (`nvim`, `tmux`, `starship`) mirrors the file tree that should appear in `$HOME`, so `stow` will create the appropriate symlinks for you.
+This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/) package layout. Each top-level directory (`nvim`, `tmux`, `starship`, `herdr`) mirrors the file tree that should appear in `$HOME`, so `stow` will create the appropriate symlinks for you.
 
 1. Install GNU Stow:
    ```bash
@@ -308,6 +338,9 @@ This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/)
 
    # Starship configuration → ~/.config/starship.toml
    stow starship
+
+   # Herdr configuration → ~/.config/herdr/ (config.toml + scripts/nav.sh)
+   stow herdr
    ```
 
    To remove the symlinks later, run `stow -D <package>` from the same directory.

@@ -57,6 +57,10 @@ The configuration uses lazy.nvim for efficient plugin management with lazy loadi
 7. **Navigation & Productivity**:
    - Telescope for fuzzy finding and navigation
    - NvimTree for file browsing
+   - smart-splits.nvim for split/pane navigation and resizing, with a custom
+     `herdr` multiplexer backend (`lua/smart-splits/mux/herdr.lua`) for seamless
+     nvim ↔ herdr pane movement (`C-h/j/k/l` move, `C-A-h/j/k/l` resize).
+     Replaces vim-tmux-navigator.
 
 ### Key Keybindings
 

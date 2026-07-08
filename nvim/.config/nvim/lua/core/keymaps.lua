@@ -61,9 +61,8 @@ keymap("n", "<leader>tl", "<cmd>TestLast<CR>", { noremap = true, silent = true, 
 keymap("n", "<leader>dui", "<cmd>lua require('dapui').toggle()<CR>", { noremap = true, silent = true, desc = "Toggle DAP UI" })
 keymap({"n", "v"}, "<leader>due", "<cmd>lua require('dapui').eval()<CR>", { noremap = true, silent = true, desc = "DAP UI eval" })
 
--- Tmux Navigator mappings
-keymap("t", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", { noremap = true, silent = true, desc = "Tmux navigate left" })
-keymap("t", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", { noremap = true, silent = true, desc = "Tmux navigate down" })
-keymap("t", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", { noremap = true, silent = true, desc = "Tmux navigate up" })
-keymap("t", "<C-l>", "<Cmd>TmuxNavigateRight<CR>", { noremap = true, silent = true, desc = "Tmux navigate right" })
-keymap("t", "<C-\\>", "<Cmd>TmuxNavigatePrevious<CR>", { noremap = true, silent = true, desc = "Tmux navigate previous" })
+-- Smart-splits navigation (terminal mode): leave terminal-insert, then move
+keymap("t", "<C-h>", [[<C-\><C-n><Cmd>lua require('smart-splits').move_cursor_left()<CR>]],  { noremap = true, silent = true, desc = "Move to left split / herdr pane" })
+keymap("t", "<C-j>", [[<C-\><C-n><Cmd>lua require('smart-splits').move_cursor_down()<CR>]],  { noremap = true, silent = true, desc = "Move to below split / herdr pane" })
+keymap("t", "<C-k>", [[<C-\><C-n><Cmd>lua require('smart-splits').move_cursor_up()<CR>]],    { noremap = true, silent = true, desc = "Move to above split / herdr pane" })
+keymap("t", "<C-l>", [[<C-\><C-n><Cmd>lua require('smart-splits').move_cursor_right()<CR>]], { noremap = true, silent = true, desc = "Move to right split / herdr pane" })
