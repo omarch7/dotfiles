@@ -84,3 +84,7 @@ command = "~/.config/herdr/scripts/nav.sh resize up ctrl+alt+k"
 key = "ctrl+alt+l"
 type = "shell"
 command = "~/.config/herdr/scripts/nav.sh resize right ctrl+alt+l"
+
+[theme]
+name = "catppuccin"
+auto_switch = true
