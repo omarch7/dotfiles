@@ -6,4 +6,5 @@ graphify-out/cache/
 .superpowers/
 herdr/.config/herdr/*.log
 herdr/.config/herdr/session.json
+herdr/.config/herdr/release-notes.json
 claude/.claude/hooks/herdr-agent-state.sh
