@@ -88,4 +88,4 @@ command = "~/.config/herdr/scripts/nav.sh resize right ctrl+alt+l"
 
 [theme]
 name = "catppuccin"
-auto_switch = true
+auto_switch = false
