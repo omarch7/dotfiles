@@ -10,7 +10,7 @@ BLUE_DIM = "\033[2;38;2;97;175;239m"
 GRAY = "\033[38;5;245m"
 RESET = "\033[0m"
 
-GRAY_BELOW = 0.60
+GRAY_BELOW = 0.45  # calibrated: Open-Jev's top-tier probability has a median of ~0.63 on real sessions
 TIER_LABEL = {"haiku": "Haiku", "sonnet": "Sonnet", "opus": "Opus"}
 EFFORT_NAMES = ["low", "medium", "high", "xhigh"]
 EFFORT_INDEX = {"low": 0, "medium": 1, "high": 2, "xhigh": 3, "max": 4}

@@ -12,7 +12,7 @@ def seeded(h, s, o, tier, level=1, se=1.0):
 
 class StabilityTest(unittest.TestCase):
     def test_first_reading_sets_pick(self):
-        st = update(State(), rd(.1, .8, .1, score=1.2))
+        st = update(State(), rd(.1, .8, .1, score=0.9))
         self.assertEqual((st.shown_tier, st.shown_effort), ("sonnet", 1))
 
     def test_single_odd_turn_does_not_flip_and_sustained_shift_does(self):
@@ -32,21 +32,21 @@ class StabilityTest(unittest.TestCase):
     def test_effort_dead_band_and_fast_lane(self):
         st = seeded(.1, .8, .1, "sonnet", level=1, se=1.0)
         for _ in range(10):
-            st = update(st, rd(.1, .8, .1, eff=(.1, .4, .4, .1), score=1.6))
+            st = update(st, rd(.1, .8, .1, eff=(.1, .4, .4, .1), score=1.18))
         self.assertEqual(st.shown_effort, 1)
         st = seeded(.1, .8, .1, "sonnet", level=1, se=1.0)
-        st = update(st, rd(.1, .8, .1, eff=(.1, .3, .4, .2), score=2.2))
+        st = update(st, rd(.1, .8, .1, eff=(.1, .3, .4, .2), score=1.35))
         self.assertEqual(st.shown_effort, 1)
-        st = update(st, rd(.1, .8, .1, eff=(.1, .3, .4, .2), score=2.2))
+        st = update(st, rd(.1, .8, .1, eff=(.1, .3, .4, .2), score=1.35))
         self.assertEqual(st.shown_effort, 2)
         fast = update(seeded(.1, .8, .1, "sonnet", level=1), rd(.1, .8, .1, eff=(.02, .03, .9, .05), score=2.0))
         self.assertEqual(fast.shown_effort, 2)
 
     def test_effort_steps_down_past_band(self):
-        st = seeded(.1, .8, .1, "sonnet", level=2, se=2.0)
-        st = update(st, rd(.1, .8, .1, eff=(.6, .3, .05, .05), score=0.4))
+        st = seeded(.1, .8, .1, "sonnet", level=2, se=1.25)
+        st = update(st, rd(.1, .8, .1, eff=(.6, .3, .05, .05), score=0.7))
         self.assertEqual(st.shown_effort, 2)
-        st = update(st, rd(.1, .8, .1, eff=(.6, .3, .05, .05), score=0.4))
+        st = update(st, rd(.1, .8, .1, eff=(.6, .3, .05, .05), score=0.7))
         self.assertEqual(st.shown_effort, 1)
 
     def test_smooth_false_follows_raw(self):

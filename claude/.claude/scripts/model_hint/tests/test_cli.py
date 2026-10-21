@@ -92,7 +92,7 @@ class CliTest(unittest.TestCase):
 
     def test_sessions_are_separate_and_ids_sanitized(self):
         p = write_transcript(self.tmp, [user("q"), assistant_text("a")])
-        opus = reading_response({"haiku": .02, "sonnet": .08, "opus": .9}, [.02, .03, .9, .05], 2.0)
+        opus = reading_response({"haiku": .02, "sonnet": .08, "opus": .9}, [.02, .03, .9, .05], 1.2)
         with StubOpenJev([HAIKU]) as a, StubOpenJev([opus]) as b:
             self.assertEqual(self.render(p, a.url, sid="s1").splitlines()[1], "⇣ Haiku · low")
             self.assertEqual(self.render(p, b.url, sid="s2").splitlines()[1], "⇡ Opus · high")
