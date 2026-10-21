@@ -1,9 +1,12 @@
 """Model hint for the Claude Code status line.
 
   python3 model_hint render                    status line JSON on stdin; prints coloured + plain hint, or nothing
-  python3 model_hint worker SID PATH TURN_KEY  background: summarise, ask Open-Jev, update the cache
+  python3 model_hint worker SID PATH TURN_KEY  background: summarise, ask Jev, update the cache
   python3 model_hint replay TRANSCRIPT [--lean] [--no-stability]   tuning: per-turn picks and change count
   python3 model_hint prompts HISTORY [--sample N] [--seed S]       tuning: picks for sampled past prompts
+
+The tuning commands also take [--backend open-jev|typesafe] [--model ID]; otherwise JEV_BACKEND and
+JEV_MODEL pick the backend (default: local Open-Jev).
 """
 from __future__ import annotations
 
@@ -19,7 +22,7 @@ from collections import Counter
 import cache
 from cache import CacheEntry
 from hint import EFFORT_NAMES, current_tier, effort_index, render_hint
-from openjev import TIERS, OpenJevError, ask
+from openjev import BACKENDS, TIERS, OpenJevError, ask, backend
 from replay import count_changes, raw_pick, replay_session, sample_prompts
 from stability import update
 from summary import Signals, build_summary, format_summary
@@ -92,13 +95,27 @@ def _oneline(text: str, width: int) -> str:
     return " ".join(text.split())[:width]
 
 
+def _backend_args(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("--backend", choices=BACKENDS)
+    parser.add_argument("--model", help="model id, e.g. jev-latest, jev-1.13.0, jev-preview")
+
+
+def _asker(opts: argparse.Namespace):
+    using = backend(opts.backend, opts.model)
+    if using.name == "typesafe" and not using.api_key:
+        sys.exit("model_hint: set TYPESAFE_API_KEY to use the typesafe backend")
+    print(f"# backend={using.name} model={using.model}", file=sys.stderr)
+    return lambda state: ask(state, timeout=TOOL_TIMEOUT, using=using)
+
+
 def cmd_replay(args: list[str]) -> None:
     parser = argparse.ArgumentParser(prog="model_hint replay")
+    _backend_args(parser)
     parser.add_argument("transcript")
     parser.add_argument("--lean", action="store_true")
     parser.add_argument("--no-stability", action="store_true")
     opts = parser.parse_args(args)
-    results = replay_session(read_entries(opts.transcript), lambda s: ask(s, timeout=TOOL_TIMEOUT),
+    results = replay_session(read_entries(opts.transcript), _asker(opts),
                              lean=opts.lean, smooth=not opts.no_stability)
     for r in results:
         print(f"{r.turn}\t{_pick(*r.raw)}\t{_pick(*r.shown)}\t{r.seconds:.2f}\t{_oneline(r.prompt, 60)}")
@@ -109,14 +126,16 @@ def cmd_replay(args: list[str]) -> None:
 
 def cmd_prompts(args: list[str]) -> None:
     parser = argparse.ArgumentParser(prog="model_hint prompts")
+    _backend_args(parser)
     parser.add_argument("history")
     parser.add_argument("--sample", type=int, default=40)
     parser.add_argument("--seed", type=int, default=1)
     opts = parser.parse_args(args)
+    ask_fn = _asker(opts)
     counts: Counter = Counter()
     for text in sample_prompts(opts.history, opts.sample, opts.seed):
         summary = format_summary(Signals(1, [text], "", [], 0, 0, 0, 0, 0, "ok"), lean=True)
-        tier, level = raw_pick(ask(summary, timeout=TOOL_TIMEOUT))
+        tier, level = raw_pick(ask_fn(summary))
         counts[tier] += 1
         counts[EFFORT_NAMES[level]] += 1
         print(f"{_pick(tier, level)}\t{_oneline(text, 80)}")

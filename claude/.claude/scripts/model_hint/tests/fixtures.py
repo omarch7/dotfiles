@@ -84,6 +84,7 @@ class StubOpenJev:
     def __init__(self, responses, delay: float = 0.0, status: int = 200):
         self.responses, self.delay, self.status = responses, delay, status
         self.requests: list = []
+        self.headers: list = []
         self._served = 0
 
     def _next(self, body):
@@ -101,6 +102,7 @@ class StubOpenJev:
                 length = int(self.headers.get("Content-Length") or 0)
                 body = json.loads(self.rfile.read(length) or b"null")
                 stub.requests.append(body)
+                stub.headers.append(dict(self.headers))
                 if stub.delay:
                     time.sleep(stub.delay)
                 payload = json.dumps(stub._next(body)).encode()

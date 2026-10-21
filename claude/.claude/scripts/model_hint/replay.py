@@ -23,7 +23,8 @@ class TurnResult:
 
 
 def raw_pick(reading: Reading) -> tuple[str, int]:
-    return max(reading.model_probs, key=reading.model_probs.get), level_for(reading.effort_score)
+    tier = max(reading.model_probs, key=reading.model_probs.get)
+    return tier, level_for(reading.effort_score, reading.effort_thresholds)
 
 
 def replay_session(entries: list[dict], ask_fn: Callable[[str], Reading], lean: bool = False,

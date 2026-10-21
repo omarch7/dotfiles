@@ -4,16 +4,13 @@ from __future__ import annotations
 import bisect
 from dataclasses import asdict, dataclass
 
-from openjev import Reading
+from openjev import OPENJEV_THRESHOLDS, Reading
 
 TIER_ORDER = {"haiku": 0, "sonnet": 1, "opus": 2}
 ALPHA_NEW = 0.4       # weight of the newest reading in the running average
 MODEL_MARGIN = 0.15   # smoothed lead needed to change the shown tier
 FAST_LANE = 0.85      # single-turn confidence that switches upward immediately
-# Open-Jev's effort score (expected level, 0-3) is compressed in practice: on replayed sessions it ran
-# 0.4-1.6. These boundaries (low|medium|high|xhigh) were calibrated on that data; see
-# docs/superpowers/reports/2026-10-21-model-hint-tuning.md.
-EFFORT_THRESHOLDS = (0.65, 1.10, 1.40)
+# Effort boundaries come with each Reading, since they depend on the backend (see openjev.py).
 EFFORT_BAND = 0.10    # dead band around each effort boundary
 MAX_LEVEL = 3
 
@@ -41,8 +38,8 @@ class State:
         return state
 
 
-def level_for(score: float) -> int:
-    return bisect.bisect_right(EFFORT_THRESHOLDS, score)
+def level_for(score: float, thresholds: tuple[float, ...] = OPENJEV_THRESHOLDS) -> int:
+    return bisect.bisect_right(thresholds, score)
 
 
 def _argmax(probs) -> str | int:
@@ -55,11 +52,13 @@ def update(state: State, reading: Reading, smooth: bool = True) -> State:
     raw_tier = _argmax(reading.model_probs)
     raw_level = _argmax(reading.effort_probs)
     if not smooth or state.shown_tier is None:
-        return State(dict(reading.model_probs), reading.effort_score, raw_tier, level_for(reading.effort_score))
+        return State(dict(reading.model_probs), reading.effort_score, raw_tier,
+                     level_for(reading.effort_score, reading.effort_thresholds))
 
     sm = {k: (1 - ALPHA_NEW) * state.smoothed_model[k] + ALPHA_NEW * reading.model_probs[k] for k in TIER_ORDER}
     se = (1 - ALPHA_NEW) * state.smoothed_effort + ALPHA_NEW * reading.effort_score
     tier, level = state.shown_tier, state.shown_effort
+    thresholds = reading.effort_thresholds
 
     if reading.model_probs[raw_tier] >= FAST_LANE and TIER_ORDER[raw_tier] > TIER_ORDER[tier]:
         tier, sm = raw_tier, dict(reading.model_probs)
@@ -71,10 +70,10 @@ def update(state: State, reading: Reading, smooth: bool = True) -> State:
     if reading.effort_probs[raw_level] >= FAST_LANE and raw_level > level:
         level, se = raw_level, reading.effort_score
     else:
-        target = level_for(se)
-        if target > level and se >= EFFORT_THRESHOLDS[level] + EFFORT_BAND:
+        target = level_for(se, thresholds)
+        if target > level and se >= thresholds[level] + EFFORT_BAND:
             level = target
-        elif target < level and se <= EFFORT_THRESHOLDS[level - 1] - EFFORT_BAND:
+        elif target < level and se <= thresholds[level - 1] - EFFORT_BAND:
             level = target
 
     return State(sm, se, tier, level)
