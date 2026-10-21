@@ -134,3 +134,12 @@ def rd(h: float, s: float, o: float, eff=(.1, .7, .1, .1), score: float = 1.0):
 
 
 HAIKU = reading_response({"haiku": .9, "sonnet": .08, "opus": .02}, [.9, .05, .03, .02], .15)
+
+
+def write_history(dir: str, displays: list[str]) -> str:
+    path = os.path.join(dir, "history.jsonl")
+    with open(path, "w", encoding="utf-8") as f:
+        for d in displays:
+            f.write(json.dumps({"display": d, "pastedContents": {}, "project": "/repo",
+                                "sessionId": "s", "timestamp": 0}) + "\n")
+    return path
