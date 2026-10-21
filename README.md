@@ -267,6 +267,8 @@ The status line (`claude/.claude/scripts/context-bar.sh`) shows the current effo
 
 It recalculates once per finished turn, in the background, and smooths across turns so it doesn't flip-flop. It hides itself when Open-Jev is unreachable, on non-subscription providers (router, local) and before the first turn ends.
 
+**Setup:** add `"refreshInterval": 5` to the `statusLine` block in `~/.claude/settings.json`. Claude Code only redraws the status line on events, so without a timer a recommendation that takes Open-Jev longer than ~0.6 s wouldn't appear until your next prompt.
+
 - **Server:** Open-Jev's `/v1/systemone` at `OPENJEV_URL` (default `http://127.0.0.1:8791/v1/systemone`), e.g. `python -m jev.server --checkpoint ./checkpoints/open-jev-9b/package/checkpoint --port 8791` from the Open-Jev repo
 - **Code:** `claude/.claude/scripts/model_hint/` (Python 3 stdlib only); per-session cache in `~/.cache/claude-statusline/model-hint/`
 - **Tests:** `cd claude/.claude/scripts/model_hint && python3 -m unittest discover -s tests -t .`
