@@ -1,7 +1,7 @@
 """Keep the recommendation steady: smooth across turns, stick to the shown pick, fast-lane clear steps up."""
 from __future__ import annotations
 
-import math
+import bisect
 from dataclasses import asdict, dataclass
 
 from openjev import Reading
@@ -10,7 +10,11 @@ TIER_ORDER = {"haiku": 0, "sonnet": 1, "opus": 2}
 ALPHA_NEW = 0.4       # weight of the newest reading in the running average
 MODEL_MARGIN = 0.15   # smoothed lead needed to change the shown tier
 FAST_LANE = 0.85      # single-turn confidence that switches upward immediately
-EFFORT_BAND = 0.15    # dead band around each effort boundary
+# Open-Jev's effort score (expected level, 0-3) is compressed in practice: on replayed sessions it ran
+# 0.4-1.6. These boundaries (low|medium|high|xhigh) were calibrated on that data; see
+# docs/superpowers/reports/2026-10-21-model-hint-tuning.md.
+EFFORT_THRESHOLDS = (0.65, 1.10, 1.40)
+EFFORT_BAND = 0.10    # dead band around each effort boundary
 MAX_LEVEL = 3
 
 
@@ -38,7 +42,7 @@ class State:
 
 
 def level_for(score: float) -> int:
-    return min(MAX_LEVEL, max(0, math.floor(score + 0.5)))
+    return bisect.bisect_right(EFFORT_THRESHOLDS, score)
 
 
 def _argmax(probs) -> str | int:
@@ -68,9 +72,9 @@ def update(state: State, reading: Reading, smooth: bool = True) -> State:
         level, se = raw_level, reading.effort_score
     else:
         target = level_for(se)
-        if target > level and se >= level + 0.5 + EFFORT_BAND:
+        if target > level and se >= EFFORT_THRESHOLDS[level] + EFFORT_BAND:
             level = target
-        elif target < level and se <= level - 0.5 - EFFORT_BAND:
+        elif target < level and se <= EFFORT_THRESHOLDS[level - 1] - EFFORT_BAND:
             level = target
 
     return State(sm, se, tier, level)

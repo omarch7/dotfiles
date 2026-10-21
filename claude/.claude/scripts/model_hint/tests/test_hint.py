@@ -30,7 +30,8 @@ class HintTest(unittest.TestCase):
                  ((S("opus", 3), "opus", 4), "⇣ Opus · xhigh", BLUE_DIM),
                  ((S("opus", 2), "sonnet", None), "⇡ Opus", AMBER),
                  ((S("sonnet", 0), "sonnet", None), "✓ right fit", GREEN),
-                 ((S("opus", 2, p=.55), "sonnet", 2), "⇡ Opus · high", GRAY)]
+                 ((S("opus", 2, p=.40), "sonnet", 2), "⇡ Opus · high", GRAY),
+                 ((S("opus", 2, p=.50), "sonnet", 2), "⇡ Opus · high", AMBER)]
         for args, text, colour in cases:
             with self.subTest(text=text, args=args[1:]):
                 coloured, plain = render_hint(*args)
