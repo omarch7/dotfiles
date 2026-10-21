@@ -18,10 +18,14 @@ ROUTER_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/claude-statusline"
 ROUTER_CACHE_TTL=60      # seconds before a background refresh is kicked off
 ROUTER_CACHE_MAX_AGE=600 # older than this, the router is treated as unreachable
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 input=$(cat)
 
 # Extract model, directory, and cwd
 model=$(echo "$input" | jq -r '.model.display_name // .model.id // "?"')
+effort_level=$(echo "$input" | jq -r '.effort.level // empty')
+model_label="${model}${effort_level:+ · ${effort_level}}"
 
 # Detect provider from the API base URL
 base_url="${ANTHROPIC_BASE_URL:-}"
@@ -297,8 +301,18 @@ fi
 # Build output: Line 1 = Provider + Model + Context bar
 #            : Line 2 = Limits/budgets side by side (when available)
 #            : Line 3 = Dir + Branch (Git info)
-line1="${C_ACCENT}${PROVIDER_ICON} ${model}${C_GRAY} │ ${C_ACCENT}${ICON_CTX}${C_RESET} $(render_bar "$pct") $(pct_color "$pct")${pct_prefix}${pct}%${C_GRAY} of ${max_k}k${C_RESET}"
-plain_line1="${PROVIDER_ICON} ${model} │ ${ICON_CTX} xxxxxxxxxxxx ${pct_prefix}${pct}% of ${max_k}k"
+line1="${C_ACCENT}${PROVIDER_ICON} ${model_label}${C_GRAY} │ ${C_ACCENT}${ICON_CTX}${C_RESET} $(render_bar "$pct") $(pct_color "$pct")${pct_prefix}${pct}%${C_GRAY} of ${max_k}k${C_RESET}"
+plain_line1="${PROVIDER_ICON} ${model_label} │ ${ICON_CTX} xxxxxxxxxxxx ${pct_prefix}${pct}% of ${max_k}k"
+
+# Model/effort recommendation from the local Open-Jev model (Claude subscription only)
+if [[ "$PROVIDER" == claude ]] && command -v python3 >/dev/null 2>&1; then
+    hint_color="" hint_plain=""
+    { IFS= read -r hint_color; IFS= read -r hint_plain; } < <(printf '%s' "$input" | python3 "$SCRIPT_DIR/model_hint" render 2>/dev/null)
+    if [[ -n "$hint_plain" ]]; then
+        line1+="${C_GRAY} │ ${C_RESET}${hint_color}"
+        plain_line1+=" │ ${hint_plain}"
+    fi
+fi
 
 limits_line=""
 plain_limits_line=""
