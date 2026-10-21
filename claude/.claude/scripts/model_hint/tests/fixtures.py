@@ -22,10 +22,20 @@ def user(text: str, meta: bool = False, sidechain: bool = False) -> dict:
 
 
 def assistant_text(text: str, stop: str = "end_turn", sidechain: bool = False,
-                   model: str = "claude-sonnet-5-5", cwd: str = "/repo") -> dict:
-    return {"type": "assistant", "uuid": _uuid(), "isSidechain": sidechain, "cwd": cwd,
-            "message": {"role": "assistant", "model": model, "stop_reason": stop,
-                        "content": [{"type": "text", "text": text}]}}
+                   model: str = "claude-sonnet-5-5", cwd: str = "/repo", msg_id: str | None = None) -> dict:
+    entry = {"type": "assistant", "uuid": _uuid(), "isSidechain": sidechain, "cwd": cwd,
+             "message": {"role": "assistant", "model": model, "stop_reason": stop,
+                         "content": [{"type": "text", "text": text}]}}
+    if msg_id:
+        entry["message"]["id"] = msg_id
+    return entry
+
+
+def assistant_thinking(msg_id: str, stop: str = "end_turn", cwd: str = "/repo") -> dict:
+    """Claude Code writes each content block of one reply as its own line, sharing message.id."""
+    return {"type": "assistant", "uuid": _uuid(), "isSidechain": False, "cwd": cwd,
+            "message": {"id": msg_id, "role": "assistant", "model": "claude-sonnet-5-5", "stop_reason": stop,
+                        "content": [{"type": "thinking", "thinking": "…", "signature": "sig"}]}}
 
 
 def assistant_tool(name: str, input: dict, tool_id: str, cwd: str = "/repo") -> dict:

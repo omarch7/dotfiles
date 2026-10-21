@@ -3,7 +3,8 @@ from __future__ import annotations
 import tempfile
 import unittest
 
-from tests.fixtures import assistant_text, assistant_tool, tool_result, user, write_transcript
+from tests.fixtures import (assistant_text, assistant_thinking, assistant_tool, tool_result, user,
+                            write_transcript)
 from transcript import (completed_turn_indices, last_completed_turn, prompt_text, read_entries,
                         read_tail_entries)
 
@@ -45,6 +46,12 @@ class TranscriptTest(unittest.TestCase):
         self.assertIsNone(last_completed_turn([user("q"), t]))
         self.assertEqual(last_completed_turn([a, assistant_text("sub", sidechain=True)]), a["uuid"])
         self.assertEqual(completed_turn_indices([user("q"), a, user("q2"), t]), [1])
+
+    def test_split_reply_counts_as_one_turn(self):
+        es = [user("q"), assistant_thinking("m1"), assistant_text("part one", msg_id="m1"),
+              assistant_text("part two", msg_id="m1"), user("q2"), assistant_thinking("m2")]
+        self.assertEqual(completed_turn_indices(es), [3])
+        self.assertEqual(last_completed_turn(es), es[3]["uuid"])
 
 
 if __name__ == "__main__":
