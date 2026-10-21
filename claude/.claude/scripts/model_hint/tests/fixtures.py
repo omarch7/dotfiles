@@ -131,3 +131,6 @@ def rd(h: float, s: float, o: float, eff=(.1, .7, .1, .1), score: float = 1.0):
     """A Reading with the given tier probabilities and effort distribution."""
     from openjev import Reading
     return Reading({"haiku": h, "sonnet": s, "opus": o}, list(eff), score)
+
+
+HAIKU = reading_response({"haiku": .9, "sonnet": .08, "opus": .02}, [.9, .05, .03, .02], .15)
