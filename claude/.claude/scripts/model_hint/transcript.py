@@ -83,9 +83,16 @@ def prompt_text(entry: dict) -> str | None:
 
 
 def completed_turn_indices(entries: list[dict]) -> list[int]:
-    return [i for i, e in enumerate(entries)
-            if is_main(e) and e.get("type") == "assistant"
-            and (e.get("message") or {}).get("stop_reason") == "end_turn"]
+    """One index per finished reply. Claude Code writes each content block of a reply as its own
+    line (thinking, then text), all marked end_turn and sharing message.id; count only the last
+    line that carries reply text."""
+    last_by_message: dict[str, int] = {}
+    for i, e in enumerate(entries):
+        message = e.get("message") or {}
+        if (is_main(e) and e.get("type") == "assistant" and message.get("stop_reason") == "end_turn"
+                and any(isinstance(b, dict) and b.get("type") == "text" for b in message.get("content") or [])):
+            last_by_message[message.get("id") or e.get("uuid") or str(i)] = i
+    return sorted(last_by_message.values())
 
 
 def last_completed_turn(entries: list[dict]) -> str | None:
