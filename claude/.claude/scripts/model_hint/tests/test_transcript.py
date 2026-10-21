@@ -53,6 +53,22 @@ class TranscriptTest(unittest.TestCase):
         self.assertEqual(completed_turn_indices(es), [3])
         self.assertEqual(last_completed_turn(es), es[3]["uuid"])
 
+    def test_injected_shell_and_compaction_messages_are_not_prompts(self):
+        self.assertIsNone(prompt_text(user("<bash-input>ls -la</bash-input>")))
+        self.assertIsNone(prompt_text(user("<bash-stdout>warning: unused</bash-stdout><bash-stderr></bash-stderr>")))
+        compact = user("This session is being continued from a previous conversation...")
+        compact["isCompactSummary"] = True
+        self.assertIsNone(prompt_text(compact))
+        hidden = user("shown only in the transcript view")
+        hidden["isVisibleInTranscriptOnly"] = True
+        self.assertIsNone(prompt_text(hidden))
+
+    def test_malformed_entries_do_not_raise(self):
+        self.assertIsNone(prompt_text({"type": "user", "message": "not a dict"}))
+        self.assertEqual(completed_turn_indices([{"type": "assistant", "message": "x"},
+                                                 {"type": "assistant", "message": {"content": "x",
+                                                                                   "stop_reason": "end_turn"}}]), [])
+
 
 if __name__ == "__main__":
     unittest.main()

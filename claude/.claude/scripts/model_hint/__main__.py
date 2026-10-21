@@ -61,20 +61,22 @@ def cmd_render(raw: str) -> None:
 
 
 def cmd_worker(sid: str, path: str, key: str) -> None:
+    prev = cache.load(sid)
     try:
-        prev = cache.load(sid)
         if prev.turn_key == key and not prev.error:
             return
         entries = read_entries(path)
         cut = next((i for i, e in enumerate(entries) if e.get("uuid") == key), None)
         if cut is not None:
             entries = entries[: cut + 1]
-        try:
-            reading = ask(build_summary(entries), timeout=WORKER_TIMEOUT)
-        except OpenJevError:
-            cache.save(sid, CacheEntry(key, prev.state, True))
-            return
+        reading = ask(build_summary(entries), timeout=WORKER_TIMEOUT)
         cache.save(sid, CacheEntry(key, update(prev.state, reading), False))
+    except Exception:
+        # Record the turn as failed (hint hidden) so renders don't keep respawning and waiting.
+        try:
+            cache.save(sid, CacheEntry(key, prev.state, True))
+        except OSError:
+            pass
     finally:
         cache.clear_pending(sid)
 
