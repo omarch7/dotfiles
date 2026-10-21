@@ -125,3 +125,9 @@ def closed_port_url() -> str:
     port = s.getsockname()[1]
     s.close()
     return f"http://127.0.0.1:{port}/v1/systemone"
+
+
+def rd(h: float, s: float, o: float, eff=(.1, .7, .1, .1), score: float = 1.0):
+    """A Reading with the given tier probabilities and effort distribution."""
+    from openjev import Reading
+    return Reading({"haiku": h, "sonnet": s, "opus": o}, list(eff), score)
