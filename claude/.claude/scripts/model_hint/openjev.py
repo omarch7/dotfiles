@@ -1,6 +1,7 @@
 """Ask the local Open-Jev server which model tier and effort fit a session summary."""
 from __future__ import annotations
 
+import http.client
 import json
 import os
 import urllib.error
@@ -44,7 +45,7 @@ def ask(state: str, url: str | None = None, timeout: float = 3.0) -> Reading:
             data = json.load(response)
     except OpenJevError:
         raise
-    except (urllib.error.URLError, OSError, ValueError) as error:
+    except (urllib.error.URLError, http.client.HTTPException, OSError, ValueError) as error:
         raise OpenJevError(str(error)) from error
     try:
         answers = data["answers"]

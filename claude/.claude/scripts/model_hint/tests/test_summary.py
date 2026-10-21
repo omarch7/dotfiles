@@ -65,6 +65,13 @@ class SummaryTest(unittest.TestCase):
         self.assertIn("Latest prompt: latest", out)
         self.assertEqual(out.count("\n- "), 1)
 
+    def test_malformed_tool_input_does_not_raise(self):
+        es = [user("p"), assistant_tool("Edit", "oops", "e1"), tool_result("e1", is_error=True),
+              assistant_tool("Bash", ["not", "a", "dict"], "b1"), tool_result("b1", is_error=True),
+              assistant_text("done")]
+        s = collect_signals(es)
+        self.assertEqual((s.files_edited, s.tool_failures, s.shell_failures), (0, 2, 1))
+
 
 if __name__ == "__main__":
     unittest.main()

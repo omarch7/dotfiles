@@ -119,6 +119,21 @@ class CliTest(unittest.TestCase):
         self.assertLess(time.monotonic() - t, 0.5)
         self.assertEqual(out.splitlines()[1], "⇡ Opus · high")
 
+    def test_worker_crash_is_cached_as_error(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("model_hint_main", str(Path(PKG_DIR) / "__main__.py"))
+        main = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(main)
+        end = assistant_text("a")
+        p = write_transcript(self.tmp, [user("q"), end])
+        with mock.patch.dict(os.environ, {"XDG_CACHE_HOME": self.tmp}), \
+                mock.patch.object(main, "build_summary", side_effect=RuntimeError("boom")):
+            cache.claim_pending("w1", end["uuid"])
+            main.cmd_worker("w1", p, end["uuid"])
+            entry = cache.load("w1")
+        self.assertEqual((entry.turn_key, entry.error), (end["uuid"], True))
+        self.assertFalse((self.cache_dir_in() / "w1.pending").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

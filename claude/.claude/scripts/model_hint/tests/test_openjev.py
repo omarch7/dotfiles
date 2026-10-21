@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import os
+import socket
+import threading
 import time
 import unittest
 from unittest import mock
@@ -9,6 +11,24 @@ from openjev import OpenJevError, Reading, ask
 from tests.fixtures import StubOpenJev, closed_port_url, reading_response
 
 R = reading_response({"haiku": .1, "sonnet": .7, "opus": .2}, [.1, .2, .6, .1], 1.7)
+
+
+
+def raw_server(reply: bytes) -> str:
+    """Accept one connection, send raw bytes, close. Returns the URL."""
+    srv = socket.socket()
+    srv.bind(("127.0.0.1", 0))
+    srv.listen(1)
+
+    def serve():
+        conn, _ = srv.accept()
+        conn.recv(65536)
+        conn.sendall(reply)
+        conn.close()
+        srv.close()
+
+    threading.Thread(target=serve, daemon=True).start()
+    return f"http://127.0.0.1:{srv.getsockname()[1]}/v1/systemone"
 
 
 class OpenJevTest(unittest.TestCase):
@@ -44,6 +64,15 @@ class OpenJevTest(unittest.TestCase):
         with StubOpenJev([R]) as stub, mock.patch.dict(os.environ, {"OPENJEV_URL": stub.url}):
             ask("S")
         self.assertEqual(len(stub.requests), 1)
+
+    def test_non_http_listener_raises_openjev_error(self):
+        with self.assertRaises(OpenJevError):
+            ask("S", url=raw_server(b"garbage that is not http\r\n\r\n"), timeout=2)
+
+    def test_truncated_reply_raises_openjev_error(self):
+        reply = b"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: 1000\r\n\r\n{\"answers\""
+        with self.assertRaises(OpenJevError):
+            ask("S", url=raw_server(reply), timeout=2)
 
 
 if __name__ == "__main__":

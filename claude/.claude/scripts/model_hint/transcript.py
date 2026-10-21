@@ -5,8 +5,10 @@ import json
 import os
 import re
 
-SKIP_PREFIXES = ("<local-command", "<task-notification", "<system-reminder",
+SKIP_PREFIXES = ("<local-command", "<task-notification", "<system-reminder", "<bash-",
                  "[Request interrupted", "[Request cancelled")
+# User-type entries Claude Code injects itself (compaction summaries, transcript-only notes)
+SKIP_FLAGS = ("isMeta", "isCompactSummary", "isVisibleInTranscriptOnly")
 
 # Slash commands that control the session rather than describe work.
 SESSION_COMMANDS = {"/model", "/effort", "/clear", "/compact", "/config", "/fast", "/resume", "/rename",
@@ -53,6 +55,19 @@ def is_main(entry: dict) -> bool:
     return entry.get("isSidechain") is not True
 
 
+def message_of(entry: dict) -> dict:
+    """The entry's message object, or {} when missing or malformed."""
+    message = entry.get("message")
+    return message if isinstance(message, dict) else {}
+
+
+def content_blocks(entry: dict, kind: str) -> list[dict]:
+    content = message_of(entry).get("content")
+    if not isinstance(content, list):
+        return []
+    return [b for b in content if isinstance(b, dict) and b.get("type") == kind]
+
+
 def _text_of(content) -> str | None:
     if isinstance(content, str):
         return content
@@ -63,9 +78,9 @@ def _text_of(content) -> str | None:
 
 
 def prompt_text(entry: dict) -> str | None:
-    if not is_main(entry) or entry.get("type") != "user" or entry.get("isMeta") is True:
+    if not is_main(entry) or entry.get("type") != "user" or any(entry.get(f) is True for f in SKIP_FLAGS):
         return None
-    text = _text_of((entry.get("message") or {}).get("content"))
+    text = _text_of(message_of(entry).get("content"))
     if text is None:
         return None
     text = text.strip()
@@ -88,9 +103,9 @@ def completed_turn_indices(entries: list[dict]) -> list[int]:
     line that carries reply text."""
     last_by_message: dict[str, int] = {}
     for i, e in enumerate(entries):
-        message = e.get("message") or {}
+        message = message_of(e)
         if (is_main(e) and e.get("type") == "assistant" and message.get("stop_reason") == "end_turn"
-                and any(isinstance(b, dict) and b.get("type") == "text" for b in message.get("content") or [])):
+                and content_blocks(e, "text")):
             last_by_message[message.get("id") or e.get("uuid") or str(i)] = i
     return sorted(last_by_message.values())
 

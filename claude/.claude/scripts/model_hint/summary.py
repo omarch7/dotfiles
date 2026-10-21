@@ -4,6 +4,7 @@ from __future__ import annotations
 from collections import Counter
 from dataclasses import dataclass
 
+from transcript import content_blocks as _blocks
 from transcript import is_main, prompt_text
 
 MAX_STATE_CHARS = 7000
@@ -31,11 +32,9 @@ class Signals:
     ended: str
 
 
-def _blocks(entry: dict, kind: str) -> list[dict]:
-    content = (entry.get("message") or {}).get("content")
-    if not isinstance(content, list):
-        return []
-    return [b for b in content if isinstance(b, dict) and b.get("type") == kind]
+def _input(block: dict) -> dict:
+    value = block.get("input")
+    return value if isinstance(value, dict) else {}
 
 
 def _relative(path: str, cwd: str | None) -> str:
@@ -70,9 +69,9 @@ def collect_signals(entries: list[dict], recent_turns: int = 3) -> Signals:
         if e.get("type") != "assistant":
             continue
         for b in _blocks(e, "tool_use"):
-            inp = b.get("input") or {}
+            inp = _input(b)
             path = inp.get("file_path") or inp.get("notebook_path")
-            if not path:
+            if not isinstance(path, str) or not path:
                 continue
             if b.get("name") in EDIT_TOOLS:
                 edits[path] += 1
@@ -95,7 +94,7 @@ def collect_signals(entries: list[dict], recent_turns: int = 3) -> Signals:
             call = calls.get(b.get("tool_use_id")) or {}
             if call.get("name") == "Bash":
                 shell_failures += 1
-                failing_commands[(call.get("input") or {}).get("command", "")] += 1
+                failing_commands[str(_input(call).get("command", ""))] += 1
 
     last_call = None
     last_result = None
