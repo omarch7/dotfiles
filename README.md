@@ -253,6 +253,25 @@ The script is wired to five hook events: `Notification` → attention, `UserProm
 2. Merge the `hooks` block from `claude/.claude/settings.hooks.json` into your `~/.claude/settings.json`
 3. Reload tmux (`<C-s>r`) and open `/hooks` in Claude Code (or restart it) to load the registration
 
+### Claude Code Model Hint
+
+The status line (`claude/.claude/scripts/context-bar.sh`) shows the current effort next to the model (`Sonnet 5.5 · high`) and, after the context bar, a hint for the best model tier and effort for the work so far. A local [Open-Jev](https://github.com/Zefan-Cai/Open-Jev) model makes the call from a short summary of the session: recent prompts, Claude's last reply, files touched, failures. You still switch with `/model` and `/effort`.
+
+| Hint | Colour | Meaning |
+|------|--------|---------|
+| `✓ right fit` | green | You're on the recommended model and effort |
+| `⇡ Sonnet · high` | amber | Step up one notch |
+| `⇡⇡ Opus · high` | red | Big step up (Haiku → Opus, or low → xhigh) |
+| `⇣ Haiku · low` | dim blue | Could go cheaper (kept quiet: switching mid-session drops the prompt cache) |
+| any | gray | Open-Jev isn't confident |
+
+It recalculates once per finished turn, in the background, and smooths across turns so it doesn't flip-flop. It hides itself when Open-Jev is unreachable, on non-subscription providers (router, local) and before the first turn ends.
+
+- **Server:** Open-Jev's `/v1/systemone` at `OPENJEV_URL` (default `http://127.0.0.1:8791/v1/systemone`), e.g. `python -m jev.server --checkpoint ./checkpoints/open-jev-9b/package/checkpoint --port 8791` from the Open-Jev repo
+- **Code:** `claude/.claude/scripts/model_hint/` (Python 3 stdlib only); per-session cache in `~/.cache/claude-statusline/model-hint/`
+- **Tests:** `cd claude/.claude/scripts/model_hint && python3 -m unittest discover -s tests -t .`
+- **Tuning:** `python3 claude/.claude/scripts/model_hint replay <transcript.jsonl> [--lean] [--no-stability]` prints per-turn picks and how often the hint changed; see `docs/superpowers/reports/2026-10-21-model-hint-tuning.md`
+
 ## Starship Configuration
 
 A custom [Starship](https://starship.rs/) prompt configuration with Catppuccin Mocha theming is included.
