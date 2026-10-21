@@ -265,14 +265,18 @@ The status line (`claude/.claude/scripts/context-bar.sh`) shows the current effo
 | `⇣ Haiku · low` | dim blue | Could go cheaper (kept quiet: switching mid-session drops the prompt cache) |
 | any | gray | Open-Jev isn't confident |
 
-It recalculates once per finished turn, in the background, and smooths across turns so it doesn't flip-flop. It hides itself when Open-Jev is unreachable, on non-subscription providers (router, local) and before the first turn ends.
+It recalculates once per finished turn, in the background, and smooths across turns so it doesn't flip-flop. It hides itself when the Jev backend is unreachable, on non-subscription providers (router, local) and before the first turn ends.
 
 **Setup:** add `"refreshInterval": 5` to the `statusLine` block in `~/.claude/settings.json`. Claude Code only redraws the status line on events, so without a timer a recommendation that takes Open-Jev longer than ~0.6 s wouldn't appear until your next prompt.
 
-- **Server:** Open-Jev's `/v1/systemone` at `OPENJEV_URL` (default `http://127.0.0.1:8791/v1/systemone`), e.g. `python -m jev.server --checkpoint ./checkpoints/open-jev-9b/package/checkpoint --port 8791` from the Open-Jev repo
+- **Backends:** pick with `JEV_BACKEND`; both speak the same `/v1/systemone` API.
+  - `open-jev` (default): local Open-Jev at `OPENJEV_URL` (default `http://127.0.0.1:8791/v1/systemone`), e.g. `python -m jev.server --checkpoint ./checkpoints/open-jev-9b/package/checkpoint --port 8791` from the Open-Jev repo
+  - `typesafe`: hosted [TypeSafe Jev](https://typesafe.ai) at `https://api.typesafe.ai/v1/systemone` (override with `TYPESAFE_URL`). Needs `TYPESAFE_API_KEY`; without it the hint hides.
+- **Model:** `JEV_MODEL` sets the model id sent with each request: `jev-latest` (TypeSafe default), a pinned `jev-1.13.0`, `jev-preview`, or your Open-Jev checkpoint name. Export these where Claude Code starts (shell profile or the `env` block in `~/.claude/settings.json`); the status line picks them up on its next redraw.
+- **Effort thresholds:** the low/medium/high/xhigh boundaries depend on the backend. Open-Jev's are tuned for its compressed scores (`0.65,1.10,1.40`); TypeSafe starts at plain rounding (`0.5,1.5,2.5`), not tuned yet. Override either with `JEV_EFFORT_THRESHOLDS=a,b,c`.
 - **Code:** `claude/.claude/scripts/model_hint/` (Python 3 stdlib only); per-session cache in `~/.cache/claude-statusline/model-hint/`
 - **Tests:** `cd claude/.claude/scripts/model_hint && python3 -m unittest discover -s tests -t .`
-- **Tuning:** `python3 claude/.claude/scripts/model_hint replay <transcript.jsonl> [--lean] [--no-stability]` prints per-turn picks and how often the hint changed; see `docs/superpowers/reports/2026-10-21-model-hint-tuning.md`
+- **Tuning:** `python3 claude/.claude/scripts/model_hint replay <transcript.jsonl> [--lean] [--no-stability]` prints per-turn picks and how often the hint changed; add `--backend typesafe --model jev-1.14.0` to compare backends or models; see `docs/superpowers/reports/2026-10-21-model-hint-tuning.md`
 
 ## Starship Configuration
 

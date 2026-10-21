@@ -304,7 +304,7 @@ fi
 line1="${C_ACCENT}${PROVIDER_ICON} ${model_label}${C_GRAY} │ ${C_ACCENT}${ICON_CTX}${C_RESET} $(render_bar "$pct") $(pct_color "$pct")${pct_prefix}${pct}%${C_GRAY} of ${max_k}k${C_RESET}"
 plain_line1="${PROVIDER_ICON} ${model_label} │ ${ICON_CTX} xxxxxxxxxxxx ${pct_prefix}${pct}% of ${max_k}k"
 
-# Model/effort recommendation from the local Open-Jev model (Claude subscription only)
+# Model/effort recommendation from Jev: local Open-Jev or hosted TypeSafe, via JEV_BACKEND (Claude subscription only)
 if [[ "$PROVIDER" == claude ]] && command -v python3 >/dev/null 2>&1; then
     hint_color="" hint_plain=""
     { IFS= read -r hint_color; IFS= read -r hint_plain; } < <(printf '%s' "$input" | python3 "$SCRIPT_DIR/model_hint" render 2>/dev/null)
