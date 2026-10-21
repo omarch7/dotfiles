@@ -4,27 +4,133 @@
 C_RESET='\033[0m'
 C_GRAY='\033[38;5;245m'
 C_BAR_EMPTY='\033[38;5;238m'
+C_WARN='\033[38;2;229;192;123m'  # amber, >= 75%
+C_CRIT='\033[38;2;224;108;117m'  # red, >= 90%
+C_PACE='\033[38;5;250m'          # pace tick in limit bars
+
+# Nerd Font icons
+ICON_CTX='󰍛'    # nf-md-memory
+ICON_5H='󰅐'     # nf-md-clock_outline
+ICON_WEEK='󰃰'   # nf-md-calendar_clock
+ICON_DAY='󰃭'    # nf-md-calendar
+
+ROUTER_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/claude-statusline"
+ROUTER_CACHE_TTL=60      # seconds before a background refresh is kicked off
+ROUTER_CACHE_MAX_AGE=600 # older than this, the router is treated as unreachable
 
 input=$(cat)
 
 # Extract model, directory, and cwd
 model=$(echo "$input" | jq -r '.model.display_name // .model.id // "?"')
-model_id=$(echo "$input" | jq -r '.model.id // ""')
 
-# Detect provider from model ID and environment
-if [[ -n "${ANTHROPIC_BASE_URL:-}" ]]; then
-    PROVIDER_ICON='󰍹'
-    PROVIDER_LABEL='󰍹'
-    C_ACCENT='\033[38;2;136;199;141m'  # local/self-hosted muted green
-elif [[ "$model_id" == *anthropic* ]]; then
+# Detect provider from the API base URL
+base_url="${ANTHROPIC_BASE_URL:-}"
+if [[ -z "$base_url" ]]; then
+    PROVIDER=claude
+    PROVIDER_ICON='󰛄'
+    C_ACCENT='\033[38;2;199;141;136m'  # Anthropic orange
+elif [[ "$base_url" == *hellofresh.io* ]]; then
+    PROVIDER=router
     PROVIDER_ICON='󰧑'
-    PROVIDER_LABEL='󰧑'
     C_ACCENT='\033[38;5;74m'  # Bedrock blue
 else
-    PROVIDER_ICON='󰛄'
-    PROVIDER_LABEL='󰛄'
-    C_ACCENT='\033[38;2;199;141;136m'  # Anthropic orange
+    PROVIDER=local
+    PROVIDER_ICON='󰍹'
+    C_ACCENT='\033[38;2;136;199;141m'  # local/self-hosted muted green
 fi
+
+# Render a bar for a percentage; turns amber/red as it fills up.
+# Optional third arg: cell index (0..width) where a pace tick "│" is drawn.
+render_bar() {
+    local pct=$1 width=${2:-12} tick=${3:-} color=$C_ACCENT bar="" i progress
+    [[ $pct -gt 100 ]] && pct=100
+    if [[ $pct -ge 90 ]]; then
+        color=$C_CRIT
+    elif [[ $pct -ge 75 ]]; then
+        color=$C_WARN
+    fi
+    for ((i=0; i<width; i++)); do
+        [[ "$tick" == "$i" ]] && bar+="${C_PACE}│${C_RESET}"
+        # Fill of this cell in hundredths: >= 100 is full, >= 40 is half
+        progress=$((pct * width - i * 100))
+        if [[ $progress -ge 100 ]]; then
+            bar+="${color}█${C_RESET}"
+        elif [[ $progress -ge 40 ]]; then
+            bar+="${color}▄${C_RESET}"
+        else
+            bar+="${C_BAR_EMPTY}░${C_RESET}"
+        fi
+    done
+    [[ "$tick" == "$width" ]] && bar+="${C_PACE}│${C_RESET}"
+    printf '%s' "$bar"
+}
+
+# Pace tick position: how far through a window we are, as a cell index of an 8-wide bar
+pace_tick() {
+    local resets=$1 window=$2 left elapsed
+    [[ -z "$resets" ]] && return
+    left=$(( resets - $(date +%s) ))
+    [[ $left -lt 0 ]] && left=0
+    [[ $left -gt $window ]] && left=$window
+    elapsed=$(( window - left ))
+    echo $(( (elapsed * 8 + window / 2) / window ))
+}
+
+# Time until a reset epoch: "45m", "2h13m", "3d4h"
+fmt_countdown() {
+    local left
+    [[ -z "$1" ]] && return
+    left=$(( $1 - $(date +%s) ))
+    [[ $left -lt 0 ]] && left=0
+    if [[ $left -ge 86400 ]]; then
+        echo "$((left / 86400))d$(( (left % 86400) / 3600 ))h"
+    elif [[ $left -ge 3600 ]]; then
+        echo "$((left / 3600))h$(( (left % 3600) / 60 ))m"
+    else
+        echo "$((left / 60))m"
+    fi
+}
+
+# Percentage text, coloured to match the bar once it is in warning territory
+pct_color() {
+    if [[ $1 -ge 90 ]]; then
+        printf '%s' "$C_CRIT"
+    elif [[ $1 -ge 75 ]]; then
+        printf '%s' "$C_WARN"
+    else
+        printf '%s' "$C_GRAY"
+    fi
+}
+
+file_age() {
+    local mtime
+    mtime=$(stat -f %m "$1" 2>/dev/null || stat -c %Y "$1" 2>/dev/null) || return 1
+    echo $(( $(date +%s) - mtime ))
+}
+
+# Refresh the router's /key/info in the background so the bar never waits on the network
+refresh_router_cache() {
+    local token="${ANTHROPIC_AUTH_TOKEN:-${ANTHROPIC_API_KEY:-}}"
+    local cache="$ROUTER_CACHE_DIR/key-info.json" lock="$ROUTER_CACHE_DIR/refresh.lock"
+    [[ -z "$token" ]] && return
+    mkdir -p "$ROUTER_CACHE_DIR"
+    # Skip if another refresh started in the last 30s
+    if [[ -f "$lock" ]] && [[ $(file_age "$lock") -lt 30 ]]; then
+        return
+    fi
+    touch "$lock"
+    (
+        tmp="$cache.$$"
+        if curl -sf -m 5 -H "Authorization: Bearer $token" "${base_url%/}/key/info" -o "$tmp" \
+            && jq -e '.info.budget_limits' "$tmp" >/dev/null 2>&1; then
+            mv "$tmp" "$cache"
+        else
+            rm -f "$tmp"
+        fi
+        rm -f "$lock"
+    ) </dev/null >/dev/null 2>&1 &
+}
+
 cwd=$(echo "$input" | jq -r '.cwd // empty')
 dir=$(basename "$cwd" 2>/dev/null || echo "?")
 
@@ -97,35 +203,15 @@ fi
 # Get transcript path for context calculation and last message feature
 transcript_path=$(echo "$input" | jq -r '.transcript_path // empty')
 
-# Get cost and duration from session
-total_cost=$(echo "$input" | jq -r '.cost.total_cost_usd // empty')
-total_duration_ms=$(echo "$input" | jq -r '.cost.total_duration_ms // empty')
-
-cost_str=""
-if [[ -n "$total_cost" && "$total_cost" != "0" ]]; then
-    cost_euro=$(echo "$total_cost" | awk '{printf "%.2f", $1}')
-    cost_str="${C_GRAY} ${cost_euro}€${C_RESET}"
-fi
-
-duration_str=""
-if [[ -n "$total_duration_ms" && "$total_duration_ms" != "0" ]]; then
-    duration_sec=$((total_duration_ms / 1000))
-    if [[ $duration_sec -ge 3600 ]]; then
-        duration_str="${C_GRAY}󰔚 $((duration_sec / 3600))h $(( (duration_sec % 3600) / 60 ))m${C_RESET}"
-    elif [[ $duration_sec -ge 60 ]]; then
-        duration_str="${C_GRAY}󰔚 $((duration_sec / 60))m${C_RESET}"
-    else
-        duration_str="${C_GRAY}󰔚 ${duration_sec}s${C_RESET}"
-    fi
-fi
-
 # Get context window size from JSON (accurate), but calculate tokens from transcript
 # (more accurate than total_input_tokens which excludes system prompt/tools/memory)
 # See: github.com/anthropics/claude-code/issues/13652
 max_context=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
 max_k=$((max_context / 1000))
 
-# Calculate context bar from transcript
+# Calculate context usage from transcript
+baseline=20000  # system prompt (~3k), tools (~15k), memory (~300), plus ~2k dynamic context
+context_length=0
 if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
     context_length=$(jq -s '
         map(select(.message.usage and .isSidechain != true and .isApiErrorMessage != true)) |
@@ -136,80 +222,100 @@ if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
             (.message.usage.cache_creation_input_tokens // 0)
         else 0 end
     ' < "$transcript_path")
-
-    # 20k baseline: includes system prompt (~3k), tools (~15k), memory (~300),
-    # plus ~2k for git status, env block, XML framing, and other dynamic context
-    baseline=20000
-    bar_width=12
-
-    if [[ "$context_length" -gt 0 ]]; then
-        pct=$((context_length * 100 / max_context))
-        pct_prefix=""
-    else
-        # At conversation start, ~20k baseline is already loaded
-        pct=$((baseline * 100 / max_context))
-        pct_prefix="~"
-    fi
-
-    [[ $pct -gt 100 ]] && pct=100
-
-    bar=""
-    for ((i=0; i<bar_width; i++)); do
-        bar_start=$((i * 8))
-        progress=$((pct - bar_start))
-        if [[ $progress -ge 8 ]]; then
-            bar+="${C_ACCENT}█${C_RESET}"
-        elif [[ $progress -ge 3 ]]; then
-            bar+="${C_ACCENT}▄${C_RESET}"
-        else
-            bar+="${C_BAR_EMPTY}░${C_RESET}"
-        fi
-    done
-
-    ctx="${bar} ${C_GRAY}${pct_prefix}${pct}% of ${max_k}k tokens"
+fi
+if [[ "$context_length" -gt 0 ]]; then
+    pct=$((context_length * 100 / max_context))
+    pct_prefix=""
 else
-    # Transcript not available yet - show baseline estimate
-    baseline=20000
-    bar_width=12
+    # At conversation start (or before the transcript exists), ~20k baseline is already loaded
     pct=$((baseline * 100 / max_context))
-    [[ $pct -gt 100 ]] && pct=100
+    pct_prefix="~"
+fi
+[[ $pct -gt 100 ]] && pct=100
 
-    bar=""
-    for ((i=0; i<bar_width; i++)); do
-        bar_start=$((i * 8))
-        progress=$((pct - bar_start))
-        if [[ $progress -ge 8 ]]; then
-            bar+="${C_ACCENT}█${C_RESET}"
-        elif [[ $progress -ge 3 ]]; then
-            bar+="${C_ACCENT}▄${C_RESET}"
+# Limit/budget segments share one line under the model; each is built twice:
+# coloured for output, plain for width calculation
+segments=()
+plain_segments=()
+add_segment() {
+    local icon=$1 label=$2 pct=$3 tick=$4 value=$5 resets=$6 countdown detail=""
+    countdown=$(fmt_countdown "$resets")
+    [[ -n "$value" ]] && detail+=" ${value}"
+    [[ -n "$countdown" ]] && detail+=" ↻${countdown}"
+    # value is a percentage for limits, dollars left for budgets
+    segments+=("${C_ACCENT}${icon}${C_RESET} ${C_GRAY}${label}${C_RESET} $(render_bar "$pct" 8 "$tick")$(pct_color "$pct")${detail}${C_RESET}")
+    plain_segments+=("${icon} ${label} xxxxxxxx${tick:+x}${detail}")
+}
+
+if [[ "$PROVIDER" == claude ]]; then
+    # Subscription limits; only present after the first API response in the session
+    while IFS='|' read -r window used resets; do
+        [[ -z "$used" ]] && continue
+        used=${used%.*}
+        if [[ "$window" == five_hour ]]; then
+            add_segment "$ICON_5H" "5h" "$used" "$(pace_tick "$resets" 18000)" "${used}%" "$resets"
         else
-            bar+="${C_BAR_EMPTY}░${C_RESET}"
+            add_segment "$ICON_WEEK" "week" "$used" "$(pace_tick "$resets" 604800)" "${used}%" "$resets"
         fi
-    done
-
-    ctx="${bar} ${C_GRAY}~${pct}% of ${max_k}k tokens"
+    done < <(echo "$input" | jq -r '
+        .rate_limits // {} | to_entries[] |
+        select(.key == "five_hour" or .key == "seven_day") |
+        select(.value.used_percentage != null) |
+        "\(.key)|\(.value.used_percentage)|\(.value.resets_at // "")"' 2>/dev/null | sort)
+elif [[ "$PROVIDER" == router ]]; then
+    cache="$ROUTER_CACHE_DIR/key-info.json"
+    age=$(file_age "$cache" 2>/dev/null || echo 999999)
+    [[ $age -ge $ROUTER_CACHE_TTL ]] && refresh_router_cache
+    if [[ -f "$cache" && $age -lt $ROUTER_CACHE_MAX_AGE ]]; then
+        # Weekly first, then daily
+        while IFS='|' read -r duration spent budget resets; do
+            [[ -z "$budget" ]] && continue
+            used=$(awk -v s="$spent" -v b="$budget" 'BEGIN { if (b > 0) printf "%d", s * 100 / b; else print 0 }')
+            left=$(awk -v s="$spent" -v b="$budget" 'BEGIN { l = b - s; if (l < 0) l = 0; printf "$%.0f left", l }')
+            if [[ "$duration" == 7d ]]; then
+                add_segment "$ICON_WEEK" "week" "$used" "$(pace_tick "$resets" 604800)" "$left" "$resets"
+            elif [[ "$duration" == 1d ]]; then
+                add_segment "$ICON_DAY" "day" "$used" "$(pace_tick "$resets" 86400)" "$left" "$resets"
+            fi
+        done < <(jq -r '
+            .info as $i |
+            $i.budget_limits // [] | sort_by(.budget_duration != "7d") | .[] |
+            "\(.budget_duration)|\($i.budget_limits_usage[.budget_duration].current_spend // 0)|\(.max_budget)|\(
+                (.reset_at // "") | sub("\\.[0-9]+"; "") | sub("\\+00:00$"; "Z") |
+                (try fromdateiso8601 catch ""))"' "$cache" 2>/dev/null)
+    fi
 fi
 
-# Build output: Line 1 = Model + Context bar + Cost + Duration
-#            : Line 2 = Dir + Branch (Git info)
-line1="${C_ACCENT}${PROVIDER_ICON} ${model}${C_GRAY} | ${ctx}${C_RESET}"
-[[ -n "$cost_str" ]] && line1+=" | ${cost_str}"
-[[ -n "$duration_str" ]] && line1+=" | ${duration_str}"
-line2="${C_GRAY}  ${dir}"
-[[ -n "$branch" ]] && line2+=" |  ${branch} ${git_status}"
+# Build output: Line 1 = Provider + Model + Context bar
+#            : Line 2 = Limits/budgets side by side (when available)
+#            : Line 3 = Dir + Branch (Git info)
+line1="${C_ACCENT}${PROVIDER_ICON} ${model}${C_GRAY} │ ${C_ACCENT}${ICON_CTX}${C_RESET} $(render_bar "$pct") $(pct_color "$pct")${pct_prefix}${pct}%${C_GRAY} of ${max_k}k${C_RESET}"
+plain_line1="${PROVIDER_ICON} ${model} │ ${ICON_CTX} xxxxxxxxxxxx ${pct_prefix}${pct}% of ${max_k}k"
+
+limits_line=""
+plain_limits_line=""
+for i in "${!segments[@]}"; do
+    if [[ $i -gt 0 ]]; then
+        limits_line+="${C_GRAY} │ ${C_RESET}"
+        plain_limits_line+=" │ "
+    fi
+    limits_line+="${segments[$i]}"
+    plain_limits_line+="${plain_segments[$i]}"
+done
+
+git_line="${C_GRAY}  ${dir}"
+[[ -n "$branch" ]] && git_line+=" │  ${branch} ${git_status}"
+git_line+="${C_RESET}"
 
 printf '%b\n' "$line1"
-printf '%b\n' "$line2"
+[[ -n "$limits_line" ]] && printf '%b\n' "$limits_line"
+printf '%b\n' "$git_line"
 
 # Get user's last message (text only, not tool results, skip unhelpful messages)
 if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
-    # Calculate visible length (without ANSI codes) - bar + content for truncation
-    plain_line1="${PROVIDER_LABEL} ${model} | xxxxxxxxxx ${pct}% of ${max_k}k tokens"
-    [[ -n "$cost_str" ]] && plain_line1+=" |  0.00€"
-    [[ -n "$duration_str" ]] && plain_line1+=" | 󰔚 12m"
-    plain_line2="  ${dir}"
-    [[ -n "$branch" ]] && plain_line2+=" |  ${branch} ${git_status}"
+    # Truncate to the widest line above (measured without ANSI codes)
     max_len=${#plain_line1}
+    [[ ${#plain_limits_line} -gt $max_len ]] && max_len=${#plain_limits_line}
     last_user_msg=$(jq -rs '
         # Messages to skip (not useful as context)
         def is_unhelpful:
