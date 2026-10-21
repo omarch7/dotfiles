@@ -4,6 +4,10 @@ from __future__ import annotations
 import itertools
 import json
 import os
+import socket
+import threading
+import time
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 _ids = itertools.count(1)
 
@@ -44,3 +48,80 @@ def write_transcript(dir: str, entries: list[dict], trailing_partial: bool = Fal
         if trailing_partial:
             f.write('{"type":"assist')
     return path
+
+
+def reading_response(model: dict, effort_probs: list, score: float) -> dict:
+    """A response body shaped like the real /v1/systemone answer."""
+    choice = max(model, key=model.get)
+    return {
+        "answers": {
+            "model": {"type": "choice", "choice": choice, "probabilities": dict(model),
+                      "confidence": max(model.values())},
+            "effort": {"type": "score", "score": score,
+                       "probabilities": {str(i): p for i, p in enumerate(effort_probs)},
+                       "confidence": max(effort_probs),
+                       "legend": {str(i): f"level {i}" for i in range(len(effort_probs))}},
+        },
+        "model": "Qwen/Qwen3.5-9B",
+        "usage": {"input_tokens": 100, "output_tokens": 0},
+        "metadata": {"method": "lora_decision_head", "inference_seconds": 0.1},
+    }
+
+
+class StubOpenJev:
+    """A tiny local HTTP server standing in for the Open-Jev endpoint."""
+
+    def __init__(self, responses, delay: float = 0.0, status: int = 200):
+        self.responses, self.delay, self.status = responses, delay, status
+        self.requests: list = []
+        self._served = 0
+
+    def _next(self, body):
+        if callable(self.responses):
+            return self.responses(body)
+        response = self.responses[min(self._served, len(self.responses) - 1)]
+        self._served += 1
+        return response
+
+    def __enter__(self):
+        stub = self
+
+        class Handler(BaseHTTPRequestHandler):
+            def do_POST(self):
+                length = int(self.headers.get("Content-Length") or 0)
+                body = json.loads(self.rfile.read(length) or b"null")
+                stub.requests.append(body)
+                if stub.delay:
+                    time.sleep(stub.delay)
+                payload = json.dumps(stub._next(body)).encode()
+                try:
+                    self.send_response(stub.status)
+                    self.send_header("Content-Type", "application/json")
+                    self.send_header("Content-Length", str(len(payload)))
+                    self.end_headers()
+                    self.wfile.write(payload)
+                except OSError:
+                    pass
+
+            def log_message(self, *args):
+                pass
+
+        self._server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        self._server.daemon_threads = True
+        self._server.block_on_close = False
+        threading.Thread(target=self._server.serve_forever, daemon=True).start()
+        self.url = f"http://127.0.0.1:{self._server.server_address[1]}/v1/systemone"
+        return self
+
+    def __exit__(self, *exc):
+        self._server.shutdown()
+        self._server.server_close()
+        return False
+
+
+def closed_port_url() -> str:
+    s = socket.socket()
+    s.bind(("127.0.0.1", 0))
+    port = s.getsockname()[1]
+    s.close()
+    return f"http://127.0.0.1:{port}/v1/systemone"
