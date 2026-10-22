@@ -265,7 +265,7 @@ The status line (`claude/.claude/scripts/context-bar.sh`) shows the current effo
 | `⇣ Haiku · low` | dim blue | Could go cheaper (kept quiet: switching mid-session drops the prompt cache) |
 | any | gray | Open-Jev isn't confident |
 
-It recalculates once per finished turn, in the background, and smooths across turns so it doesn't flip-flop. It hides itself when the Jev backend is unreachable, on non-subscription providers (router, local) and before the first turn ends.
+It recalculates once per finished turn, in the background, and smooths across turns so it doesn't flip-flop. It hides itself when the Jev backend is unreachable, on local providers and before the first turn ends.
 
 **Setup:** add `"refreshInterval": 5` to the `statusLine` block in `~/.claude/settings.json`. Claude Code only redraws the status line on events, so without a timer a recommendation that takes Open-Jev longer than ~0.6 s wouldn't appear until your next prompt.
 

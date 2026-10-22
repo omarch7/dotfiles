@@ -55,7 +55,12 @@ class ContextBarTest(unittest.TestCase):
         self.assertIn("Sonnet 5.5 · high", line1)
         self.assertTrue(line1.endswith("│ ⇡ Opus · high"), line1)
 
-    def test_no_hint_on_other_providers(self):
+    def test_hint_on_router(self):
+        line1 = strip(self.run_bar(extra_env={"ANTHROPIC_BASE_URL": "https://router.hellofresh.io"}).splitlines()[0])
+        self.assertIn("Sonnet 5.5 · high", line1)
+        self.assertTrue(line1.endswith("│ ⇡ Opus · high"), line1)
+
+    def test_no_hint_on_local_provider(self):
         line1 = strip(self.run_bar(extra_env={"ANTHROPIC_BASE_URL": "http://localhost:1"}).splitlines()[0])
         self.assertNotIn("⇡", line1)
         self.assertIn("Sonnet 5.5 · high", line1)
