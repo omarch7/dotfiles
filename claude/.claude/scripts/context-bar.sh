@@ -274,7 +274,7 @@ elif [[ "$PROVIDER" == router ]]; then
             left=$(awk -v s="$spent" -v b="$budget" 'BEGIN { l = b - s; if (l < 0) l = 0; printf "%.2f", l }')
             if [[ "$duration" == 7d ]]; then
                 week_left=$left
-                add_segment "$ICON_WEEK" "week" "$used" "$(pace_tick "$resets" 604800)" "\$${left%.*} left" "$resets"
+                add_segment "$ICON_WEEK" "week" "$used" "$(pace_tick "$resets" 604800)" "\$${left} left" "$resets"
             elif [[ "$duration" == 1d ]]; then
                 capped=""
                 # The daily allowance is capped by what is left of the weekly budget
@@ -283,7 +283,7 @@ elif [[ "$PROVIDER" == router ]]; then
                     used=$(awk -v l="$left" -v b="$budget" 'BEGIN { printf "%d", (b - l) * 100 / b }')
                     capped=" (wk cap)"
                 fi
-                add_segment "$ICON_DAY" "day" "$used" "$(pace_tick "$resets" 86400)" "\$${left%.*} left${capped}" "$resets"
+                add_segment "$ICON_DAY" "day" "$used" "$(pace_tick "$resets" 86400)" "\$${left} left${capped}" "$resets"
             fi
         done < <(jq -r '
             .info as $i |
