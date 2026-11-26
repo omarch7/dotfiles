@@ -112,7 +112,7 @@ apply_theme() {
     if [ -f "$bat_config" ]; then
         # Capitalize first letter: mocha -> Mocha, latte -> Latte
         bat_flavor="$(echo "$flavor" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')"
-        sed -i'' -e "s/--theme=\"Catppuccin .*\"/--theme=\"Catppuccin ${bat_flavor}\"/" "$bat_config"
+        sed -i '' -e "s/--theme=\"Catppuccin .*\"/--theme=\"Catppuccin ${bat_flavor}\"/" "$bat_config"
     fi
 
     # --- glow (config path differs by OS) ---
@@ -123,7 +123,7 @@ apply_theme() {
     fi
     if [ -f "$glow_config" ]; then
         glow_theme="$HOME/.config/glow/themes/catppuccin-${flavor}.json"
-        sed -i'' -e "s|style: \".*\"|style: \"${glow_theme}\"|" "$glow_config"
+        sed -i '' -e "s|style: \".*\"|style: \"${glow_theme}\"|" "$glow_config"
     fi
 
     # --- claude code (custom themes live in ~/.claude/themes; Claude Code's
@@ -145,7 +145,7 @@ apply_theme() {
         if [ -f "$tv_config" ]; then
             accents=(blue flamingo green lavender maroon mauve peach pink red rosewater sapphire sky teal yellow)
             accent="${accents[$((RANDOM % ${#accents[@]}))]}"
-            sed -i'' -e "s/theme = \"catppuccin-[a-z]*-[a-z]*\"/theme = \"catppuccin-${flavor}-${accent}\"/" "$tv_config"
+            sed -i '' -e "s/theme = \"catppuccin-[a-z]*-[a-z]*\"/theme = \"catppuccin-${flavor}-${accent}\"/" "$tv_config"
         fi
     fi
 
