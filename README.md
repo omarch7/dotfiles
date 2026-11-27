@@ -374,6 +374,18 @@ This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/)
 
    # Herdr configuration → ~/.config/herdr/ (config.toml + scripts/nav.sh)
    stow herdr
+
+   # Glow theme definitions → ~/.config/glow/themes/
+   stow glow
+
+   # macOS only: launchd agent that syncs themes on appearance change
+   # (requires: brew install cormacrelf/tap/dark-notify)
+   stow launchd
+   ```
+
+   On macOS, also load the theme-sync agent once:
+   ```bash
+   launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/local.oc.dotfiles-theme.plist
    ```
 
    To remove the symlinks later, run `stow -D <package>` from the same directory.

@@ -82,3 +82,28 @@ symlink-swap pattern (2026-06-19 plan) keeps switches git-clean. But:
 - The Herdr appearance-report test (auto_switch vs WINCH fallback) — settle
   by live test, not by asking.
 - Commit sequencing per the repo's usual commit-per-task style.
+
+## Revision during execution (2026-11-27)
+
+Live testing changed two decisions:
+
+1. **The glow symlink swap was dropped** (Decisions 3 and 5 above no longer
+   describe what shipped). Glow resolves relative `style:` paths against its
+   **current working directory**, not the config file's directory, so tracked
+   flavor files cannot be OS-portable, and glow auto-creates a default config
+   (write-through symlinks) whenever its config path is missing. What shipped
+   instead: the `glow` package tracks only the **theme JSONs**; the live
+   `glow.yml` stays untracked and sed-swapped by the script (it was never
+   git-tracked, so no dirt either way). The macOS `Preferences` path stays a
+   real file.
+2. **Herdr's fallback branch was not needed**: `auto_switch = true` was
+   verified live flipping both directions; Ghostty reports the appearance
+   change to Herdr on its own.
+
+The plan's sed-idiom work surfaced a pre-existing bug: `sed -i'' -e` makes
+BSD sed treat `-e` as the in-place backup suffix, littering `*-e` files on
+every switch; the fix (pipe through a temp file and `mv`) is portable to
+GNU sed, which the BSD-only form also broke. The launchd plist carries an
+explicit `PATH` including `/opt/homebrew/bin`, without which the script
+silently skipped Homebrew tools like btop — and the state-file gate would
+then have kept them stuck on the old flavor.

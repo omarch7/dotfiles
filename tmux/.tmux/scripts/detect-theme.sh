@@ -4,6 +4,19 @@
 # themed elsewhere.
 # Supports macOS, WSL2, and native Linux (Omarchy marker + freedesktop fallback).
 
+# Portable in-place sed: BSD sed needs `-i ''` (and the no-space form litters
+# *-e backups), GNU sed rejects the empty-suffix form entirely. Pipe through a
+# temp file and replace instead, so both platforms behave identically.
+sed_inplace() {
+    local expr="$1" file="$2" tmp="$2.dotfiles-tmp"
+    if sed -e "$expr" "$file" > "$tmp"; then
+        mv "$tmp" "$file"
+    else
+        rm -f "$tmp"
+        return 1
+    fi
+}
+
 detect_mode() {
     case "$(uname -s)" in
         Darwin)
@@ -112,7 +125,7 @@ apply_theme() {
     if [ -f "$bat_config" ]; then
         # Capitalize first letter: mocha -> Mocha, latte -> Latte
         bat_flavor="$(echo "$flavor" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')"
-        sed -i '' -e "s/--theme=\"Catppuccin .*\"/--theme=\"Catppuccin ${bat_flavor}\"/" "$bat_config"
+        sed_inplace "s/--theme=\"Catppuccin .*\"/--theme=\"Catppuccin ${bat_flavor}\"/" "$bat_config"
     fi
 
     # --- glow (config path differs by OS) ---
@@ -123,7 +136,7 @@ apply_theme() {
     fi
     if [ -f "$glow_config" ]; then
         glow_theme="$HOME/.config/glow/themes/catppuccin-${flavor}.json"
-        sed -i '' -e "s|style: \".*\"|style: \"${glow_theme}\"|" "$glow_config"
+        sed_inplace "s|style: \".*\"|style: \"${glow_theme}\"|" "$glow_config"
     fi
 
     # --- claude code (custom themes live in ~/.claude/themes; Claude Code's
@@ -145,7 +158,7 @@ apply_theme() {
         if [ -f "$tv_config" ]; then
             accents=(blue flamingo green lavender maroon mauve peach pink red rosewater sapphire sky teal yellow)
             accent="${accents[$((RANDOM % ${#accents[@]}))]}"
-            sed -i '' -e "s/theme = \"catppuccin-[a-z]*-[a-z]*\"/theme = \"catppuccin-${flavor}-${accent}\"/" "$tv_config"
+            sed_inplace "s/theme = \"catppuccin-[a-z]*-[a-z]*\"/theme = \"catppuccin-${flavor}-${accent}\"/" "$tv_config"
         fi
     fi
 
