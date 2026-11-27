@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>local.oc.dotfiles-theme</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <!-- launchd's default PATH (/usr/bin:/bin:...) hides Homebrew tools
+             like btop, which detect-theme.sh then silently skips — and the
+             state-file gate would keep them stuck on the old flavor. -->
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/dark-notify</string>
+        <string>-c</string>
+        <string>/Users/oc/.tmux/scripts/detect-theme.sh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/tmp/local.oc.dotfiles-theme.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/local.oc.dotfiles-theme.log</string>
+</dict>
+</plist>

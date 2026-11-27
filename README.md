@@ -300,6 +300,14 @@ starship/.config/
 - **Directory Truncation**: Truncated directory paths for cleaner prompts
 - **VimCMD Support**: Custom symbol for vim command mode (works with zsh-vi-mode)
 
+## System Theme Switching
+
+`tmux/.tmux/scripts/detect-theme.sh` is the hub: it detects light/dark (macOS, WSL2, and Omarchy's `light.mode` marker) and syncs the catppuccin flavor across tmux, starship, lsd, bat, glow, Claude Code, television, and btop. A state file gates re-runs, so repeat fires are free.
+
+Triggers: tmux load and `client-focus-in`, Omarchy's `theme-set` hook (`omarchy/.config/omarchy/hooks/theme-set.d/`), and on macOS a stow-managed launchd agent (`launchd/Library/LaunchAgents/local.oc.dotfiles-theme.plist`) running [dark-notify](https://github.com/cormacrelf/dark-notify) — needed because Herdr replaced tmux there, so nothing else re-fires the script when macOS appearance changes.
+
+Per-tool notes: starship switches via a script-owned `~/.config/starship.toml` symlink between the tracked `starship-latte.toml`/`starship-mocha.toml` (no tracked file is ever mutated); glow's theme JSONs are tracked in the `glow` package while its live config stays untracked and sed-swapped; Herdr switches its own UI via `theme.auto_switch` in its config, following the host terminal's appearance report; Claude Code sessions run on one stable custom theme (`custom:catppuccin`) whose palette file the script rewrites in place — Claude Code live-reloads a running session when the selected theme's content changes under a stable name (a `theme` settings change only reaches new sessions).
+
 ## Herdr Configuration
 
 A [Herdr](https://herdr.dev/) configuration that mirrors the tmux keybindings (prefix, splits, pane navigation, and tab switching) for the terminal workspace manager.
@@ -366,6 +374,18 @@ This repository is organized as a [GNU Stow](https://www.gnu.org/software/stow/)
 
    # Herdr configuration → ~/.config/herdr/ (config.toml + scripts/nav.sh)
    stow herdr
+
+   # Glow theme definitions → ~/.config/glow/themes/
+   stow glow
+
+   # macOS only: launchd agent that syncs themes on appearance change
+   # (requires: brew install cormacrelf/tap/dark-notify)
+   stow launchd
+   ```
+
+   On macOS, also load the theme-sync agent once:
+   ```bash
+   launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/local.oc.dotfiles-theme.plist
    ```
 
    To remove the symlinks later, run `stow -D <package>` from the same directory.
