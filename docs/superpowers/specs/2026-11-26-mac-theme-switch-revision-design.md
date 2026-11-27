@@ -107,3 +107,15 @@ GNU sed, which the BSD-only form also broke. The launchd plist carries an
 explicit `PATH` including `/opt/homebrew/bin`, without which the script
 silently skipped Homebrew tools like btop — and the state-file gate would
 then have kept them stuck on the old flavor.
+
+**Addition (also 2026-11-27): Claude Code live theming.** Spike-verified
+behavior of Claude Code 2.1.332: a `theme` change in `settings.json` only
+reaches new sessions, but a running session **live-re-renders when the
+selected custom theme file's content changes while its `name` stays
+identical** (changing the name breaks the selection identity). The script
+therefore maintains one stable slug: on every switch it copies the active
+flavor's palette onto `~/.claude/themes/catppuccin.json` with the name
+pinned to "Catppuccin", and `settings.json` permanently points at
+`custom:catppuccin`. Open sessions need a one-time `/theme` selection of
+the slug; every session after that follows appearance changes live with
+no script-visible manual step.

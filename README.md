@@ -306,7 +306,7 @@ starship/.config/
 
 Triggers: tmux load and `client-focus-in`, Omarchy's `theme-set` hook (`omarchy/.config/omarchy/hooks/theme-set.d/`), and on macOS a stow-managed launchd agent (`launchd/Library/LaunchAgents/local.oc.dotfiles-theme.plist`) running [dark-notify](https://github.com/cormacrelf/dark-notify) — needed because Herdr replaced tmux there, so nothing else re-fires the script when macOS appearance changes.
 
-Per-tool notes: starship switches via a script-owned `~/.config/starship.toml` symlink between the tracked `starship-latte.toml`/`starship-mocha.toml` (no tracked file is ever mutated); glow's theme JSONs are tracked in the `glow` package while its live config stays untracked and sed-swapped; Herdr switches its own UI via `theme.auto_switch` in its config, following the host terminal's appearance report.
+Per-tool notes: starship switches via a script-owned `~/.config/starship.toml` symlink between the tracked `starship-latte.toml`/`starship-mocha.toml` (no tracked file is ever mutated); glow's theme JSONs are tracked in the `glow` package while its live config stays untracked and sed-swapped; Herdr switches its own UI via `theme.auto_switch` in its config, following the host terminal's appearance report; Claude Code sessions run on one stable custom theme (`custom:catppuccin`) whose palette file the script rewrites in place — Claude Code live-reloads a running session when the selected theme's content changes under a stable name (a `theme` settings change only reaches new sessions).
 
 ## Herdr Configuration
 

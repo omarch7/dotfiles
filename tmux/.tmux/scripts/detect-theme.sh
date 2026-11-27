@@ -139,13 +139,22 @@ apply_theme() {
         sed_inplace "s|style: \".*\"|style: \"${glow_theme}\"|" "$glow_config"
     fi
 
-    # --- claude code (custom themes live in ~/.claude/themes; Claude Code's
-    # "auto" theme only toggles the built-in presets, so point the theme
-    # setting at the matching custom flavor instead) ---
+    # --- claude code: one stable custom theme ("catppuccin"). Claude Code
+    # live-reloads a running session when the SELECTED theme file's content
+    # changes but its name stays the same; a theme-key change in
+    # settings.json only reaches new sessions. So: copy the active flavor's
+    # palette onto the stable slug with the name pinned, and point
+    # settings.json at it once. ---
+    claude_flavor="$HOME/.claude/themes/catppuccin-${flavor}.json"
+    claude_theme="$HOME/.claude/themes/catppuccin.json"
+    if [ -f "$claude_flavor" ] && command -v jq &>/dev/null; then
+        jq '.name = "Catppuccin"' "$claude_flavor" > "$claude_theme.tmp" 2>/dev/null \
+            && mv "$claude_theme.tmp" "$claude_theme"
+    fi
     claude_settings="$HOME/.claude/settings.json"
     if [ -f "$claude_settings" ] && command -v jq &>/dev/null; then
         claude_tmp=$(mktemp)
-        if jq --arg theme "custom:catppuccin-${flavor}" '.theme = $theme' "$claude_settings" >"$claude_tmp" 2>/dev/null; then
+        if jq --arg theme "custom:catppuccin" '.theme = $theme' "$claude_settings" >"$claude_tmp" 2>/dev/null; then
             mv "$claude_tmp" "$claude_settings"
         else
             rm -f "$claude_tmp"
